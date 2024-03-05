@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class GUI extends Application {
+public class GUIView extends Application {
 
     private static Scene scene;
 
@@ -27,7 +27,7 @@ public class GUI extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GUI.class.getResource("/com/rgbteam/cmf/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GUIView.class.getResource("/com/rgbteam/cmf/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

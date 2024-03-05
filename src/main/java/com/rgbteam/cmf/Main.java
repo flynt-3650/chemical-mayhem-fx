@@ -1,9 +1,9 @@
 package com.rgbteam.cmf;
 
-import com.rgbteam.cmf.view.GUI;
+import com.rgbteam.cmf.view.GUIView;
 
 public class Main {
     public static void main(String[] args) {
-        GUI.main(args);
+        GUIView.main(args);
     }
 }
