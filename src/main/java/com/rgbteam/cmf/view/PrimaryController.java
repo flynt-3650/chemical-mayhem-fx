@@ -7,6 +7,6 @@ public class PrimaryController {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        GUIView.setRoot("/com/rgbteam/cmf/secondary.fxml");
+        GUIView.setRoot("secondary");
     }
 }
