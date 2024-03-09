@@ -53,6 +53,7 @@ Temporary Items
 .apdisk
 
 ### Visual Studio Code ###
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -63,3 +64,6 @@ Temporary Items
 target/
 !target/classes/logback.xml
 !target/classes/logback-test.xml
+
+### IDEA ###
+.idea/
