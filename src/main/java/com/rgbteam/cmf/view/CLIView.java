@@ -11,11 +11,11 @@ import com.rgbteam.cmf.Controller;
 import com.rgbteam.cmf.chemistry.Element;
 
 public class CLIView {
-    public CLIView() {
+    public static void main(String[] args) {
         Controller controller = new Controller();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Hello User! I am the prototype of the top-secret V.I.K. program!");
+        System.out.println("Hello User!");
 
         label: while (true) {
             System.out.println("""
