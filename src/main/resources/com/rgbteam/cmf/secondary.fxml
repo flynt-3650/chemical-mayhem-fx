@@ -9,14 +9,13 @@
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rgbteam.cmf.view.SecondaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar prefHeight="26.0" BorderPane.alignment="CENTER">
         <menus>
@@ -62,25 +61,9 @@
           <RowConstraints maxHeight="136.80002441406248" minHeight="10.0" prefHeight="122.39999999999998" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="87.0" prefWidth="266.0" text="Определить степень окисления химических соединений" wrapText="true">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-                  <TextField layoutX="24.0" layoutY="87.0" prefHeight="26.0" prefWidth="262.0" text="введите соединение">
-                     <font>
-                        <Font size="14.0" />
-                     </font></TextField>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="107.0" prefWidth="349.0" GridPane.rowIndex="1">
-               <children>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="58.0" prefWidth="249.0" text="Определить класс химического соединения " wrapText="true">
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label alignment="CENTER" prefHeight="70.0" prefWidth="330.0" text="Determine the degree of oxidation of chemical compounds" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -88,16 +71,21 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <TextField layoutX="24.0" layoutY="80.0" prefHeight="26.0" prefWidth="262.0" text="введите соединение">
+               </top>
+               <center>
+                  <TextField prefHeight="60.0" prefWidth="289.0" text="enter compound" BorderPane.alignment="CENTER">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Segoe UI Bold" size="24.0" />
                      </font>
+                     <BorderPane.margin>
+                        <Insets left="30.0" />
+                     </BorderPane.margin>
                   </TextField>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-               <children>
-                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="270.0" text="Определить атомную массу соединения" wrapText="true">
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <top>
+                  <Label alignment="CENTER" prefHeight="56.0" prefWidth="330.0" text="Determine the degree of oxidation of chemical compounds" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -105,28 +93,55 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <TextField layoutX="18.0" layoutY="88.0" prefHeight="26.0" prefWidth="262.0" text="введите соединение">
+               </top>
+               <center>
+                  <TextField prefHeight="60.0" prefWidth="289.0" text="enter compound" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="30.0" />
+                     </BorderPane.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </TextField>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-               <children>
-                  <Button layoutX="70.0" layoutY="39.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="130.0" text="рассчитать" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Button layoutX="66.0" layoutY="22.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="138.0" text="рассчитать" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="114.0" prefWidth="270.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Button layoutX="68.0" layoutY="32.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="134.0" text="рассчитать" />
-               </children>
-            </AnchorPane>           
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <top>
+                  <Label prefHeight="59.0" prefWidth="362.0" text="Determine the atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+               </top>
+               <center>
+                  <TextField fx:id="atomicMass" prefHeight="60.0" text="enter compound" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="30.0" />
+                     </BorderPane.margin>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </TextField>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="154.0" prefWidth="299.0" GridPane.columnIndex="1">
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-font-size: 20px; -fx-padding: 10px 20px; -fx-border-radius: 30px; -fx-background-color: brown;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <center>
+                  <Button mnemonicParsing="false" style="-fx-font-size: 20px; -fx-padding: 10px 20px; -fx-border-radius: 30px; -fx-background-color: brown;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <center>
+                  <Button mnemonicParsing="false" onAction="#calculateAtomicMass" style="-fx-font-size: 20px; -fx-padding: 10px 20px; -fx-border-radius: 30px; -fx-background-color: brown;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>           
          </children>
       </GridPane>
    </center>
