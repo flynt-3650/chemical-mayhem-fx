@@ -9,7 +9,7 @@ import com.rgbteam.cmf.chemistry.Compound;
 import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.PeriodicTable;
 
-public class Controller {
+public class AppFlowController {
     public Element retrieveElementByNumber(int number) {
         return PeriodicTable.getElementByNumber(number);
     }

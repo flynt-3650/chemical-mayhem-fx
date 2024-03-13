@@ -8,19 +8,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import com.rgbteam.cmf.Controller;
+import com.rgbteam.cmf.AppFlowController;
 
 /**
  * JavaFX App
  */
 public class GUIView extends Application {
 
-    private static Scene scene;
-    private static Controller controller; 
+    private static Scene scene; 
 
     @Override
     public void start(Stage stage) throws IOException {
-        controller = new Controller(); 
         scene = new Scene(loadFXML("primary"), 1280, 720);
         stage.setScene(scene);
         stage.show();
@@ -32,13 +30,8 @@ public class GUIView extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GUIView.class.getResource("/com/rgbteam/cmf/" + fxml + ".fxml"));
-        Parent root;
+        Parent root = fxmlLoader.load();
     
-        if (fxml.equals("secondary")) {
-            SecondaryController secondaryController = new SecondaryController(controller);
-            fxmlLoader.setController(secondaryController);
-        }
-        root = fxmlLoader.load();
         return root;
     }
     
@@ -46,5 +39,4 @@ public class GUIView extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

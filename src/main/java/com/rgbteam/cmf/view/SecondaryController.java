@@ -1,6 +1,6 @@
 package com.rgbteam.cmf.view;
 
-import com.rgbteam.cmf.Controller;
+import com.rgbteam.cmf.AppFlowController;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -8,13 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class SecondaryController {
-    private Controller controller;
+    private AppFlowController controller = new AppFlowController();
+
     @FXML
     private TextField atomicMass;
 
-    public SecondaryController(Controller controller) {
-        this.controller = controller;
-    }
+    // public SecondaryController(Controller controller) {
+    //     this.controller = controller;
+    // }
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -23,7 +24,6 @@ public class SecondaryController {
 
     @FXML
     public void calculateAtomicMass(ActionEvent event) {
-        String rawCompound = atomicMass.getText();
-        atomicMass.setText(String.valueOf(controller.calculateCompoundsAtomicMass(rawCompound)));
+        atomicMass.setText(String.format("%.4f" , controller.calculateCompoundsAtomicMass(atomicMass.getText())));
     }
 }
