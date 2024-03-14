@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import com.rgbteam.cmf.AppFlowController;
-
 /**
  * JavaFX App
  */
@@ -20,6 +18,8 @@ public class GUIView extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 1280, 720);
+        String css = this.getClass().getResource("/com/rgbteam/cmf/StyleCollectionView.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
     }

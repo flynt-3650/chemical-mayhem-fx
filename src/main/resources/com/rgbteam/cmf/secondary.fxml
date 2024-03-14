@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.rgbteam.cmf.view.SecondaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rgbteam.cmf.view.SecondaryController">
    <top>
       <MenuBar prefHeight="26.0" BorderPane.alignment="CENTER">
         <menus>
@@ -52,7 +52,7 @@
    <center>
       <GridPane prefHeight="342.0" prefWidth="557.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="40.0" />
         </columnConstraints>
         <rowConstraints>
@@ -63,7 +63,7 @@
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <top>
-                  <Label alignment="CENTER" prefHeight="70.0" prefWidth="330.0" text="Determine the degree of oxidation of chemical compounds" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label alignment="CENTER" prefHeight="70.0" prefWidth="436.0" text="To get information about compound, enter the compound in the field below" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -73,7 +73,7 @@
                   </Label>
                </top>
                <center>
-                  <TextField prefHeight="60.0" prefWidth="289.0" text="enter compound" BorderPane.alignment="CENTER">
+                  <TextField fx:id="compoundQuery" prefHeight="60.0" prefWidth="289.0" promptText="enter compound" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font>
@@ -83,65 +83,15 @@
                   </TextField>
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-               <top>
-                  <Label alignment="CENTER" prefHeight="56.0" prefWidth="330.0" text="Determine the degree of oxidation of chemical compounds" wrapText="true" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-               </top>
-               <center>
-                  <TextField prefHeight="60.0" prefWidth="289.0" text="enter compound" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets left="30.0" />
-                     </BorderPane.margin>
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </TextField>
-               </center>
-            </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-               <top>
-                  <Label prefHeight="59.0" prefWidth="362.0" text="Determine the atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-               </top>
-               <center>
-                  <TextField fx:id="atomicMass" prefHeight="60.0" text="enter compound" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets left="30.0" />
-                     </BorderPane.margin>
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </TextField>
-               </center>
-            </BorderPane>
+            <BorderPane prefHeight="107.0" prefWidth="426.0" GridPane.rowIndex="1" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
             <BorderPane prefHeight="154.0" prefWidth="299.0" GridPane.columnIndex="1">
                <center>
-                  <Button mnemonicParsing="false" style="-fx-font-size: 20px; -fx-padding: 10px 20px; -fx-border-radius: 30px; -fx-background-color: brown;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
+                  <Button fx:id="mainButton" mnemonicParsing="false" onAction="#calculateAtomicMass" style="-fx-font-size: 20px; -fx-padding: 10px 20px; -fx-border-radius: 30px;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <center>
-                  <Button mnemonicParsing="false" style="-fx-font-size: 20px; -fx-padding: 10px 20px; -fx-border-radius: 30px; -fx-background-color: brown;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <center>
-                  <Button mnemonicParsing="false" onAction="#calculateAtomicMass" style="-fx-font-size: 20px; -fx-padding: 10px 20px; -fx-border-radius: 30px; -fx-background-color: brown;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>           
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />           
          </children>
       </GridPane>
    </center>

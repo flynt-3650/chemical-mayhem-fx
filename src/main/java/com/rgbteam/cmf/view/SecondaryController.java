@@ -11,7 +11,8 @@ public class SecondaryController {
     private AppFlowController controller = new AppFlowController();
 
     @FXML
-    private TextField atomicMass;
+    private TextField compoundQuery;
+
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -20,6 +21,6 @@ public class SecondaryController {
 
     @FXML
     public void calculateAtomicMass(ActionEvent event) {
-        atomicMass.setText(String.format("%.4f" , controller.calculateCompoundsAtomicMass(atomicMass.getText())));
+        compoundQuery.setText(String.format("%.4f" , controller.calculateCompoundsAtomicMass(compoundQuery.getText())));
     }
 }
