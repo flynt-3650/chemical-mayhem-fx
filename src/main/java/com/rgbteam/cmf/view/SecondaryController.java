@@ -13,10 +13,6 @@ public class SecondaryController {
     @FXML
     private TextField atomicMass;
 
-    // public SecondaryController(Controller controller) {
-    //     this.controller = controller;
-    // }
-
     @FXML
     private void switchToPrimary() throws IOException {
         GUIView.setRoot("primary");
