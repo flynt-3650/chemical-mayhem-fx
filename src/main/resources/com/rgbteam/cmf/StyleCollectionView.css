@@ -1,0 +1,24 @@
+.root {
+    -fx-font-family: "Lucida Console";
+}
+
+#mainButton {
+    -fx-background-color: #ff4c99;
+    
+    
+}
+#labelCompound {
+    -fx-font-size: 50;
+    -fx-font-weight: bold;
+
+}
+
+#firstCard, #secondCard, #thirdCard{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+#atomitMass {
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}

@@ -9,6 +9,7 @@ public class Main {
             CLIView.main(args);
             return;
         }
+        
         GUIView.main(args);
     }
 }

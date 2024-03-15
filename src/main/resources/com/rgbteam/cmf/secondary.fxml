@@ -1,16 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rgbteam.cmf.view.SecondaryController">
-    <children>
-        <Label text="Secondary View" />
-        <Button fx:id="secondaryButton" text="Switch to Primary View" onAction="#switchToPrimary" />
-    </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-</VBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rgbteam.cmf.view.SecondaryController">
+   <top>
+      <MenuBar prefHeight="26.0" prefWidth="626.0" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="View">
+               <items>
+                  <Menu mnemonicParsing="false" text="Сhange theme">
+                     <items>
+                        <RadioMenuItem mnemonicParsing="false" text="Light theme" />
+                        <RadioMenuItem mnemonicParsing="false" text="Dark theme" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <Menu mnemonicParsing="false" text="Сhange of appearance">
+                           <items>
+                              <RadioMenuItem mnemonicParsing="false" text="Console view" />
+                              <RadioMenuItem mnemonicParsing="false" text="GUI view" />
+                           </items>
+                        </Menu>
+                     </items>
+                  </Menu>
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Home">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Go home" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <GridPane prefHeight="342.0" prefWidth="557.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="40.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="166.40001831054687" minHeight="10.0" prefHeight="131.6000015258789" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="172.79999542236328" minHeight="10.0" prefHeight="85.80000000000001" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="136.80002441406248" minHeight="10.0" prefHeight="83.39998779296874" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="136.80002441406248" minHeight="10.0" prefHeight="80.20001220703125" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label prefHeight="70.0" prefWidth="436.0" text="To get information about compound, enter the compound in the field below" wrapText="true" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Lucida Console" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+               </top>
+               <center>
+                  <TextField fx:id="compoundQuery" prefHeight="60.0" prefWidth="289.0" promptText="enter compound" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Lucida Console" size="24.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets left="30.0" />
+                     </BorderPane.margin>
+                  </TextField>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ff91c1; -fx-background-radius: 30;" GridPane.rowIndex="2">
+               <left>
+                  <Label fx:id="secondCard" prefHeight="82.0" prefWidth="289.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding></Label>
+               </left>
+               <center>
+                  <Label prefHeight="56.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+               </center></BorderPane>
+            <BorderPane prefHeight="154.0" prefWidth="299.0" GridPane.columnIndex="1">
+               <center>
+                  <Button fx:id="mainButton" mnemonicParsing="false" onAction="#showCompoundInformation" prefHeight="68.0" prefWidth="146.0" style="-fx-font-size: 18px; -fx-padding: 10px 20px; -fx-border-radius: 30px;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <center>
+                  <Label fx:id="labelCompound" alignment="CENTER" prefHeight="101.0" prefWidth="170.0" BorderPane.alignment="CENTER" />
+               </center></BorderPane>
+            <BorderPane prefHeight="87.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffb1b1; -fx-background-radius: 30;" GridPane.rowIndex="3">
+               <left>
+                  <Label fx:id="thirdCard" prefHeight="78.0" prefWidth="313.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding></Label>
+               </left>
+               <center>
+                  <Label prefHeight="56.0" prefWidth="142.0" BorderPane.alignment="CENTER" />
+               </center></BorderPane>
+            <BorderPane prefHeight="94.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <BorderPane prefHeight="71.0" prefWidth="430.0" style="-fx-background-color: #ff65a8; -fx-background-radius: 30;" GridPane.rowIndex="1">
+               <left>
+                  <Label fx:id="firstCard" prefHeight="61.0" prefWidth="274.0" text="atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding></Label>
+               </left>
+               <center>
+                  <Label fx:id="atomitMass" prefHeight="56.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>           
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

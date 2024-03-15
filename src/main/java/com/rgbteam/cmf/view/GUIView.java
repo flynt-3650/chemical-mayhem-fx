@@ -13,11 +13,13 @@ import java.io.IOException;
  */
 public class GUIView extends Application {
 
-    private static Scene scene;
+    private static Scene scene; 
 
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 1280, 720);
+        String css = this.getClass().getResource("/com/rgbteam/cmf/StyleCollectionView.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
     }
@@ -28,11 +30,13 @@ public class GUIView extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GUIView.class.getResource("/com/rgbteam/cmf/" + fxml + ".fxml"));
-        return fxmlLoader.load();
+        Parent root = fxmlLoader.load();
+    
+        return root;
     }
+    
 
     public static void main(String[] args) {
         launch();
     }
-
 }
