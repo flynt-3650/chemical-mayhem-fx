@@ -15,11 +15,15 @@ public class GUIView extends Application {
 
     private static Scene scene; 
 
+    private void addCSSStyle() {
+        String css = this.getClass().getResource("/com/rgbteam/cmf/StyleCollectionView.css").toExternalForm();
+        scene.getStylesheets().add(css);
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 1280, 720);
-        String css = this.getClass().getResource("/com/rgbteam/cmf/StyleCollectionView.css").toExternalForm();
-        scene.getStylesheets().add(css);
+        addCSSStyle();
         stage.setScene(scene);
         stage.show();
     }

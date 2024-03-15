@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rgbteam.cmf.view.SecondaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rgbteam.cmf.view.SecondaryController">
    <top>
-      <MenuBar prefHeight="26.0" prefWidth="626.0" BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="26.0" prefWidth="877.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="View">
                <items>
@@ -52,21 +52,21 @@
    <center>
       <GridPane prefHeight="342.0" prefWidth="557.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="40.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="911.6000366210938" minWidth="10.0" prefWidth="911.6000366210938" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="505.20001220703125" minWidth="10.0" prefWidth="368.39996337890625" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="166.40001831054687" minHeight="10.0" prefHeight="131.6000015258789" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="172.79999542236328" minHeight="10.0" prefHeight="85.80000000000001" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="136.80002441406248" minHeight="10.0" prefHeight="83.39998779296874" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="136.80002441406248" minHeight="10.0" prefHeight="80.20001220703125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="211.40000915527344" minHeight="10.0" prefHeight="211.40000915527344" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="200.8000061035156" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="228.00002441406252" minHeight="10.0" prefHeight="161.60001220703128" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="171.39998779296877" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <top>
-                  <Label prefHeight="70.0" prefWidth="436.0" text="To get information about compound, enter the compound in the field below" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="lableInformation" prefHeight="110.0" prefWidth="912.0" text="To get information about compound, enter the compound in the field below" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
-                        <Font name="Lucida Console" size="18.0" />
+                        <Font size="36.0" />
                      </font>
                      <padding>
                         <Insets left="30.0" />
@@ -84,19 +84,26 @@
                   </TextField>
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ff91c1; -fx-background-radius: 30;" GridPane.rowIndex="2">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dae0ce; -fx-background-radius: 30;" GridPane.rowIndex="2">
                <left>
-                  <Label fx:id="secondCard" prefHeight="82.0" prefWidth="289.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="secondCard" prefHeight="82.0" prefWidth="571.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
                         <Insets left="30.0" />
                      </padding></Label>
                </left>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+               </GridPane.margin>
                <center>
-                  <Label prefHeight="56.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+                  <Label prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
                </center></BorderPane>
             <BorderPane prefHeight="154.0" prefWidth="299.0" GridPane.columnIndex="1">
                <center>
-                  <Button fx:id="mainButton" mnemonicParsing="false" onAction="#showCompoundInformation" prefHeight="68.0" prefWidth="146.0" style="-fx-font-size: 18px; -fx-padding: 10px 20px; -fx-border-radius: 30px;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER" />
+                  <Button fx:id="mainButton" mnemonicParsing="false" onAction="#showCompoundInformation" prefHeight="88.0" prefWidth="192.0" style="-fx-font-size: 18px; -fx-padding: 10px 20px; -fx-border-radius: 30px;" text="calculate" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Button>
                </center>
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -104,26 +111,32 @@
                   <Label fx:id="labelCompound" alignment="CENTER" prefHeight="101.0" prefWidth="170.0" BorderPane.alignment="CENTER" />
                </center></BorderPane>
             <BorderPane prefHeight="87.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffb1b1; -fx-background-radius: 30;" GridPane.rowIndex="3">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #a6b09c; -fx-background-radius: 30;" GridPane.rowIndex="3">
                <left>
-                  <Label fx:id="thirdCard" prefHeight="78.0" prefWidth="313.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="thirdCard" prefHeight="78.0" prefWidth="571.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
                         <Insets left="30.0" />
                      </padding></Label>
                </left>
                <center>
-                  <Label prefHeight="56.0" prefWidth="142.0" BorderPane.alignment="CENTER" />
-               </center></BorderPane>
+                  <Label prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+               </center>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
+               </GridPane.margin></BorderPane>
             <BorderPane prefHeight="94.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <BorderPane prefHeight="71.0" prefWidth="430.0" style="-fx-background-color: #ff65a8; -fx-background-radius: 30;" GridPane.rowIndex="1">
+            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #f6f6e7; -fx-background-radius: 30;" GridPane.rowIndex="1">
                <left>
-                  <Label fx:id="firstCard" prefHeight="61.0" prefWidth="274.0" text="atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="firstCard" prefHeight="62.0" prefWidth="571.0" text="atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
                         <Insets left="30.0" />
                      </padding></Label>
                </left>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+               </GridPane.margin>
                <center>
-                  <Label fx:id="atomitMass" prefHeight="56.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+                  <Label fx:id="atomitMass" prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>           
          </children>
