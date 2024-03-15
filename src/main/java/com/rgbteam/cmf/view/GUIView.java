@@ -15,7 +15,7 @@ public class GUIView extends Application {
 
     private static Scene scene; 
 
-    private void addCSSStyle() {
+    private void addCSS() {
         String css = this.getClass().getResource("/com/rgbteam/cmf/StyleCollectionView.css").toExternalForm();
         scene.getStylesheets().add(css);
     }
@@ -23,7 +23,7 @@ public class GUIView extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 1280, 720);
-        addCSSStyle();
+        addCSS();
         stage.setScene(scene);
         stage.show();
     }
@@ -39,7 +39,6 @@ public class GUIView extends Application {
         return root;
     }
     
-
     public static void main(String[] args) {
         launch();
     }

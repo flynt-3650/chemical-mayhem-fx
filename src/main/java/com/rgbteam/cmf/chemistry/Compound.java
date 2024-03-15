@@ -69,6 +69,8 @@ public class Compound {
                     double mass = stack.pop();
                     stack.push(mass * count);
                 }
+            } else {
+                return 0.0;
             }
         }
 

@@ -9,7 +9,7 @@ import com.rgbteam.cmf.chemistry.Compound;
 import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.PeriodicTable;
 
-public class AppFlowController {
+public class GeneralFlowController {
     public Element retrieveElementByNumber(int number) {
         return PeriodicTable.getElementByNumber(number);
     }
@@ -22,7 +22,7 @@ public class AppFlowController {
         return PeriodicTable.getElementByFullName(fullName);
     }
 
-    public double calculateCompoundsAtomicMass(String rawCompound) {
+    public Double calculateCompoundsAtomicMass(String rawCompound) {
         Compound compound = new Compound(rawCompound);
         return compound.calculateAtomicMass();
     }

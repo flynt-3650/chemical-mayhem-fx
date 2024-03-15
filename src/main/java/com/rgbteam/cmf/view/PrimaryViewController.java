@@ -2,12 +2,12 @@ package com.rgbteam.cmf.view;
 
 import java.io.IOException;
 
-import com.rgbteam.cmf.AppFlowController;
+import com.rgbteam.cmf.GeneralFlowController;
 
 import javafx.fxml.FXML;
 
-public class PrimaryController {
-    private AppFlowController controller = new AppFlowController();
+public class PrimaryViewController {
+    private GeneralFlowController controller = new GeneralFlowController();
 
     @FXML
     private void switchToSecondView() throws IOException {

@@ -1,43 +1,40 @@
 @font-face {
-    font-family: 'Montserrat';
-    src: url('/com/rgbteam/cmf/fonts/static/Montserrat-Regular.ttf');
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    
-}
-@font-face {
-    font-family: 'Montserrat';
-    src: url('/com/rgbteam/cmf/fonts/static/Montserrat-Medium.ttf');
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
+  font-family: "Montserrat";
+  src: url("/com/rgbteam/cmf/fonts/static/Montserrat-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
 }
 
 @font-face {
-    font-family: 'Montserrat';
-    src: url('/com/rgbteam/cmf/fonts/static/Montserrat-Bold.ttf');
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
+  font-family: "Montserrat";
+  src: url("/com/rgbteam/cmf/fonts/static/Montserrat-Medium.ttf");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/com/rgbteam/cmf/fonts/static/Montserrat-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
 }
 
 .root {
-    -fx-font-family: "Montserrat";
-    -fx-background-color: linear-gradient(to bottom, #a6b09c,#f6f6e7);
-    
+  -fx-font-family: "Montserrat";
+  -fx-background-color: linear-gradient(to bottom, #a6b09c, #f6f6e7);
 }
 
 #lableInformation {
-    -fx-font-weight: 500;
-    
+  -fx-font-weight: 500;
 }
 
 #mainButton {
-    -fx-background-color: #3b6a5c;
-    -fx-font-size: 26;
-    -fx-font-weight: bold;
-    
+  -fx-background-color: #3b6a5c;
+  -fx-font-size: 26;
+  -fx-font-weight: bold;
 }
 
 /* #myButton:hover {
@@ -45,17 +42,18 @@
 } */
 
 #labelCompound {
-    -fx-font-size: 50;
-    -fx-font-weight: bold;
-
+  -fx-font-size: 50;
+  -fx-font-weight: bold;
 }
 
-#firstCard, #secondCard, #thirdCard{
-    -fx-font-size: 26;
-    -fx-font-family:"Montserrat Medium";
+#firstCard,
+#secondCard,
+#thirdCard {
+  -fx-font-size: 26;
+  -fx-font-family: "Montserrat Medium";
 }
 
 #atomitMass {
-    -fx-font-size: 30;
-    -fx-font-weight: bold;
+  -fx-font-size: 30;
+  -fx-font-weight: bold;
 }

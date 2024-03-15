@@ -7,12 +7,12 @@ package com.rgbteam.cmf.view;
 
 import java.util.Scanner;
 
-import com.rgbteam.cmf.AppFlowController;
+import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
 
 public class CLIView {
     public static void main(String[] args) {
-        AppFlowController controller = new AppFlowController();
+        GeneralFlowController controller = new GeneralFlowController();
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Hello User!");
