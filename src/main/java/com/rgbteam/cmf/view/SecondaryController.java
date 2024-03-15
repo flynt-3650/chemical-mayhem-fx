@@ -26,7 +26,7 @@ public class SecondaryController {
 
     
     
-    public void calculateAtomicMass(ActionEvent event) {
+    private void calculateAtomicMass(ActionEvent event) {
         Compound compound = new Compound(compoundQuery.getText());
         System.out.println(compound);
         atomitMass.setText(String.format("%.4f" , controller.calculateCompoundsAtomicMass(compoundQuery.getText())));
