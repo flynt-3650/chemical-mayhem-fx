@@ -127,10 +127,10 @@
             <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Lanthanoids" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Actinoids" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
              <TextFlow fx:id="textFlow" style="-fx-background-color: #ffffff;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
-                       <Text fx:id="shortN" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="shortN" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-                       <Text fx:id="fullN" strokeType="OUTSIDE" strokeWidth="0.0" text="elAtom" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                       <Text fx:id="elNum" strokeType="OUTSIDE" strokeWidth="0.0" text=" fullN" GridPane.rowIndex="2" />
-                       <Text fx:id="elAtom" strokeType="OUTSIDE" strokeWidth="0.0" text="elNum" GridPane.columnIndex="2" />
+                       <Text fx:id="shortN" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                       <Text fx:id="fullN" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                       <Text fx:id="elNum" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2" />
+                       <Text fx:id="elAtom" strokeType="OUTSIDE" strokeWidth="0.0"  GridPane.columnIndex="2" />
              </TextFlow>
  
          </children>
