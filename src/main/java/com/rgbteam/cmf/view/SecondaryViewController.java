@@ -1,16 +1,14 @@
 package com.rgbteam.cmf.view;
 
 import com.rgbteam.cmf.GeneralFlowController;
-import com.rgbteam.cmf.chemistry.Compound;
-
-import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class SecondaryViewController {
-    private GeneralFlowController controller = new GeneralFlowController();
+    private final GeneralFlowController controller = new GeneralFlowController();
 
     @FXML
     private TextField compoundQuery;
@@ -19,28 +17,26 @@ public class SecondaryViewController {
     private Label labelCompound;
     
     @FXML
-    private Label atomitMass;
+    private Label atomicMass;
 
     @FXML
     private void switchToPrimary() throws IOException {
         GUIView.setRoot("primary");
     }
-    
-    private void calculateAtomicMass(ActionEvent event) {
-        Compound compound = new Compound(compoundQuery.getText());
-        System.out.println(compound);
+
+    private void calculateAtomicMass() {
         double ans = controller.calculateCompoundsAtomicMass(compoundQuery.getText());
 
         if (ans == 0.0) {
             labelCompound.setText("Error");
             return;
         }
-        atomitMass.setText(String.format("%.4f", ans));
+        atomicMass.setText(String.format("%.4f", ans));
     }
 
     @FXML
     public void showCompoundInformation() {
         labelCompound.setText(compoundQuery.getText());
-        calculateAtomicMass(null);
+        calculateAtomicMass();
     }
 }
