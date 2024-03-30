@@ -24,7 +24,7 @@
 
 .root {
   -fx-font-family: "Montserrat";
-  -fx-background-color: linear-gradient(to bottom, #a6b09c, #f6f6e7);
+  /* -fx-background-color: linear-gradient(to bottom, #a6b09c, #f6f6e7); */
 }
 
 #lableInformation {
@@ -32,7 +32,7 @@
 }
 
 #mainButton {
-  -fx-background-color: #3b6a5c;
+  -fx-background-color: #989bd5;
   -fx-font-size: 26;
   -fx-font-weight: bold;
 }
