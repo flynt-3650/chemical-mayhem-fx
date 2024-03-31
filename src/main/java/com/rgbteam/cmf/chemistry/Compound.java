@@ -23,6 +23,10 @@ public class Compound {
         }
     }
 
+    private void validateCompound() {
+
+    }
+
     public double calculateAtomicMass() {
         // Create a stack to keep track of atomic masses and counts
         Stack<Double> stack = new Stack<>();
@@ -30,12 +34,12 @@ public class Compound {
         // Iterate through each token in the parsedCompound array
         for (String token : parsedCompound) {
             // Check if the token is an element
-            if (isElement(token)) {
+
+            Element element = PeriodicTable.getElementByShortName(token);
+
+            if (element != null) {
                 // Retrieve the atomic mass of the element from the PeriodicTable
-                Element element = PeriodicTable.getElementByShortName(token);
-                if (element != null) {
-                    stack.push(element.getAtomicMass());
-                }
+                stack.push(element.getAtomicMass());
             }
             // Check for an opening parenthesis "("
             else if (token.equals("(")) {

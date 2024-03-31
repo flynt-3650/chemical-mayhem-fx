@@ -34,9 +34,8 @@ public class GUIView extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GUIView.class.getResource("/com/rgbteam/cmf/" + fxml + ".fxml"));
-        Parent root = fxmlLoader.load();
-    
-        return root;
+
+        return fxmlLoader.load();
     }
     
     public static void main(String[] args) {

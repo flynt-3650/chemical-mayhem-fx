@@ -74,6 +74,14 @@ public class Element {
         return electronAmount;
     }
 
+    public int[] getValences() {
+        return valences;
+    }
+
+    public int[] getOxidationStates() {
+        return oxidationStates;
+    }
+
     @Override
     public String toString() {
         return "Element is " + fullName + " (" + shortName + ")\n" +
