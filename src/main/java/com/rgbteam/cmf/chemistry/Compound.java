@@ -88,6 +88,8 @@ public class Compound {
         return totalMass;
     }
 
+    // public double 
+
     private static boolean isElement(String token) {
         return PeriodicTable.getElementByShortName(token) != null;
     }

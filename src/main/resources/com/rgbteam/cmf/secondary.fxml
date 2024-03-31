@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.rgbteam.cmf.view.SecondaryViewController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rgbteam.cmf.view.SecondaryViewController">
    <top>
       <MenuBar prefHeight="26.0" prefWidth="877.0" BorderPane.alignment="CENTER">
         <menus>
@@ -73,7 +84,7 @@
                   </TextField>
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #dae0ce; -fx-background-radius: 30;" GridPane.rowIndex="2">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #eacbe9; -fx-background-radius: 30;" GridPane.rowIndex="2">
                <left>
                   <Label fx:id="secondCard" prefHeight="82.0" prefWidth="571.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
@@ -100,9 +111,9 @@
                   <Label fx:id="labelCompound" alignment="CENTER" prefHeight="101.0" prefWidth="170.0" BorderPane.alignment="CENTER" />
                </center></BorderPane>
             <BorderPane prefHeight="87.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #a6b09c; -fx-background-radius: 30;" GridPane.rowIndex="3">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c6b5df; -fx-background-radius: 30;" GridPane.rowIndex="3">
                <left>
-                  <Label fx:id="thirdCard" prefHeight="78.0" prefWidth="571.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="thirdCard" prefHeight="78.0" prefWidth="571.0" text="class of compounds" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
                         <Insets left="30.0" />
                      </padding></Label>
@@ -114,7 +125,7 @@
                   <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
                </GridPane.margin></BorderPane>
             <BorderPane prefHeight="94.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #f6f6e7; -fx-background-radius: 30;" GridPane.rowIndex="1">
+            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #f8e4ed; -fx-background-radius: 30;" GridPane.rowIndex="1">
                <left>
                   <Label fx:id="firstCard" prefHeight="62.0" prefWidth="571.0" text="atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
@@ -125,7 +136,7 @@
                   <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                </GridPane.margin>
                <center>
-                   <Label fx:id="atomicMass" prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER"/>
+                   <Label fx:id="atomicMass" prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>           
          </children>
