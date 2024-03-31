@@ -73,6 +73,13 @@ public class Element {
     public int getElectronAmount() {
         return electronAmount;
     }
+    public int[] getValences() {
+        return valences;
+    }
+
+    public int[] getOxidationStates() {
+        return oxidationStates;
+    }
 
     @Override
     public String toString() {

@@ -1,6 +1,8 @@
 package com.rgbteam.cmf.view;
 
 import com.rgbteam.cmf.GeneralFlowController;
+import com.rgbteam.cmf.chemistry.InvalidCompoundException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -24,7 +26,7 @@ public class SecondaryViewController {
         GUIView.setRoot("primary");
     }
 
-    private void calculateAtomicMass() {
+    private void calculateAtomicMass() throws InvalidCompoundException {
         double ans = controller.calculateCompoundsAtomicMass(compoundQuery.getText());
 
         if (ans == 0.0) {
@@ -35,7 +37,7 @@ public class SecondaryViewController {
     }
 
     @FXML
-    public void showCompoundInformation() {
+    public void showCompoundInformation() throws InvalidCompoundException {
         labelCompound.setText(compoundQuery.getText());
         calculateAtomicMass();
     }

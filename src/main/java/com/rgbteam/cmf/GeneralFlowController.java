@@ -7,6 +7,7 @@ package com.rgbteam.cmf;
 
 import com.rgbteam.cmf.chemistry.Compound;
 import com.rgbteam.cmf.chemistry.Element;
+import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 import com.rgbteam.cmf.chemistry.PeriodicTable;
 
 public class GeneralFlowController {
@@ -22,7 +23,7 @@ public class GeneralFlowController {
         return PeriodicTable.getElementByFullName(fullName);
     }
 
-    public Double calculateCompoundsAtomicMass(String rawCompound) {
+    public Double calculateCompoundsAtomicMass(String rawCompound) throws InvalidCompoundException {
         Compound compound = new Compound(rawCompound);
         return compound.calculateAtomicMass();
     }

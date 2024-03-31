@@ -12,7 +12,7 @@
  public class Compound {
      private final String[] parsedCompound;
  
-     public Compound(String rawCompound) {
+     public Compound(String rawCompound) throws InvalidCompoundException {
          StringTokenizer tokenizer = new StringTokenizer(rawCompound, "-_ ");
  
          int tokenCount = tokenizer.countTokens();
@@ -21,11 +21,36 @@
          for (int i = 0; i < tokenCount; i++) {
              this.parsedCompound[i] = tokenizer.nextToken();
          }
+         validateCompound();
      }
  
-     private void validateCompound() {
+     private void validateCompound() throws InvalidCompoundException {
+        int sumOxidationStates = 0;
+        for (String token : parsedCompound) {
+            Element element = PeriodicTable.getElementByShortName(token);
+            if (element != null) {
+                int[] oxidationStates = element.getOxidationStates();
+                if (oxidationStates.length == 1) {
+                    sumOxidationStates += oxidationStates[0];
+                } else {
+                    boolean validOxidationStateFound = false;
+                    for (int oxidationState : oxidationStates) {
+                        if (sumOxidationStates + oxidationState == 0) {
+                            validOxidationStateFound = true;
+                            sumOxidationStates += oxidationState;
+                            break;
+                        }
+                    }
+                    if (!validOxidationStateFound) {
+                        throw new InvalidCompoundException("Invalid compound");
+                    }
+                }
+            }
+        }
+    }
+    
  
-     }
+     
  
      public double calculateAtomicMass() {
          // Create a stack to keep track of atomic masses and counts
