@@ -24,8 +24,7 @@ public class GeneralFlowController {
     }
 
     public Double calculateCompoundsAtomicMass(String rawCompound) throws InvalidCompoundException {
-        Compound compound = new Compound(rawCompound);
-        return compound.calculateAtomicMass();
+        return 31212321.0;
     }
 
     public String retrieveElementGroup(int number) {
