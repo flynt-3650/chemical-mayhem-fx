@@ -4,15 +4,9 @@
 
 
 package com.rgbteam.cmf.chemistry;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 import java.util.Stack;
 import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Compound {
     private final Element[] parsedCompound;
