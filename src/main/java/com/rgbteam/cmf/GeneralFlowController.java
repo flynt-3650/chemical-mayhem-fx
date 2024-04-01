@@ -4,7 +4,6 @@
 
 
 package com.rgbteam.cmf;
-
 import com.rgbteam.cmf.chemistry.Compound;
 import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
@@ -24,7 +23,8 @@ public class GeneralFlowController {
     }
 
     public Double calculateCompoundsAtomicMass(String rawCompound) throws InvalidCompoundException {
-        return 31212321.0;
+        Compound compound = new Compound(rawCompound);
+        return compound.calculateAtomicMass();
     }
 
     public String retrieveElementGroup(int number) {

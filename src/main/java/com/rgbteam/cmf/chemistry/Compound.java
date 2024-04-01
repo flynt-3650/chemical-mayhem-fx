@@ -105,19 +105,14 @@ public class Compound {
 //        }
 //    }
 
-//    public double calculateAtomicMass() {
-//        // Create a stack to keep track of atomic masses and counts
-//
-//
-//        double totalMass = 0.0;
-//        // Sum up the remaining values in the stack to obtain the total atomic mass
-//        while (!stack.isEmpty()) {
-//            totalMass += stack.pop();
-//        }
-//
-//        // Format the total mass as a string with three decimal places
-//        return totalMass;
-//    }
+    public double calculateAtomicMass() {
+        double totalMass = 0.0;
+        for (Element element : parsedCompound) {
+            totalMass += element.getAtomicMass();
+        }
+        return totalMass;
+    }
+
 
     @Override
     public String toString() {
