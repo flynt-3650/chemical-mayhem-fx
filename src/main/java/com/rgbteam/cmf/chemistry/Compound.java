@@ -9,19 +9,57 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Compound {
     private final Element[] parsedCompound;
-
+    
     public Compound(String rawCompound) {
-        String regex = "([A-Z][a-z]*)(\\d*)";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(rawCompound);
+        Stack<Element> elementStack = new Stack<>();
+        Stack<Element> elementsBrackets = new Stack<>();
+        Stack<Element> compoundHelper = new Stack<>();
+        Stack<Element> resultCompound = new Stack<>();
+        StringTokenizer tokenizer = new StringTokenizer(rawCompound, "()", true);
 
-        parsedCompound = null;
+        while (tokenizer.hasMoreTokens()) {
+            String token = tokenizer.nextToken();
+            if (isElement(token)) {
+                Element element = PeriodicTable.getElementByShortName(token);
+                elementStack.push(element);
+            } else if (token.equals("(")) {
+                while (tokenizer.hasMoreTokens() && !token.equals(")")) {
+                    Element elementBrackets = PeriodicTable.getElementByShortName(token);
+                    elementsBrackets.push(elementBrackets);
+                }
+            } else if(token.equals(")")) {
+                
+                if (tokenizer.hasMoreTokens() && isInteger(tokenizer.nextToken())) {
+                    int multiplier = Integer.parseInt(tokenizer.nextToken());
+                    for (int i = 0; i < multiplier; i++) {
+                        for (Element element : elementsBrackets) {
+                            compoundHelper.push(element);
+                        }
+                    }
+                    for (int i = 0; i < multiplier; i++) {
+                        for (Element element : compoundHelper) {
+                            elementStack.push(element);
+                        }
+                    }
+                }
+
+            }
+        }
+        while (!elementStack.isEmpty()){
+            resultCompound.push(elementStack.pop());
+        }
+        parsedCompound = resultCompound.toArray(new Element[0]);
+
     }
+   
+    
 
 
     private static boolean isInteger(String token) {
@@ -31,6 +69,9 @@ public class Compound {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+    private static boolean isElement(String token) {
+        return PeriodicTable.getElementByShortName(token) != null;
     }
 
     // public double
