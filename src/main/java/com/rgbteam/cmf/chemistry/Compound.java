@@ -4,56 +4,43 @@
 
 
 package com.rgbteam.cmf.chemistry;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Compound {
     private final Element[] parsedCompound;
     
     public Compound(String rawCompound) {
-        Stack<Element> elementStack = new Stack<>();
-        Stack<Element> elementsBrackets = new Stack<>();
-        Stack<Element> compoundHelper = new Stack<>();
-        Stack<Element> resultCompound = new Stack<>();
-        StringTokenizer tokenizer = new StringTokenizer(rawCompound, "()", true);
-
-        while (tokenizer.hasMoreTokens()) {
-            String token = tokenizer.nextToken();
-            if (isElement(token)) {
-                Element element = PeriodicTable.getElementByShortName(token);
-                elementStack.push(element);
-            } else if (token.equals("(")) {
-                while (tokenizer.hasMoreTokens() && !token.equals(")")) {
-                    Element elementBrackets = PeriodicTable.getElementByShortName(token);
-                    elementsBrackets.push(elementBrackets);
+        List<Element> elements = new ArrayList<>();
+        Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)");
+        Matcher matcher = pattern.matcher(rawCompound);
+    
+        while (matcher.find()) {
+            String group = matcher.group();
+            Element element = PeriodicTable.getElementByShortName(group);
+            int count = 1;
+            if (matcher.end() < rawCompound.length() && Character.isDigit(rawCompound.charAt(matcher.end()))) {
+                count = Character.getNumericValue(rawCompound.charAt(matcher.end()));
+            }
+            for (int i = 0; i < count; i++) {
+                elements.add(element);
+            }
+            if (group.charAt(0) == '(') {
+                int subCount = 1;
+                if (matcher.end() < rawCompound.length() && Character.isDigit(rawCompound.charAt(matcher.end()))) {
+                    subCount = Character.getNumericValue(rawCompound.charAt(matcher.end()));
                 }
-            } else if(token.equals(")")) {
-                
-                if (tokenizer.hasMoreTokens() && isInteger(tokenizer.nextToken())) {
-                    int multiplier = Integer.parseInt(tokenizer.nextToken());
-                    for (int i = 0; i < multiplier; i++) {
-                        for (Element element : elementsBrackets) {
-                            compoundHelper.push(element);
-                        }
-                    }
-                    for (int i = 0; i < multiplier; i++) {
-                        for (Element element : compoundHelper) {
-                            elementStack.push(element);
-                        }
-                    }
+                for (int i = 0; i < subCount - 1; i++) {
+                    elements.addAll(elements.subList(elements.size() - count, elements.size()));
                 }
-
             }
         }
-        while (!elementStack.isEmpty()){
-            resultCompound.push(elementStack.pop());
-        }
-        parsedCompound = resultCompound.toArray(new Element[0]);
-
-    }
-   
     
+        parsedCompound = elements.toArray(new Element[0]);
+    }
 
 
     private static boolean isInteger(String token) {
