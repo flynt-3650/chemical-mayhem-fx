@@ -12,35 +12,91 @@ import java.util.regex.Pattern;
 
 public class Compound {
     private final Element[] parsedCompound;
-    
     public Compound(String rawCompound) {
         List<Element> elements = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)");
+        Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))(\\d*)");
         Matcher matcher = pattern.matcher(rawCompound);
     
+        List<Element> subElements = new ArrayList<>();
+        int count = 1;
+    
         while (matcher.find()) {
+            String elementSymbol = matcher.group(1);
+            String elementCountStr = matcher.group(2);
             String group = matcher.group();
-            Element element = PeriodicTable.getElementByShortName(group);
-            int count = 1;
-            if (matcher.end() < rawCompound.length() && Character.isDigit(rawCompound.charAt(matcher.end()))) {
-                count = Character.getNumericValue(rawCompound.charAt(matcher.end()));
-            }
-            for (int i = 0; i < count; i++) {
-                elements.add(element);
-            }
-            if (group.charAt(0) == '(') {
+    
+            if (elementSymbol != null) {
+                Element element = PeriodicTable.getElementByShortName(elementSymbol);
+                int elementCount = (elementCountStr.isEmpty()) ? 1 : Integer.parseInt(elementCountStr);
+    
+                for (int i = 0; i < count * elementCount; i++) {
+                    subElements.add(element);
+                }
+    
+                count = 1;
+            } else if (group.equals("(")) {
+                if (!subElements.isEmpty()) {
+                    elements.addAll(subElements);
+                    subElements.clear();
+                }
+            } else if (group.equals(")")) {
                 int subCount = 1;
-                if (matcher.end() < rawCompound.length() && Character.isDigit(rawCompound.charAt(matcher.end()))) {
-                    subCount = Character.getNumericValue(rawCompound.charAt(matcher.end()));
+                if (matcher.find() && matcher.group(5) != null && !matcher.group(5).isEmpty()) {
+                    subCount = Integer.parseInt(matcher.group(5));
                 }
-                for (int i = 0; i < subCount - 1; i++) {
-                    elements.addAll(elements.subList(elements.size() - count, elements.size()));
+    
+                List<Element> elementsInBrackets = new ArrayList<>(subElements);
+                for (int i = 1; i < subCount; i++) {
+                    elements.addAll(new ArrayList<>(subElements));
                 }
+    
+                subElements.clear();
+                subElements.addAll(elementsInBrackets);
+                elements.addAll(subElements);
+                subElements.clear();
             }
         }
     
+        elements.addAll(subElements);
         parsedCompound = elements.toArray(new Element[0]);
+        for (Element element : parsedCompound) {
+            System.out.println(element);
+        }
     }
+    
+    
+    
+    
+
+
+    // private void validateCompound() throws InvalidCompoundException {
+    //     int sumOxidationStates = 0;
+ 
+    //     for (String token : parsedCompound) {
+    //         Element element = PeriodicTable.getElementByShortName(token);
+ 
+    //         if (element != null) {
+    //             int[] oxidationStates = element.getOxidationStates();
+    //             if (oxidationStates.length == 1) {
+    //                 sumOxidationStates += oxidationStates[0];
+    //             } else {
+    //                 boolean validOxidationStateFound = false;
+ 
+    //                 for (int oxidationState : oxidationStates) {
+    //                     System.out.println("OXID STATE: " + oxidationState);
+    //                     if (sumOxidationStates + oxidationState == 0) {
+    //                         validOxidationStateFound = true;
+    //                         sumOxidationStates += oxidationState;
+    //                         break;
+    //                     }
+    //                 }
+    //                 if (!validOxidationStateFound) {
+    //                     throw new InvalidCompoundException("Invalid compound");
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
 
     private static boolean isInteger(String token) {
@@ -57,34 +113,7 @@ public class Compound {
 
     // public double
 
-//    private void validateCompound() throws InvalidCompoundException {
-//        int sumOxidationStates = 0;
-//
-//        for (String token : parsedCompound) {
-//            Element element = PeriodicTable.getElementByShortName(token);
-//
-//            if (element != null) {
-//                int[] oxidationStates = element.getOxidationStates();
-//                if (oxidationStates.length == 1) {
-//                    sumOxidationStates += oxidationStates[0];
-//                } else {
-//                    boolean validOxidationStateFound = false;
-//
-//                    for (int oxidationState : oxidationStates) {
-//                        System.out.println("OXID STATE: " + oxidationState);
-//                        if (sumOxidationStates + oxidationState == 0) {
-//                            validOxidationStateFound = true;
-//                            sumOxidationStates += oxidationState;
-//                            break;
-//                        }
-//                    }
-//                    if (!validOxidationStateFound) {
-//                        throw new InvalidCompoundException("Invalid compound");
-//                    }
-//                }
-//            }
-//        }
-//    }
+
 
     public double calculateAtomicMass() {
         double totalMass = 0.0;
