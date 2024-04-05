@@ -12,9 +12,10 @@ import java.util.regex.Pattern;
 
 public class Compound {
     private final Element[] parsedCompound;
+ 
     public Compound(String rawCompound) {
         List<Element> elements = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))(\\d*)");
+        Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))");
         Matcher matcher = pattern.matcher(rawCompound);
     
         List<Element> subElements = new ArrayList<>();
@@ -28,7 +29,7 @@ public class Compound {
             if (elementSymbol != null) {
                 Element element = PeriodicTable.getElementByShortName(elementSymbol);
                 int elementCount = (elementCountStr.isEmpty()) ? 1 : Integer.parseInt(elementCountStr);
-    
+               
                 for (int i = 0; i < count * elementCount; i++) {
                     subElements.add(element);
                 }
@@ -41,18 +42,12 @@ public class Compound {
                 }
             } else if (group.equals(")")) {
                 int subCount = 1;
-                if (matcher.find() && matcher.group(5) != null && !matcher.group(5).isEmpty()) {
-                    subCount = Integer.parseInt(matcher.group(5));
+                if (matcher.find() && matcher.group(2) != null && !matcher.group(2).isEmpty()) {
+                    subCount = Integer.parseInt(matcher.group(2));
                 }
-    
-                List<Element> elementsInBrackets = new ArrayList<>(subElements);
-                for (int i = 1; i < subCount; i++) {
-                    elements.addAll(new ArrayList<>(subElements));
+                for (int i = 0; i < subCount; i++) {
+                    elements.addAll(subElements);
                 }
-    
-                subElements.clear();
-                subElements.addAll(elementsInBrackets);
-                elements.addAll(subElements);
                 subElements.clear();
             }
         }
@@ -63,6 +58,7 @@ public class Compound {
             System.out.println(element);
         }
     }
+    
     
     
     
