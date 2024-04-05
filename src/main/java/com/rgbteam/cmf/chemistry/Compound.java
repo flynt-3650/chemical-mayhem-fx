@@ -15,7 +15,7 @@ public class Compound {
  
     public Compound(String rawCompound) {
         List<Element> elements = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))");
+        Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))|(\\d*)");
         Matcher matcher = pattern.matcher(rawCompound);
     
         List<Element> subElements = new ArrayList<>();
@@ -25,11 +25,12 @@ public class Compound {
             String elementSymbol = matcher.group(1);
             String elementCountStr = matcher.group(2);
             String group = matcher.group();
+            String groupCountStr = matcher.group(5);
     
             if (elementSymbol != null) {
                 Element element = PeriodicTable.getElementByShortName(elementSymbol);
                 int elementCount = (elementCountStr.isEmpty()) ? 1 : Integer.parseInt(elementCountStr);
-               
+    
                 for (int i = 0; i < count * elementCount; i++) {
                     subElements.add(element);
                 }
@@ -42,8 +43,8 @@ public class Compound {
                 }
             } else if (group.equals(")")) {
                 int subCount = 1;
-                if (matcher.find() && matcher.group(2) != null && !matcher.group(2).isEmpty()) {
-                    subCount = Integer.parseInt(matcher.group(2));
+                if (groupCountStr != null) {
+                    subCount = Integer.parseInt(groupCountStr);
                 }
                 for (int i = 0; i < subCount; i++) {
                     elements.addAll(subElements);
@@ -54,6 +55,7 @@ public class Compound {
     
         elements.addAll(subElements);
         parsedCompound = elements.toArray(new Element[0]);
+        
         for (Element element : parsedCompound) {
             System.out.println(element);
         }
