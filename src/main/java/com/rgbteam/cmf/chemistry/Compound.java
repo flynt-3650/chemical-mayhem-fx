@@ -56,45 +56,43 @@ public class Compound {
         elements.addAll(subElements);
         parsedCompound = elements.toArray(new Element[0]);
         
-        for (Element element : parsedCompound) {
-            System.out.println(element);
+        try {
+            validateCompound();
+        } catch (InvalidCompoundException e) {
+            throw new RuntimeException("Invalid compound: " + rawCompound, e);
         }
+        
     }
     
     
-    
-    
-    
-
-
-    // private void validateCompound() throws InvalidCompoundException {
-    //     int sumOxidationStates = 0;
+    private void validateCompound() throws InvalidCompoundException {
+        int sumOxidationStates = 0;
  
-    //     for (String token : parsedCompound) {
-    //         Element element = PeriodicTable.getElementByShortName(token);
+        for (Element token : parsedCompound) {
+            Element element = token;
  
-    //         if (element != null) {
-    //             int[] oxidationStates = element.getOxidationStates();
-    //             if (oxidationStates.length == 1) {
-    //                 sumOxidationStates += oxidationStates[0];
-    //             } else {
-    //                 boolean validOxidationStateFound = false;
+            if (element != null) {
+                int[] oxidationStates = element.getOxidationStates();
+                if (oxidationStates.length == 1) {
+                    sumOxidationStates += oxidationStates[0];
+                } else {
+                    boolean validOxidationStateFound = false;
  
-    //                 for (int oxidationState : oxidationStates) {
-    //                     System.out.println("OXID STATE: " + oxidationState);
-    //                     if (sumOxidationStates + oxidationState == 0) {
-    //                         validOxidationStateFound = true;
-    //                         sumOxidationStates += oxidationState;
-    //                         break;
-    //                     }
-    //                 }
-    //                 if (!validOxidationStateFound) {
-    //                     throw new InvalidCompoundException("Invalid compound");
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+                    for (int oxidationState : oxidationStates) {
+                        System.out.println("OXID STATE: " + oxidationState);
+                        if (sumOxidationStates + oxidationState == 0) {
+                            validOxidationStateFound = true;
+                            sumOxidationStates += oxidationState;
+                            break;
+                        }
+                    }
+                    if (!validOxidationStateFound) {
+                        throw new InvalidCompoundException("Invalid compound");
+                    }
+                }
+            }
+        }
+    }
 
 
     private static boolean isInteger(String token) {
