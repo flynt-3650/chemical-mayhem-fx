@@ -20,7 +20,8 @@ public class Element {
     private final int[] valences;
     private final int[] oxidationStates;
 
-    public Element(String shortName, String fullName, int number, String groupElement, double atomicMass, int[] valences, int[] oxidationStates) {
+    public Element(String shortName, String fullName, int number, String groupElement, double atomicMass,
+                   int[] valences, int[] oxidationStates) {
         this.fullName = fullName;
         this.shortName = shortName;
         this.atomicNumber = number;
@@ -73,6 +74,7 @@ public class Element {
     public int getElectronAmount() {
         return electronAmount;
     }
+
     public int[] getValences() {
         return valences;
     }
@@ -116,15 +118,12 @@ public class Element {
     @Override
     public int hashCode() {
         int result;
-        long temp;
         result = fullName.hashCode();
         result = 31 * result + shortName.hashCode();
         result = 31 * result + atomicNumber;
         result = 31 * result + groupElement.hashCode();
-        temp = Double.doubleToLongBits(atomicMass);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(molarMass);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + Double.hashCode(atomicMass);
+        result = 31 * result + Double.hashCode(molarMass);
         result = 31 * result + protonAmount;
         result = 31 * result + neutronAmount;
         result = 31 * result + electronAmount;

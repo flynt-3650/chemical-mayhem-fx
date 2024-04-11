@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * JavaFX App
@@ -16,7 +17,7 @@ public class GUIView extends Application {
     private static Scene scene; 
 
     private void addCSS() {
-        String css = this.getClass().getResource("/com/rgbteam/cmf/StyleCollectionView.css").toExternalForm();
+        String css = Objects.requireNonNull(this.getClass().getResource("/com/rgbteam/cmf/StyleCollectionView.css")).toExternalForm();
         scene.getStylesheets().add(css);
     }
 
@@ -34,9 +35,8 @@ public class GUIView extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GUIView.class.getResource("/com/rgbteam/cmf/" + fxml + ".fxml"));
-        Parent root = fxmlLoader.load();
-    
-        return root;
+
+        return fxmlLoader.load();
     }
     
     public static void main(String[] args) {

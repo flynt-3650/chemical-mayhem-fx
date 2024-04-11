@@ -25,7 +25,7 @@ public class PrimaryViewController {
 
     public void initialize() {
         addListeners();
-        addButtons();
+        showButtons();
     }
 
     public void addListeners() {
@@ -51,11 +51,13 @@ public class PrimaryViewController {
         }
     }
 
-    public void addButtons() {
+    public void showButtons() {
         int i = 0;
         for(int row = 2 ; row <= 11; row ++){
             for(int  column = 1 ; column <= 18; column ++){
-                if ((row == 2 && column < 18 && column > 1) || (row == 3 && column < 13 && column > 2) || (row == 4 && column < 13 && column > 2) || (row == 9) || (row == 10 && column < 3) || (row == 11 && column < 3)) {
+                if ((row == 2 && column < 18 && column > 1) || (row == 3 && column < 13 && column > 2)
+                        || (row == 4 && column < 13 && column > 2) || (row == 9) || (row == 10 && column < 3)
+                        || (row == 11 && column < 3)) {
                     // да-да пустое условие
                     // eblan
                 } else if ((row == 7 && column == 3)) {
