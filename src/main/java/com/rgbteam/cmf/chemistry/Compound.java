@@ -64,7 +64,8 @@ public class Compound {
             throw new InvalidCompoundException();
         }
     }
-    
+
+    // checks if compound can exist by verifying that sum of elements' oxid. states can be equal 0
     private boolean isValidCompound() {
         List<Integer> allOxidStates = new ArrayList<>();
 
@@ -86,28 +87,10 @@ public class Compound {
 
         return false;
     }
-    
-    
-
-
-    // private static boolean isInteger(String token) {
-    //     try {
-    //         Integer.parseInt(token);
-    //         return true;
-    //     } catch (NumberFormatException e) {
-    //         return false;
-    //     }
-    // }
-    // private static boolean isElement(String token) {
-    //     return PeriodicTable.getElementByShortName(token) != null;
-    // }
-
-    // public double
-
-
 
     public double calculateAtomicMass() {
         double totalMass = 0.0;
+
         for (Element element : parsedCompound) {
             totalMass += element.getAtomicMass();
         }
