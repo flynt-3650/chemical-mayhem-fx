@@ -5,6 +5,7 @@
  
 package com.rgbteam.cmf.view;
 
+import java.util.Map;
 import java.util.Scanner;
 
 import com.rgbteam.cmf.GeneralFlowController;
@@ -25,6 +26,7 @@ public class CLIView {
                     2 -- get element info by its short name ('H', 'As', etc.)
                     3 -- get element info by its full name ('Sodium', 'Neon', etc.)
                     4 -- count mass of a compound (M[Na Cl] = 58.44 g/mol, M[Fe S O 4] = 151.901 g/mol, etc.)
+                    5 -- count oxidation state
                     0 -- exit the program""");
 
             String choice = scanner.nextLine();
@@ -81,6 +83,22 @@ public class CLIView {
                         System.err.println("Invalid input or element not found: " + e.getCause());
                     }
                     break;
+                    case "5":
+                        System.out.println(
+                            "Enter compound (Separate elements, numbers and parenthesis using '-' or '_' or ' '): ");
+                        String unparsed1 = scanner.nextLine();
+                        try {
+                            Map<String, Integer> map = controller.determineCompoundsOxidationState(unparsed1);
+                            StringBuilder stringBuilder = new StringBuilder();
+                            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                                stringBuilder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+                            }
+                            System.out.println(stringBuilder.toString());
+                        } catch (Exception e) {
+                            System.err.println("Invalid input or element not found: " + e.getCause());
+                        }
+                        break;
+                        
                 default:
                     System.err.println("No such command available");
                     break;

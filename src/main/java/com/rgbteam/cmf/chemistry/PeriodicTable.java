@@ -90,7 +90,7 @@ public class PeriodicTable {
             new Element("Tl", "Thallium", 81, "Post-transition metals", 204.383, new int[]{3}, new int[]{+1, +3, +2}),
             new Element("Pb", "Lead", 82, "Post-transition metals", 207.0, new int[]{4}, new int[]{+2, +4}),
             new Element("Bi", "Bismuth", 83, "Post-transition metals", 208.98040, new int[]{5}, new int[]{+3, +3, +2, +4, +5}), // here
-            new Element("Po", "Polonium", 84, "Metalloids", 208.98243, new int[]{6}, new int[]{+6, +4, +2}),
+            new Element("Po", "Polonium", 84, "Metalloids", 208.98243, new int[]{6}, new int[]{+2, +4, -2, +6}),
             new Element("At", "Astatine", 85, "Halogen", 209.98715, new int[]{1}, new int[]{+1, -1, +3, +5, +7}),
             new Element("Rn", "Radon", 86, "Noble gases", 222.01758, new int[]{0}, new int[]{0}),
             new Element("Fr", "Francium", 87, "Alkali metals", 223.01973, new int[]{1}, new int[]{+1}),

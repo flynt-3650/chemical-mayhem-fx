@@ -4,6 +4,8 @@
 
 
 package com.rgbteam.cmf;
+import java.util.Map;
+
 import com.rgbteam.cmf.chemistry.Compound;
 import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
@@ -29,5 +31,9 @@ public class GeneralFlowController {
 
     public String retrieveElementGroup(int number) {
         return PeriodicTable.getElementGroup(number);
+    }
+    public Map<String, Integer> determineCompoundsOxidationState(String rawCompound) {
+        Compound compound = new Compound(rawCompound);
+        return compound.determineTheOxidationState();
     }
 }
