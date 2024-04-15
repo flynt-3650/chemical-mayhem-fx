@@ -84,7 +84,7 @@
                   </TextField>
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #eacbe9; -fx-background-radius: 30;" GridPane.rowIndex="2">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9dc0e0; -fx-background-radius: 30;" GridPane.rowIndex="2">
                <left>
                   <Label fx:id="secondCard" prefHeight="82.0" prefWidth="571.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
@@ -95,7 +95,10 @@
                   <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                </GridPane.margin>
                <center>
-                  <Label fx:id="oxidationState" prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+                  <Label fx:id="oxidationState" prefHeight="130.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </center></BorderPane>
             <BorderPane prefHeight="154.0" prefWidth="299.0" GridPane.columnIndex="1">
                <center>
@@ -108,10 +111,10 @@
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <center>
-                  <Label fx:id="labelCompound" alignment="CENTER" prefHeight="101.0" prefWidth="170.0" BorderPane.alignment="CENTER" />
+                  <Label fx:id="labelCompound" alignment="CENTER" prefHeight="200.0" prefWidth="385.0" BorderPane.alignment="CENTER" />
                </center></BorderPane>
             <BorderPane prefHeight="87.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c6b5df; -fx-background-radius: 30;" GridPane.rowIndex="3">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6999c6; -fx-background-radius: 30;" GridPane.rowIndex="3">
                <left>
                   <Label fx:id="thirdCard" prefHeight="78.0" prefWidth="571.0" text="class of compounds" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
@@ -119,13 +122,16 @@
                      </padding></Label>
                </left>
                <center>
-                  <Label prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+                  <Label prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </center>
                <GridPane.margin>
                   <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
                </GridPane.margin></BorderPane>
             <BorderPane prefHeight="94.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #f8e4ed; -fx-background-radius: 30;" GridPane.rowIndex="1">
+            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #cce6ea; -fx-background-radius: 30;" GridPane.rowIndex="1">
                <left>
                   <Label fx:id="firstCard" prefHeight="62.0" prefWidth="571.0" text="atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
@@ -136,7 +142,10 @@
                   <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
                </GridPane.margin>
                <center>
-                   <Label fx:id="atomicMass" prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER" />
+                   <Label fx:id="atomicMass" alignment="CENTER" prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
                </center>
             </BorderPane>           
          </children>

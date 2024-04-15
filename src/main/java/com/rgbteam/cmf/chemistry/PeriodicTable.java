@@ -23,7 +23,7 @@ public class PeriodicTable {
             new Element("Si", "Silicon", 14, "Metalloids", 28.085, new int[]{4}, new int[]{+4}),
             new Element("P", "Phosphorus", 15, "Nonmetals", 30.974, new int[]{3}, new int[]{3, 0, +3, +5}),
             new Element("S", "Sulfur", 16, "Nonmetals", 32.06, new int[]{2}, new int[]{2, 0, +4, +6}),
-            new Element("Cl", "Chlorine", 17, "Halogen", 35.45, new int[]{1}, new int[]{1, 0, +1, +3, +5, +7, +2, +4}),
+            new Element("Cl", "Chlorine", 17, "Halogen", 35.45, new int[]{1}, new int[]{-1, 0, +1, +3, +5, +7, +2, +4}),
             new Element("Ar", "Argon", 18, "Noble gases", 39.948, new int[]{0}, new int[]{0}),
             new Element("K", "Potassium", 19, "Alkali metals", 39.098, new int[]{1}, new int[]{+1}),
             new Element("Ca", "Calcium", 20, "Alkaline earth metals", 40.078, new int[]{2}, new int[]{+2}),

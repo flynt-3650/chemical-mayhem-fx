@@ -100,13 +100,62 @@ public class Compound {
     }
 
     public Map<String, Integer> determineTheOxidationState() {
-        Map<String, Integer> oxidationStates = new HashMap<>();
-        return oxidationStates;
+        Map<String, Integer> finalOxidationStates = new HashMap<>();
+        Map<String, List<Integer>> oxidationStates = new HashMap<>();
+        List<Map<String, Integer>> allOxidationStates = new ArrayList<>();
+        List<Integer> currentElementOxidStates;
+
+        for (Element element : parsedCompound) {
+            currentElementOxidStates = new ArrayList<>();
+            for (int item : element.getOxidationStates()) {
+                currentElementOxidStates.add(item);
+            }
+            oxidationStates.put(element.getShortName(), currentElementOxidStates);
+        }
+
+        // recursive method for finding all possible combinations of valences
+        findOxidationStates(oxidationStates, new ArrayList<>(oxidationStates.keySet()), 0, allOxidationStates);
+
+        // save only those valences that add up to 0
+        for (Map<String, Integer> state : allOxidationStates) {
+            int sum = 0;
+            for (Integer value : state.values()) {
+                sum += value;
+            }
+            if (sum == 0) {
+                finalOxidationStates = state;
+                break;
+            }
+        }
+
+        return finalOxidationStates;
     }
 
- 
+    private void findOxidationStates(Map<String, List<Integer>> oxidationStates, List<String> elements, int sum, List<Map<String, Integer>> allOxidationStates) {
+        if (elements.isEmpty()) {
+            if (sum == 0) {
+                Map<String, Integer> newState = new HashMap<>();
+                for (String element : oxidationStates.keySet()) {
+                    newState.put(element, oxidationStates.get(element).get(0));
+                }
+                allOxidationStates.add(newState);
+            }
+            return;
+        }
 
-   
+        String element = elements.get(0);
+        List<Integer> oxidationStateValues = oxidationStates.get(element);
+        for (int i = 0; i < oxidationStateValues.size(); i++) {
+            int oxidationStateValue = oxidationStateValues.get(i);
+            oxidationStates.get(element).set(0, oxidationStateValue);
+            List<String> newElements = new ArrayList<>(elements);
+            newElements.remove(0);
+            findOxidationStates(oxidationStates, newElements, sum + oxidationStateValue, allOxidationStates);
+        }
+
+        // reset valences for the next recursive call
+        oxidationStates.get(element).set(0, 0);
+    }
 
 
     @Override

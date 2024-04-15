@@ -23,37 +23,55 @@
 }
 
 .root {
+  font-family: "Montserrat";
   -fx-font-family: "Montserrat";
-  /* -fx-background-color: linear-gradient(to bottom, #a6b09c, #f6f6e7); */
+  background-color: linear-gradient(to bottom, #cce6ea,  #9dc0e0);
+  -fx-background-color: linear-gradient(to bottom, #cce6ea,  #9dc0e0);
 }
 
 #lableInformation {
+  font-weight: 500;
   -fx-font-weight: 500;
 }
 
 #mainButton {
-  -fx-background-color: #989bd5;
+  background-color: #236ea8;
+  -fx-background-color: #236ea8;
+  font-size: 26;
   -fx-font-size: 26;
+  font-weight: bold;
   -fx-font-weight: bold;
 }
 
-/* #myButton:hover {
-    -fx-background-color: linear-gradient(to bottom, #eacbe9, #989bd5);
-} */
+#mainButton:hover {
+  -fx-scale-x: 1.1;
+  -fx-scale-y: 1.1;
+}
+
+#mainButton:pressed {
+  background-color: #6999c6;
+  -fx-background-color: #6999c6;
+}
 
 #labelCompound {
+  font-size: 50;
   -fx-font-size: 50;
+  font-weight: bold;
   -fx-font-weight: bold;
 }
 
 #firstCard,
 #secondCard,
 #thirdCard {
+  font-size: 26;
   -fx-font-size: 26;
+  font-family: "Montserrat Medium";
   -fx-font-family: "Montserrat Medium";
 }
 
 #atomitMass {
+  font-size: 30;
   -fx-font-size: 30;
+  font-weight: bold;
   -fx-font-weight: bold;
 }
