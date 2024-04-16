@@ -101,18 +101,19 @@ public class Compound {
         return totalMass;
     }
 
-    
+    //here we form a Cartesian set of lists
     public List<List<Integer>> cartesianProduct(List<List<Integer>> lists) {
         List<List<Integer>> result = new ArrayList<>();
         if (lists.size() == 0) {
             result.add(new ArrayList<>());
             return result;
         }
-        List<Integer> firstList = lists.get(0);
-        List<List<Integer>> remainingLists = cartesianProduct(lists.subList(1, lists.size()));
+        List<Integer> firstList = lists.get(0); //bring first list
+        List<List<Integer>> remainingLists = cartesianProduct(lists.subList(1, lists.size())); //call recursively for the remaining lists
         for (int i : firstList) {
             for (List<Integer> list : remainingLists) {
                 ArrayList<Integer> newList = new ArrayList<>();
+                //form Cartesian set
                 newList.add(i);
                 newList.addAll(list);
                 result.add(newList);
@@ -122,7 +123,9 @@ public class Compound {
     }
 
     public Map<String, Integer> determineTheOxidationState() {
+        //map where key is element, value is pair of repetitions of element and oxidation states
         Map<Element, Pair<Integer, List<Integer>>> oxidationStates = new HashMap<>();
+        //find amount(or what the hell is it called) of element
         Element prevElement = null;
         int count = 1;
 
@@ -145,18 +148,18 @@ public class Compound {
         List<List<Integer>> oxidationStateLists = new ArrayList<>();
         for (Map.Entry<Element, Pair<Integer, List<Integer>>> entry : oxidationStates.entrySet()) {
             List<Integer> oxidationStateList = entry.getValue().getValue();
-            oxidationStateLists.add(oxidationStateList);
+            oxidationStateLists.add(oxidationStateList); // form list of lists whit oxidation states
         }
-        List<List<Integer>> cartesianProduct = cartesianProduct(oxidationStateLists);
-
+        List<List<Integer>> cartesianProduct = cartesianProduct(oxidationStateLists); // form a Cartesian set of lists
+        // create map whit final element and oxidation states
         Map<String, Integer> finalOxidationStates = new HashMap<>();
         for (List<Integer> combination : cartesianProduct) {
             int sum = 0;
             for (int i = 0; i < combination.size(); i++) {
                 sum += combination.get(i);
-            }
+            } // find summ equals 0
             if (sum == 0) {
-                for (int i = 0; i < combination.size(); i++) {
+                for (int i = 0; i < combination.size(); i++) { // I think the problem is how elements are added to the map
                     Element element = parsedCompound[i];
                     int oxidationState = combination.get(i) / oxidationStates.get(element).getKey();
                     finalOxidationStates.put(element.getShortName(), oxidationState);
