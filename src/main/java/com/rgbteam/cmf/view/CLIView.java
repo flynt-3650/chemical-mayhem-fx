@@ -5,11 +5,14 @@
  
 package com.rgbteam.cmf.view;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
+
+import javafx.util.Pair;
 
 public class CLIView {
     public static void main(String[] args) {

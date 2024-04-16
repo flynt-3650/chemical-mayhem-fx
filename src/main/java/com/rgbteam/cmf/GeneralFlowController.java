@@ -12,6 +12,8 @@ import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 import com.rgbteam.cmf.chemistry.PeriodicTable;
 
+import javafx.util.Pair;
+
 public class GeneralFlowController {
     public Element retrieveElementByNumber(int number) {
         return PeriodicTable.getElementByNumber(number);

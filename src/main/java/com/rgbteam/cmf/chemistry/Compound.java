@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.util.Pair;
+
 public class Compound {
     private final Element[] parsedCompound;
  
@@ -99,31 +101,66 @@ public class Compound {
         return totalMass;
     }
 
+    
+    public List<List<Integer>> cartesianProduct(List<List<Integer>> lists) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (lists.size() == 0) {
+            result.add(new ArrayList<>());
+            return result;
+        }
+        List<Integer> firstList = lists.get(0);
+        List<List<Integer>> remainingLists = cartesianProduct(lists.subList(1, lists.size()));
+        for (int i : firstList) {
+            for (List<Integer> list : remainingLists) {
+                ArrayList<Integer> newList = new ArrayList<>();
+                newList.add(i);
+                newList.addAll(list);
+                result.add(newList);
+            }
+        }
+        return result;
+    }
+
     public Map<String, Integer> determineTheOxidationState() {
-        Map<String, Integer> finalOxidationStates = new HashMap<>();
-        Map<String, List<Integer>> oxidationStates = new HashMap<>();
-        List<Map<String, Integer>> allOxidationStates = new ArrayList<>();
-        List<Integer> currentElementOxidStates;
+        Map<Element, Pair<Integer, List<Integer>>> oxidationStates = new HashMap<>();
+        Element prevElement = null;
+        int count = 1;
 
         for (Element element : parsedCompound) {
-            currentElementOxidStates = new ArrayList<>();
-            for (int item : element.getOxidationStates()) {
-                currentElementOxidStates.add(item);
+            if (element == prevElement) {
+                count++;
+                prevElement = element;
+            } else {
+                count = 1;
             }
-            oxidationStates.put(element.getShortName(), currentElementOxidStates);
+            prevElement = element;
+
+            List<Integer> currentElementOxidStates = new ArrayList<>();
+            for (int item : element.getOxidationStates()) {
+                currentElementOxidStates.add(item * count);
+            }
+            oxidationStates.put(element, new Pair<>(count, currentElementOxidStates));
         }
 
-        // recursive method for finding all possible combinations of valences
-        findOxidationStates(oxidationStates, new ArrayList<>(oxidationStates.keySet()), 0, allOxidationStates);
+        List<List<Integer>> oxidationStateLists = new ArrayList<>();
+        for (Map.Entry<Element, Pair<Integer, List<Integer>>> entry : oxidationStates.entrySet()) {
+            List<Integer> oxidationStateList = entry.getValue().getValue();
+            oxidationStateLists.add(oxidationStateList);
+        }
+        List<List<Integer>> cartesianProduct = cartesianProduct(oxidationStateLists);
 
-        // save only those valences that add up to 0
-        for (Map<String, Integer> state : allOxidationStates) {
+        Map<String, Integer> finalOxidationStates = new HashMap<>();
+        for (List<Integer> combination : cartesianProduct) {
             int sum = 0;
-            for (Integer value : state.values()) {
-                sum += value;
+            for (int i = 0; i < combination.size(); i++) {
+                sum += combination.get(i);
             }
             if (sum == 0) {
-                finalOxidationStates = state;
+                for (int i = 0; i < combination.size(); i++) {
+                    Element element = parsedCompound[i];
+                    int oxidationState = combination.get(i) / oxidationStates.get(element).getKey();
+                    finalOxidationStates.put(element.getShortName(), oxidationState);
+                }
                 break;
             }
         }
@@ -131,33 +168,8 @@ public class Compound {
         return finalOxidationStates;
     }
 
-    private void findOxidationStates(Map<String, List<Integer>> oxidationStates, List<String> elements, int sum, List<Map<String, Integer>> allOxidationStates) {
-        if (elements.isEmpty()) {
-            if (sum == 0) {
-                Map<String, Integer> newState = new HashMap<>();
-                for (String element : oxidationStates.keySet()) {
-                    newState.put(element, oxidationStates.get(element).get(0));
-                }
-                allOxidationStates.add(newState);
-            }
-            return;
-        }
 
-        String element = elements.get(0);
-        List<Integer> oxidationStateValues = oxidationStates.get(element);
-        for (int i = 0; i < oxidationStateValues.size(); i++) {
-            int oxidationStateValue = oxidationStateValues.get(i);
-            oxidationStates.get(element).set(0, oxidationStateValue);
-            List<String> newElements = new ArrayList<>(elements);
-            newElements.remove(0);
-            findOxidationStates(oxidationStates, newElements, sum + oxidationStateValue, allOxidationStates);
-        }
-
-        // reset valences for the next recursive call
-        oxidationStates.get(element).set(0, 0);
-    }
-
-
+    
     @Override
     public int hashCode() {
         final int prime = 31;
