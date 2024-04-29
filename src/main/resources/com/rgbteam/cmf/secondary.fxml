@@ -86,7 +86,7 @@
             </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9dc0e0; -fx-background-radius: 30;" GridPane.rowIndex="2">
                <left>
-                  <Label fx:id="secondCard" prefHeight="82.0" prefWidth="571.0" text="degree of oxidation of compounds" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="secondCard" prefHeight="82.0" prefWidth="571.0" text="degree of oxidation of compound" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
                         <Insets left="30.0" />
                      </padding></Label>
@@ -116,7 +116,7 @@
             <BorderPane prefHeight="87.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6999c6; -fx-background-radius: 30;" GridPane.rowIndex="3">
                <left>
-                  <Label fx:id="thirdCard" prefHeight="78.0" prefWidth="571.0" text="class of compounds" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="thirdCard" prefHeight="78.0" prefWidth="571.0" text="class of compound" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>
                         <Insets left="30.0" />
                      </padding></Label>
@@ -131,7 +131,7 @@
                   <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
                </GridPane.margin></BorderPane>
             <BorderPane prefHeight="94.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #cce6ea; -fx-background-radius: 30;" GridPane.rowIndex="1">
+            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #cce6ea; -fx-background-radius: 30;" GridPane.rowIndex="1" >
                <left>
                   <Label fx:id="firstCard" prefHeight="62.0" prefWidth="571.0" text="atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>

@@ -4,37 +4,47 @@
 
 
 package com.rgbteam.cmf.chemistry;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javafx.util.Pair;
-
 public class Compound {
-    private final Element[] parsedCompound;
- 
+
+    private final Element[] compound;
+
     public Compound(String rawCompound) {
+        List<Element> elements = parseCompound(rawCompound);
+        compound = elements.toArray(new Element[0]);
+
+        if (!isValidCompound()) {
+            StringBuilder compoundSymbols = new StringBuilder();
+
+            for (var e : compound) {
+                compoundSymbols.append(e.getShortName());
+            }
+
+            throw new InvalidCompoundException("INVALID COMPOUND: " + compoundSymbols);
+        }
+    }
+
+    private List<Element> parseCompound(String rawCompound) {
         List<Element> elements = new ArrayList<>();
         Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))|(\\d+)");
         Matcher matcher = pattern.matcher(rawCompound);
-    
+
         List<Element> subElements = new ArrayList<>();
         int count = 1;
-    
+
         while (matcher.find()) {
             String elementSymbol = matcher.group(1);
             String elementCountStr = matcher.group(2);
             String group = matcher.group();
             String groupCountStr = matcher.group(5);
-    
+
             if (elementSymbol != null) {
                 Element element = PeriodicTable.getElementByShortName(elementSymbol);
                 int elementCount = (elementCountStr.isEmpty()) ? 1 : Integer.parseInt(elementCountStr);
-    
+
                 for (int i = 0; i < count * elementCount; i++) {
                     subElements.add(element);
                 }
@@ -53,27 +63,17 @@ public class Compound {
                 subElements.clear();
             }
         }
-    
+
         elements.addAll(subElements);
-        parsedCompound = elements.toArray(new Element[0]);
-
-        if (!isValidCompound()) {
-            StringBuilder compoundSymbols = new StringBuilder();
-
-            for (var e : parsedCompound) {
-                compoundSymbols.append(e.getShortName());
-            }
-            System.err.println("INVALID COMPOUND: " + compoundSymbols);
-
-            throw new InvalidCompoundException();
-        }
+        return elements;
     }
+
 
     // checks if compound can exist by verifying that sum of elements' oxid. states can be equal 0
     private boolean isValidCompound() {
         List<Integer> allOxidStates = new ArrayList<>();
 
-        for (Element element : parsedCompound) { // in this 'for' loop I add all oxid states that elements may possess
+        for (Element element : compound) { // in this 'for' loop I add all oxid states that elements may possess
             int[] currentElementOxidStates = element.getOxidationStates();
             for (Integer i : currentElementOxidStates) {
                 allOxidStates.add(i);
@@ -95,89 +95,47 @@ public class Compound {
     public double calculateAtomicMass() {
         double totalMass = 0.0;
 
-        for (Element element : parsedCompound) {
+        for (Element element : compound) {
             totalMass += element.getAtomicMass();
         }
         return totalMass;
     }
 
-    //here we form a Cartesian set of lists
-    public List<List<Integer>> cartesianProduct(List<List<Integer>> lists) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (lists.size() == 0) {
-            result.add(new ArrayList<>());
-            return result;
+//    //here we form a Cartesian set of lists
+//    public List<List<Integer>> cartesianProduct(List<List<Integer>> lists) {
+//        List<List<Integer>> result = new ArrayList<>();
+//        if (lists.size() == 0) {
+//            result.add(new ArrayList<>());
+//            return result;
+//        }
+//        List<Integer> firstList = lists.get(0); //bring first list
+//        List<List<Integer>> remainingLists = cartesianProduct(lists.subList(1, lists.size())); //call recursively for the remaining lists
+//        for (int i : firstList) {
+//            for (List<Integer> list : remainingLists) {
+//                ArrayList<Integer> newList = new ArrayList<>();
+//                //form Cartesian set
+//                newList.add(i);
+//                newList.addAll(list);
+//                result.add(newList);
+//            }
+//        }
+//        return result;
+//    }
+
+    public Map<Element, int[]> getElementsOxidStates() {
+
+        Map<Element, int[]> compoundOxidStates = new HashMap<>();
+        for (Element el : compound) {
+            compoundOxidStates.put(el, el.getOxidationStates());
         }
-        List<Integer> firstList = lists.get(0); //bring first list
-        List<List<Integer>> remainingLists = cartesianProduct(lists.subList(1, lists.size())); //call recursively for the remaining lists
-        for (int i : firstList) {
-            for (List<Integer> list : remainingLists) {
-                ArrayList<Integer> newList = new ArrayList<>();
-                //form Cartesian set
-                newList.add(i);
-                newList.addAll(list);
-                result.add(newList);
-            }
-        }
-        return result;
+        return compoundOxidStates;
     }
-
-    public Map<String, Integer> determineTheOxidationState() {
-        //map where key is element, value is pair of repetitions of element and oxidation states
-        Map<Element, Pair<Integer, List<Integer>>> oxidationStates = new HashMap<>();
-        //find amount(or what the hell is it called) of element
-        Element prevElement = null;
-        int count = 1;
-
-        for (Element element : parsedCompound) {
-            if (element == prevElement) {
-                count++;
-                prevElement = element;
-            } else {
-                count = 1;
-            }
-            prevElement = element;
-
-            List<Integer> currentElementOxidStates = new ArrayList<>();
-            for (int item : element.getOxidationStates()) {
-                currentElementOxidStates.add(item * count);
-            }
-            oxidationStates.put(element, new Pair<>(count, currentElementOxidStates));
-        }
-
-        List<List<Integer>> oxidationStateLists = new ArrayList<>();
-        for (Map.Entry<Element, Pair<Integer, List<Integer>>> entry : oxidationStates.entrySet()) {
-            List<Integer> oxidationStateList = entry.getValue().getValue();
-            oxidationStateLists.add(oxidationStateList); // form list of lists whit oxidation states
-        }
-        List<List<Integer>> cartesianProduct = cartesianProduct(oxidationStateLists); // form a Cartesian set of lists
-        // create map whit final element and oxidation states
-        Map<String, Integer> finalOxidationStates = new HashMap<>();
-        for (List<Integer> combination : cartesianProduct) {
-            int sum = 0;
-            for (int i = 0; i < combination.size(); i++) {
-                sum += combination.get(i);
-            } // find summ equals 0
-            if (sum == 0) {
-                for (int i = 0; i < combination.size(); i++) { // I think the problem is how elements are added to the map
-                    Element element = parsedCompound[i];
-                    int oxidationState = combination.get(i) / oxidationStates.get(element).getKey();
-                    finalOxidationStates.put(element.getShortName(), oxidationState);
-                }
-                break;
-            }
-        }
-
-        return finalOxidationStates;
-    }
-
-
     
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + Arrays.hashCode(parsedCompound);
+        result = prime * result + Arrays.hashCode(compound);
         return result;
     }
 
@@ -190,12 +148,12 @@ public class Compound {
         if (getClass() != obj.getClass())
             return false;
         Compound other = (Compound) obj;
-        return Arrays.equals(parsedCompound, other.parsedCompound);
+        return Arrays.equals(compound, other.compound);
     }
 
     @Override
     public String toString() {
-        return "Compound [parsedCompound=" + Arrays.toString(parsedCompound) + "]";
+        return "Compound [parsedCompound=" + Arrays.toString(compound) + "]";
     }
 }
 

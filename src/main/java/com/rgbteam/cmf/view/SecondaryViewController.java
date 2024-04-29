@@ -1,6 +1,7 @@
 package com.rgbteam.cmf.view;
 
 import com.rgbteam.cmf.GeneralFlowController;
+import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 
 import javafx.fxml.FXML;
@@ -30,7 +31,7 @@ public class SecondaryViewController {
         GUIView.setRoot("primary");
     }
 
-    private void calculateAtomicMass() throws InvalidCompoundException {
+    private void showAtomicMass() throws InvalidCompoundException {
         double ans = controller.calculateCompoundsAtomicMass(compoundQuery.getText());
 
         if (ans == 0.0) {
@@ -39,26 +40,28 @@ public class SecondaryViewController {
         }
         atomicMass.setText(String.format("%.4f", ans));
     }
+    
+    private void showOxidStates() {
+        Map<Element, int[]> elementsToOxidStates = controller.findCompoundsOxidationStates(compoundQuery.getText());
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Map.Entry<Element, int[]> entry : elementsToOxidStates.entrySet()) {
+            Element element = entry.getKey();
+            int[] oxidationStates = entry.getValue();
+
+            stringBuilder.append(element.getShortName()).append(": ");
+            for (int oxidationState : oxidationStates) {
+                stringBuilder.append(oxidationState).append(", ");
+            }
+        }
+        oxidationState.setText(stringBuilder.toString());
+    }
 
     @FXML
     public void showCompoundInformation() throws InvalidCompoundException {
         labelCompound.setText(compoundQuery.getText());
-        calculateAtomicMass();
-        calculsteDegreeOFOxidation();
-
-    }
-
-    
-    private void calculsteDegreeOFOxidation() {
-        try {
-            Map<String, Integer> map = controller.determineCompoundsOxidationState(compoundQuery.getText());
-            StringBuilder stringBuilder = new StringBuilder();
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                stringBuilder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
-            }
-            oxidationState.setText(stringBuilder.toString());
-        } catch (InvalidCompoundException e) {
-            labelCompound.setText("Error");
-        }
+        showAtomicMass();
+        showOxidStates();
     }
 }

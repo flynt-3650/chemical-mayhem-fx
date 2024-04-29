@@ -5,14 +5,12 @@
  
 package com.rgbteam.cmf.view;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
 import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
-
-import javafx.util.Pair;
 
 public class CLIView {
     public static void main(String[] args) {
@@ -91,12 +89,13 @@ public class CLIView {
                             "Enter compound (Separate elements, numbers and parenthesis using '-' or '_' or ' '): ");
                         String unparsed1 = scanner.nextLine();
                         try {
-                            Map<String, Integer> map = controller.determineCompoundsOxidationState(unparsed1);
+                            Map<Element, int[]> map = controller.findCompoundsOxidationStates(unparsed1);
                             StringBuilder stringBuilder = new StringBuilder();
-                            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                                stringBuilder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+                            for (Map.Entry<Element, int[]> entry : map.entrySet()) {
+                                stringBuilder.append(entry.getKey().getShortName()).append(": ")
+                                        .append(Arrays.toString(entry.getValue())).append("\n");
                             }
-                            System.out.println(stringBuilder.toString());
+                            System.out.println(stringBuilder);
                         } catch (Exception e) {
                             System.err.println("Invalid input or element not found: " + e.getCause());
                         }

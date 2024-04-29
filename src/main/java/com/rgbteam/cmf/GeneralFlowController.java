@@ -4,15 +4,12 @@
 
 
 package com.rgbteam.cmf;
-import java.util.List;
 import java.util.Map;
 
 import com.rgbteam.cmf.chemistry.Compound;
 import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 import com.rgbteam.cmf.chemistry.PeriodicTable;
-
-import javafx.util.Pair;
 
 public class GeneralFlowController {
     public Element retrieveElementByNumber(int number) {
@@ -32,11 +29,8 @@ public class GeneralFlowController {
         return compound.calculateAtomicMass();
     }
 
-    public String retrieveElementGroup(int number) {
-        return PeriodicTable.getElementGroup(number);
-    }
-    public Map<String, Integer> determineCompoundsOxidationState(String rawCompound) {
+    public Map<Element, int[]> findCompoundsOxidationStates(String rawCompound) {
         Compound compound = new Compound(rawCompound);
-        return compound.determineTheOxidationState();
+        return compound.getElementsOxidStates();
     }
 }
