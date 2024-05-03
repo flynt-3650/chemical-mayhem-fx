@@ -8,6 +8,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.util.Pair;
+
 public class Compound {
 
     private final Element[] compound;
@@ -129,6 +131,47 @@ public class Compound {
             compoundOxidStates.put(el, el.getOxidationStates());
         }
         return compoundOxidStates;
+    }
+
+
+    public Pair<String, String> compoundClassDeterminant() {
+        List<String> groupsOfElements = new ArrayList<>();
+        for (Element el : compound) {
+
+           groupsOfElements.add(el.getGroupElement());
+        }
+        
+        // Проверяем, содержит ли список группы Nonmetals и Carbon
+        boolean containsCarbon = groupsOfElements.contains("Nonmetals") && groupsOfElements.contains("Carbon");
+        boolean containsMetal = groupsOfElements.stream().anyMatch(group -> group.equals("Alkali metals") 
+        || group.equals("Alkaline earth metals") || group.equals("Transition metals") 
+        || group.equals("Post-transition metals") || group.equals("Lanthanoids") || group.equals("Actinoids"));
+        boolean containsOxygen = groupsOfElements.contains("Nonmetals") && groupsOfElements.contains("Oxygen");
+        boolean containsHalogen = groupsOfElements.contains("Halogen");
+    
+        if (containsCarbon && containsOxygen && containsHalogen) {
+            return new Pair<>("Carboxylic acids", "Organic");
+        } else if (containsCarbon && containsOxygen) {
+            return new Pair<>("Alcohols", "Organic");
+        } else if (containsCarbon && containsHalogen) {
+            return new Pair<>("Halogenoalkanes", "Organic");
+        } else if (containsCarbon) {
+            return new Pair<>("Hydrocarbons", "Organic");
+        } else if (containsMetal && containsOxygen) {
+            return new Pair<>("Oxides", "Inorganic");
+        } else if (containsMetal && containsHalogen) {
+            return new Pair<>("Salts", "Inorganic");
+        } else if (containsMetal) {
+            return new Pair<>("Bases", "Inorganic");
+        } else if (containsOxygen && containsHalogen) {
+            return new Pair<>("Acids", "Inorganic");
+        } else if (containsOxygen) {
+            return new Pair<>("Oxides", "Inorganic");
+        } else if (containsHalogen) {
+            return new Pair<>("Halogens", "Inorganic");
+        } else {
+            return new Pair<>("Unknown", "Unknown");
+        }
     }
     
     @Override

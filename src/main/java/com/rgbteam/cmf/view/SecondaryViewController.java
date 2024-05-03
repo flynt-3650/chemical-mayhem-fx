@@ -7,6 +7,7 @@ import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.Map;
@@ -25,6 +26,8 @@ public class SecondaryViewController {
 
     @FXML
     private Label oxidationState;
+    @FXML
+    private Label compoundClass;
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -57,11 +60,17 @@ public class SecondaryViewController {
         }
         oxidationState.setText(stringBuilder.toString());
     }
-
+    
+    private void showClass() {
+        Pair<String, String> classPair = controller.retrieveClassOfCompound(compoundQuery.getText());
+        compoundClass.setText(classPair.getKey() + " (" + classPair.getValue() + ")");
+    }
+    
     @FXML
     public void showCompoundInformation() throws InvalidCompoundException {
         labelCompound.setText(compoundQuery.getText());
         showAtomicMass();
         showOxidStates();
+        showClass();
     }
 }

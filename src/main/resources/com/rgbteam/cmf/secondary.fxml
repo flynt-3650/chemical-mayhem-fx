@@ -6,9 +6,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -19,23 +18,21 @@
    <top>
       <MenuBar prefHeight="26.0" prefWidth="877.0" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="View">
+         <Menu mnemonicParsing="false" text="View">
                <items>
-                  <Menu mnemonicParsing="false" text="Сhange theme">
-                     <items>
-                        <RadioMenuItem mnemonicParsing="false" text="Light theme" />
-                        <RadioMenuItem mnemonicParsing="false" text="Dark theme" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <Menu mnemonicParsing="false" text="Сhange of appearance">
-                           <items>
-                              <RadioMenuItem mnemonicParsing="false" text="Console view" />
-                              <RadioMenuItem mnemonicParsing="false" text="GUI view" />
-                           </items>
-                        </Menu>
-                     </items>
-                  </Menu>
+                  <MenuItem mnemonicParsing="false" text="Dark theme">
+                     <graphic>
+                        <ToggleButton fx:id="theme" mnemonicParsing="false" onAction="#changeTheme" text="themeButton" />
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Console view">
+                     <graphic>
+                        <ToggleButton mnemonicParsing="false" text="consoleButton" />
+                     </graphic>
+                  </MenuItem>
                </items>
-          </Menu>
+            </Menu>
+        
           <Menu mnemonicParsing="false" text="Home">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Go home" />
@@ -122,7 +119,7 @@
                      </padding></Label>
                </left>
                <center>
-                  <Label prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+                  <Label fx:id="compoundClass" prefHeight="56.0" prefWidth="227.0" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
@@ -131,7 +128,7 @@
                   <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
                </GridPane.margin></BorderPane>
             <BorderPane prefHeight="94.0" prefWidth="181.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #cce6ea; -fx-background-radius: 30;" GridPane.rowIndex="1" >
+            <BorderPane prefHeight="200.0" prefWidth="430.0" style="-fx-background-color: #cce6ea; -fx-background-radius: 30;" GridPane.rowIndex="1">
                <left>
                   <Label fx:id="firstCard" prefHeight="62.0" prefWidth="571.0" text="atomic mass of a compound" wrapText="true" BorderPane.alignment="CENTER">
                      <padding>

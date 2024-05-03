@@ -12,6 +12,8 @@ import java.util.Scanner;
 import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
 
+import javafx.util.Pair;
+
 public class CLIView {
     public static void main(String[] args) {
         GeneralFlowController controller = new GeneralFlowController();
@@ -27,7 +29,8 @@ public class CLIView {
                     2 -- get element info by its short name ('H', 'As', etc.)
                     3 -- get element info by its full name ('Sodium', 'Neon', etc.)
                     4 -- count mass of a compound (M[Na Cl] = 58.44 g/mol, M[Fe S O 4] = 151.901 g/mol, etc.)
-                    5 -- count oxidation state
+                    5 -- show oxidation state
+                    6 -- define compound class
                     0 -- exit the program""");
 
             String choice = scanner.nextLine();
@@ -75,7 +78,7 @@ public class CLIView {
                 }
                 case "4":
                     System.out.print(
-                            "Enter compound (Separate elements, numbers and parenthesis using '-' or '_' or ' '): ");
+                            "Enter compound (Separate elements, numbers and parenthesis using ' ' or without spaces): ");
                     String unparsed = scanner.nextLine();
                     try {
                         double mass = controller.calculateCompoundsAtomicMass(unparsed);
@@ -86,7 +89,7 @@ public class CLIView {
                     break;
                     case "5":
                         System.out.println(
-                            "Enter compound (Separate elements, numbers and parenthesis using '-' or '_' or ' '): ");
+                            "Enter compound (Separate elements, numbers and parenthesis using ' ' or without spaces): ");
                         String unparsed1 = scanner.nextLine();
                         try {
                             Map<Element, int[]> map = controller.findCompoundsOxidationStates(unparsed1);
@@ -96,6 +99,18 @@ public class CLIView {
                                         .append(Arrays.toString(entry.getValue())).append("\n");
                             }
                             System.out.println(stringBuilder);
+                        } catch (Exception e) {
+                            System.err.println("Invalid input or element not found: " + e.getCause());
+                        }
+                        break;
+                        case "6":
+                        System.out.println(
+                            "Enter compound (Separate elements, numbers and parenthesis using ' ' or without spaces): ");
+                        String unparsed2 = scanner.nextLine();
+                        try {
+                            Pair<String, String> pair = controller.retrieveClassOfCompound(unparsed2);
+                            
+                            System.out.println(pair.getKey() + " (" + pair.getValue() + ")");
                         } catch (Exception e) {
                             System.err.println("Invalid input or element not found: " + e.getCause());
                         }

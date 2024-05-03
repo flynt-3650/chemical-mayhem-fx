@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx"
             fx:controller="com.rgbteam.cmf.view.PrimaryViewController">
@@ -11,21 +12,19 @@
         <menus>
           <Menu mnemonicParsing="false" text="View">
             <items>
-                  <Menu mnemonicParsing="false" text="Сhange theme">
-                    <items>
-                        <RadioMenuItem mnemonicParsing="false" text="Light theme" />
-                        <RadioMenuItem mnemonicParsing="false" text="Dark theme" />
-                    </items>
-                  </Menu>
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <Menu mnemonicParsing="false" text="Сhange of appearance">
-                    <items>
-                        <RadioMenuItem mnemonicParsing="false" text="Console view" />
-                        <RadioMenuItem mnemonicParsing="false" text="GUI view" />
-                    </items>
-                  </Menu>
+               <MenuItem mnemonicParsing="false" text="Dark theme">
+                  <graphic>
+                     <ToggleButton mnemonicParsing="false" text="themeButton" />
+                  </graphic>
+               </MenuItem>
+               <MenuItem mnemonicParsing="false" text="Console view">
+                  <graphic>
+                     <ToggleButton mnemonicParsing="false" text="consoleButton" />
+                  </graphic>
+               </MenuItem>
             </items>
-          </Menu>
+      </Menu>
+        
           <Menu mnemonicParsing="false" text="Calculations">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#switchToSecondView" text="Go to calcculator" />
