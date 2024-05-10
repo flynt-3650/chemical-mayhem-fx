@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: "Montserrat";
+  font-family: "Montserrat-Bold";
   src: url("/com/rgbteam/cmf/fonts/static/Montserrat-Bold.ttf");
   font-weight: bold;
   font-style: normal;
@@ -30,13 +30,13 @@
 }
 
 #lableInformation {
-  font-weight: 500;
-  -fx-font-weight: 500;
+  font-family: "Montserrat Medium";
+  -fx-font-family: "Montserrat Medium";
 }
 
 #mainButton {
-  background-color: #236ea8;
-  -fx-background-color: #236ea8;
+  background-color: linear-gradient(to bottom, #cce6ea,  #6999c6);
+  -fx-background-color: linear-gradient(to bottom, #cce6ea,  #6999c6);
   font-size: 26;
   -fx-font-size: 26;
   font-weight: bold;
@@ -49,13 +49,15 @@
 }
 
 #mainButton:pressed {
-  background-color: #6999c6;
-  -fx-background-color: #6999c6;
+  background-color: linear-gradient(to bottom, #6999c6 , #cce6ea);
+  -fx-background-color: linear-gradient(to bottom, #6999c6 , #cce6ea);
 }
 
 #labelCompound {
-  font-size: 50;
-  -fx-font-size: 50;
+  -fx-text-fill: #236ea8;
+  color: #236ea8;
+  font-size: 40;
+  -fx-font-size: 40;
   font-weight: bold;
   -fx-font-weight: bold;
 }
@@ -63,10 +65,17 @@
 #firstCard,
 #secondCard,
 #thirdCard {
-  font-size: 26;
-  -fx-font-size: 26;
+  font-size: 20;
+  -fx-font-size: 20;
   font-family: "Montserrat Medium";
   -fx-font-family: "Montserrat Medium";
+}
+
+#oxidationState,
+#compoundClass,
+#atomicMass {
+  -fx-text-fill: #236ea8;
+  color: #236ea8;
 }
 
 #atomitMass {
@@ -74,4 +83,9 @@
   -fx-font-size: 30;
   font-weight: bold;
   -fx-font-weight: bold;
+}
+
+#compoundQuery {
+  -fx-text-fill: #236ea8;
+  color: #236ea8;
 }

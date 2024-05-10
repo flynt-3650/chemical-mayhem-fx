@@ -73,4 +73,6 @@ public class SecondaryViewController {
         showOxidStates();
         showClass();
     }
+    @FXML
+    public void changeTheme(){}
 }
