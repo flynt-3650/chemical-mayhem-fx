@@ -18,21 +18,6 @@
    <top>
       <MenuBar prefHeight="26.0" prefWidth="877.0" BorderPane.alignment="CENTER">
         <menus>
-         <Menu mnemonicParsing="false" text="View">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Dark theme">
-                     <graphic>
-                        <ToggleButton fx:id="theme" mnemonicParsing="false" onAction="#changeTheme" text="themeButton" />
-                     </graphic>
-                  </MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Console view">
-                     <graphic>
-                        <ToggleButton mnemonicParsing="false" text="consoleButton" />
-                     </graphic>
-                  </MenuItem>
-               </items>
-            </Menu>
-        
           <Menu mnemonicParsing="false" text="Home">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Go home" />
