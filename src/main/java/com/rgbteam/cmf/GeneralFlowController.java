@@ -11,8 +11,6 @@ import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 import com.rgbteam.cmf.chemistry.PeriodicTable;
 
-import javafx.util.Pair;
-
 public class GeneralFlowController {
     public Element retrieveElementByNumber(int number) {
         return PeriodicTable.getElementByNumber(number);
@@ -35,8 +33,8 @@ public class GeneralFlowController {
         Compound compound = new Compound(rawCompound);
         return compound.getElementsOxidStates();
     }
-    public Pair<String, String> retrieveClassOfCompound(String rawCompound) {
+    public String retrieveClassOfCompound(String rawCompound) {
         Compound compound = new Compound(rawCompound);
-        return compound.compoundClassDeterminant();
+        return compound.determineCompoundClass();
     }
 }

@@ -8,26 +8,25 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javafx.util.Pair;
-
 public class Compound {
-
     private final Element[] compound;
+
 
     public Compound(String rawCompound) {
         List<Element> elements = parseCompound(rawCompound);
         compound = elements.toArray(new Element[0]);
 
-        if (!isValidCompound()) {
-            StringBuilder compoundSymbols = new StringBuilder();
-
-            for (var e : compound) {
-                compoundSymbols.append(e.getShortName());
-            }
-
-            throw new InvalidCompoundException("INVALID COMPOUND: " + compoundSymbols);
-        }
+//        if (!isValidCompound()) {
+//            StringBuilder compoundSymbols = new StringBuilder();
+//
+//            for (var e : compound) {
+//                compoundSymbols.append(e.getShortName());
+//            }
+//
+//            throw new InvalidCompoundException("INVALID COMPOUND: " + compoundSymbols);
+//        }
     }
+
 
     private List<Element> parseCompound(String rawCompound) {
         List<Element> elements = new ArrayList<>();
@@ -94,6 +93,7 @@ public class Compound {
         return false;
     }
 
+
     public double calculateAtomicMass() {
         double totalMass = 0.0;
 
@@ -102,6 +102,7 @@ public class Compound {
         }
         return totalMass;
     }
+
 
 //    //here we form a Cartesian set of lists
 //    public List<List<Integer>> cartesianProduct(List<List<Integer>> lists) {
@@ -124,6 +125,7 @@ public class Compound {
 //        return result;
 //    }
 
+
     public Map<Element, int[]> getElementsOxidStates() {
 
         Map<Element, int[]> compoundOxidStates = new HashMap<>();
@@ -134,31 +136,41 @@ public class Compound {
     }
 
 
-    public String compoundClassDeterminant() {
-        List<String> groupsOfElements = new ArrayList<>();
-        boolean hasOxygen = false;
-        boolean hasHydrogen = false;
+    public String determineCompoundClass() {
+        boolean hasO = false;
+        boolean hasH = false;
+        boolean hasMetal = false;
+        boolean hasNonmetal = false;
 
         for (Element el : compound) {
-           groupsOfElements.add(el.getGroupElement());
-           if (el.getShortName().equals("O")){
-            hasOxygen = true;
-           } 
-           if (el.getShortName().equals("H")) {
-            hasHydrogen = true;
-           }
+            if (el.getShortName().equals("O")) {
+                hasO = true;
+            }
+            if (el.getShortName().equals("H")) {
+                hasH = true;
+            }
+            if (el.getElementGroup().contains("metals") || el.getElementGroup().contains("metalloids")) {
+                hasMetal = true;
+            }
+            if (el.getElementGroup().equals("nonmetal") || el.getElementGroup().equals("halogen")) {
+                hasNonmetal = true;
+            }
         }
-        
-        if (new HashSet<>(compound).size && hasOxygen) {
+
+        if (new HashSet<>(Arrays.asList(compound)).size() == 2 && hasO) {
             return "Oxide";
-        } else if () {
-
+        } else if (hasMetal && hasO && hasH) {
+            return "Base";
+        } else if (hasH && hasNonmetal && !hasMetal) {
+            return "Acid";
+        } else if (hasMetal && hasNonmetal) {
+            return "Salt";
+        } else {
+            return "Unknown";
         }
-
-        return "";
-        
     }
-    
+
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -166,6 +178,7 @@ public class Compound {
         result = prime * result + Arrays.hashCode(compound);
         return result;
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -178,6 +191,7 @@ public class Compound {
         Compound other = (Compound) obj;
         return Arrays.equals(compound, other.compound);
     }
+
 
     @Override
     public String toString() {

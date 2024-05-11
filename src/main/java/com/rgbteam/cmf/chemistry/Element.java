@@ -47,7 +47,7 @@ public class Element {
         return atomicNumber;
     }
 
-    public String getGroupElement() {
+    public String getElementGroup() {
         return groupElement;
     }
 

@@ -62,8 +62,8 @@ public class SecondaryViewController {
     }
     
     private void showClass() {
-        Pair<String, String> classPair = controller.retrieveClassOfCompound(compoundQuery.getText());
-        compoundClass.setText(classPair.getKey() + " (" + classPair.getValue() + ")");
+        String classPair = controller.retrieveClassOfCompound(compoundQuery.getText());
+        compoundClass.setText(classPair);
     }
     
     @FXML

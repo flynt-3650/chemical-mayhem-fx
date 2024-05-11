@@ -108,9 +108,9 @@ public class CLIView {
                             "Enter compound (Separate elements, numbers and parenthesis using ' ' or without spaces): ");
                         String unparsed2 = scanner.nextLine();
                         try {
-                            Pair<String, String> pair = controller.retrieveClassOfCompound(unparsed2);
+                            String pair = controller.retrieveClassOfCompound(unparsed2);
                             
-                            System.out.println(pair.getKey() + " (" + pair.getValue() + ")");
+                            System.out.println(pair);
                         } catch (Exception e) {
                             System.err.println("Invalid input or element not found: " + e.getCause());
                         }
