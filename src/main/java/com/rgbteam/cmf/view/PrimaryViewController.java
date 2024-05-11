@@ -43,7 +43,7 @@ public class PrimaryViewController {
             elementNumber.setText(e.getNumber() + " ");
             fullName.setText(e.getFullName() + " ");
         };
-        for (int i = 0; i < 118; i++) {
+        for (int i = 0; i < buttons.length; i++) {
             Element e = controller.retrieveElementByNumber(i + 1);
             if (e != null) {
                 buttons[i] = new Button(e.getShortName());
@@ -52,6 +52,7 @@ public class PrimaryViewController {
                 buttons[i].setOnMouseClicked(elementButtonListener);
             }
         }
+
     }
 
 
@@ -86,15 +87,25 @@ public class PrimaryViewController {
         String group = controller.retrieveElementGroup(i + 1);
         Color fxColor = getColorForGroupLight(group, button); // светлая тема
         button.setBackground(new Background(new BackgroundFill(fxColor, CornerRadii.EMPTY, Insets.EMPTY)));
+        button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: " + fxColor.darker().toString().substring(2, 10) + ";"));
+        button.setOnMousePressed(event -> button.setStyle("-fx-background-color: " + fxColor.darker().darker().toString().substring(2, 10) + ";"));
+        button.setOnMouseReleased(event -> button.setStyle("-fx-background-color: " + fxColor.darker().toString().substring(2, 10) + ";"));
+        button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " + fxColor.toString().substring(2, 10) + ";"));
     }
+
+
 
     // светлая тема (окраска кнопки и цвет текста)
     private Color getColorForGroupLight(String group, Button button) {
         Color fxColor;
         switch (group) {
             case "nonmetal":
-                fxColor = Color.web("#e6f0ff", 1.0);
-                button.setTextFill(Color.web("#0060f0", 1.0));
+                fxColor = Color.web("#e6f0ff", 1.0);// цвет кнопки
+                button.setTextFill(Color.web("#0060f0", 1.0));//цвет текста
+                break;
+            case "noble gases":
+                fxColor = Color.web("#ffebee", 1.0);
+                button.setTextFill(Color.web("#cd1d5e", 1.0));
                 break;
             case "alkali metals":
                 fxColor = Color.web("#dbf8ff", 1.0);
@@ -104,9 +115,21 @@ public class PrimaryViewController {
                 fxColor = Color.web("#ffebeb", 1.0);
                 button.setTextFill(Color.web("#d60024", 1.0));
                 break;
+            case "metalloids":
+                fxColor = Color.web("#fef9e6", 1.0);
+                button.setTextFill(Color.web("#945700", 1.0));
+                break;
+            case "halogen":
+                fxColor = Color.web("#e9e9ec", 1.0);
+                button.setTextFill(Color.web("#3f374f", 1.0));
+                break;
             case "transition metals":
                 fxColor = Color.web("#f5ecfd", 1.0);
                 button.setTextFill(Color.web("#6232ec", 1.0));
+                break;
+            case "post-transition metals":
+                fxColor = Color.web("#dcfaeb", 1.0);
+                button.setTextFill(Color.web("#103b11", 1.0));
                 break;
             case "lanthanoids":
                 fxColor = Color.web("#e6f5ff", 1.0);
@@ -116,21 +139,8 @@ public class PrimaryViewController {
                 fxColor = Color.web("#ffeadb", 1.0);
                 button.setTextFill(Color.web("#c73200", 1.0));
                 break;
-            case "post-transition metals":
-                fxColor = Color.web("#dcfaeb", 1.0);
-                button.setTextFill(Color.web("#103b11", 1.0));
-                break;
-            case "metalloids":
-                fxColor = Color.web("#fef9e6", 1.0);
-                button.setTextFill(Color.web("#945700", 1.0));
-                break;
-            case "noble gases":
-                fxColor = Color.web("#ffebee", 1.0);
-                button.setTextFill(Color.web("#cd1d5e", 1.0));
-                break;
             default:
-                fxColor = Color.web("#e9e9ec", 1.0);
-                button.setTextFill(Color.web("#3f374f", 1.0));
+                fxColor = Color.web("#ffffff", 1.0);
                 break;
         }
         return fxColor;
