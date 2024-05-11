@@ -3,7 +3,6 @@ package com.rgbteam.cmf.view;
 import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,7 +18,7 @@ public class SecondaryViewController {
 
     @FXML
     private Label labelCompound;
-    
+
     @FXML
     private Label atomicMass;
 
@@ -80,5 +79,6 @@ public class SecondaryViewController {
 
 
     @FXML
-    public void changeTheme(){}
+    public void changeTheme() {
+    }
 }

@@ -4,12 +4,13 @@
 
 
 package com.rgbteam.cmf;
-import java.util.Map;
 
 import com.rgbteam.cmf.chemistry.Compound;
 import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 import com.rgbteam.cmf.chemistry.PeriodicTable;
+
+import java.util.Map;
 
 public class GeneralFlowController {
     public Element retrieveElementByNumber(int number) {

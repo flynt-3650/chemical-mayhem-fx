@@ -2,17 +2,15 @@
  * Copyright (c) 2024. RGBTeam
  */
 
- 
-package com.rgbteam.cmf.view;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Scanner;
+package com.rgbteam.cmf.view;
 
 import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
 
-import javafx.util.Pair;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Scanner;
 
 public class CLIView {
     public static void main(String[] args) {
@@ -21,7 +19,8 @@ public class CLIView {
 
         System.out.println("Hello User!");
 
-        label: while (true) {
+        label:
+        while (true) {
             System.out.println("""
 
                     Enter:
@@ -87,35 +86,35 @@ public class CLIView {
                         System.err.println("Invalid input or element not found: " + e.getCause());
                     }
                     break;
-                    case "5":
-                        System.out.println(
+                case "5":
+                    System.out.println(
                             "Enter compound (Separate elements, numbers and parenthesis using ' ' or without spaces): ");
-                        String unparsed1 = scanner.nextLine();
-                        try {
-                            Map<Element, int[]> map = controller.findCompoundsOxidationStates(unparsed1);
-                            StringBuilder stringBuilder = new StringBuilder();
-                            for (Map.Entry<Element, int[]> entry : map.entrySet()) {
-                                stringBuilder.append(entry.getKey().getShortName()).append(": ")
-                                        .append(Arrays.toString(entry.getValue())).append("\n");
-                            }
-                            System.out.println(stringBuilder);
-                        } catch (Exception e) {
-                            System.err.println("Invalid input or element not found: " + e.getCause());
+                    String unparsed1 = scanner.nextLine();
+                    try {
+                        Map<Element, int[]> map = controller.findCompoundsOxidationStates(unparsed1);
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (Map.Entry<Element, int[]> entry : map.entrySet()) {
+                            stringBuilder.append(entry.getKey().getShortName()).append(": ")
+                                    .append(Arrays.toString(entry.getValue())).append("\n");
                         }
-                        break;
-                        case "6":
-                        System.out.println(
+                        System.out.println(stringBuilder);
+                    } catch (Exception e) {
+                        System.err.println("Invalid input or element not found: " + e.getCause());
+                    }
+                    break;
+                case "6":
+                    System.out.println(
                             "Enter compound (Separate elements, numbers and parenthesis using ' ' or without spaces): ");
-                        String unparsed2 = scanner.nextLine();
-                        try {
-                            String pair = controller.retrieveClassOfCompound(unparsed2);
-                            
-                            System.out.println(pair);
-                        } catch (Exception e) {
-                            System.err.println("Invalid input or element not found: " + e.getCause());
-                        }
-                        break;
-                        
+                    String unparsed2 = scanner.nextLine();
+                    try {
+                        String pair = controller.retrieveClassOfCompound(unparsed2);
+
+                        System.out.println(pair);
+                    } catch (Exception e) {
+                        System.err.println("Invalid input or element not found: " + e.getCause());
+                    }
+                    break;
+
                 default:
                     System.err.println("No such command available");
                     break;

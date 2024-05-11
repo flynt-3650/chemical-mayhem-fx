@@ -3,114 +3,139 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<BorderPane xmlns:fx="http://javafx.com/fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<BorderPane xmlns:fx="http://javafx.com/fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
             prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx"
             fx:controller="com.rgbteam.cmf.view.PrimaryViewController">
-   <top>
-      <MenuBar prefHeight="26.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="Calculations">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#switchToSecondView" text="Go to calcculator" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <center>
-       <GridPane fx:id="myGridPane" BorderPane.alignment="CENTER">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="3" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="4" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="6" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="7" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="8" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="9" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="10" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="11" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="12" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="13" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="14" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="15" GridPane.columnIndex="15" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="16" GridPane.columnIndex="16" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="17" GridPane.columnIndex="17" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="18" GridPane.columnIndex="18" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Label text="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Label text="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Label text="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <Label text="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-            <Label text="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-            <Label text="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-            <Label text="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-            <Label text="Lanthanoids" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-            <Label text="Actinoids" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
-            <Label text="57 - 71" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-            <Label text="89 - 103" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Nonmetals" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Noble gases" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Alkali metals" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Alkaline earth metals" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Metalloids" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Halogen" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Post-transition metals" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Transition metals" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Lanthanoids" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Actinoids" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-             <TextFlow fx:id="textFlow" style="-fx-background-color: #ffffff;" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
-                 <Text fx:id="shortName" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnSpan="2"
-                       GridPane.rowIndex="1" GridPane.rowSpan="2"/>
-                 <Text fx:id="fullName" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2"
-                       GridPane.rowIndex="1"/>
-                 <Text fx:id="elementNumber" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2"/>
-                       <Text fx:id="elAtom" strokeType="OUTSIDE" strokeWidth="0.0"  GridPane.columnIndex="2" />
-             </TextFlow>
+    <top>
+        <MenuBar prefHeight="26.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Calculations">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#switchToSecondView" text="Go to calcculator"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <GridPane fx:id="myGridPane" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label text="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="3" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="4" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="5" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="6" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="7" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="8" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="9" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="10" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="11" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="12" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="13" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="14" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="15" GridPane.columnIndex="15" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="16" GridPane.columnIndex="16" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="17" GridPane.columnIndex="17" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="18" GridPane.columnIndex="18" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <Label text="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+                <Label text="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
+                <Label text="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                <Label text="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER"/>
+                <Label text="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER"/>
+                <Label text="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER"/>
+                <Label text="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER"/>
+                <Label text="Lanthanoids" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10"
+                       GridPane.valignment="CENTER"/>
+                <Label text="Actinoids" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11"
+                       GridPane.valignment="CENTER"/>
+                <Label text="57 - 71" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7"
+                       GridPane.valignment="CENTER"/>
+                <Label text="89 - 103" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8"
+                       GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Nonmetals"
+                        GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Noble gases"
+                        GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Alkali metals"
+                        GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Alkaline earth metals"
+                        GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Metalloids"
+                        GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Halogen"
+                        GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Post-transition metals"
+                        GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Transition metals"
+                        GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Lanthanoids"
+                        GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Actinoids"
+                        GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                        GridPane.valignment="CENTER"/>
+                <TextFlow fx:id="textFlow" style="-fx-background-color: #ffffff;" GridPane.columnIndex="4"
+                          GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                    <Text fx:id="shortName" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnSpan="2"
+                          GridPane.rowIndex="1" GridPane.rowSpan="2"/>
+                    <Text fx:id="fullName" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2"
+                          GridPane.rowIndex="1"/>
+                    <Text fx:id="elementNumber" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2"/>
+                    <Text fx:id="elAtom" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2"/>
+                </TextFlow>
 
-         </children>
-      </GridPane>
-   </center>
+            </children>
+        </GridPane>
+    </center>
 </BorderPane>

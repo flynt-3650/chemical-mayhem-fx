@@ -13,16 +13,15 @@ import javafx.scene.text.TextFlow;
 import java.io.IOException;
 
 public class PrimaryViewController {
-    public TextFlow textFlow;
     private final GeneralFlowController controller = new GeneralFlowController();
+    public TextFlow textFlow;
     public Text elAtom;
     public Text shortName;
     public Text elementNumber;
+    public Text fullName;
     @FXML
     private GridPane myGridPane;
     private Button[] buttons;
-    public Text fullName;
-
 
     public void initialize() {
         addListeners();
@@ -46,7 +45,7 @@ public class PrimaryViewController {
             Element e = controller.retrieveElementByNumber(i + 1);
             if (e != null) {
                 buttons[i] = new Button(e.getShortName());
-                buttons[i].setMaxSize(1000,1000);
+                buttons[i].setMaxSize(1000, 1000);
                 //setColor(buttons[i],i);
                 buttons[i].setOnMouseClicked(elementButtonListener);
             }
@@ -56,8 +55,8 @@ public class PrimaryViewController {
 
     public void showButtons() {
         int i = 0;
-        for(int row = 2 ; row <= 11; row ++){
-            for(int  column = 1 ; column <= 18; column ++){
+        for (int row = 2; row <= 11; row++) {
+            for (int column = 1; column <= 18; column++) {
                 if ((row == 2 && column < 18 && column > 1) || (row == 3 && column < 13 && column > 2)
                         || (row == 4 && column < 13 && column > 2) || (row == 9) || (row == 10 && column < 3)
                         || (row == 11 && column < 3)) {
