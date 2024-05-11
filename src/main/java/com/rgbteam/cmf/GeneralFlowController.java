@@ -16,23 +16,29 @@ public class GeneralFlowController {
         return PeriodicTable.getElementByNumber(number);
     }
 
+
     public Element retrieveElementByShortName(String shortName) {
         return PeriodicTable.getElementByShortName(shortName);
     }
 
+
     public Element retrieveElementByFullName(String fullName) {
         return PeriodicTable.getElementByFullName(fullName);
     }
+
 
     public Double calculateCompoundsAtomicMass(String rawCompound) throws InvalidCompoundException {
         Compound compound = new Compound(rawCompound);
         return compound.calculateAtomicMass();
     }
 
+
     public Map<Element, int[]> findCompoundsOxidationStates(String rawCompound) {
         Compound compound = new Compound(rawCompound);
         return compound.getElementsOxidStates();
     }
+
+
     public String retrieveClassOfCompound(String rawCompound) {
         Compound compound = new Compound(rawCompound);
         return compound.determineCompoundClass();

@@ -20,6 +20,7 @@ public class Element {
     private final int[] valences;
     private final int[] oxidationStates;
 
+
     public Element(String shortName, String fullName, int number, String groupElement, double atomicMass,
                    int[] valences, int[] oxidationStates) {
         this.fullName = fullName;
@@ -35,53 +36,66 @@ public class Element {
         this.neutronAmount = (int) atomicMass - number;
     }
 
+
     public String getShortName() {
         return shortName;
     }
+
 
     public String getFullName() {
         return fullName;
     }
 
+
     public int getNumber() {
         return atomicNumber;
     }
+
 
     public String getElementGroup() {
         return groupElement;
     }
 
+
     public double getAtomicMass() {
         return atomicMass;
     }
+
 
     public double getMolarMass() {
         return molarMass;
     }
 
+
     public int getAtomicNumber() {
         return atomicNumber;
     }
+
 
     public int getProtonAmount() {
         return protonAmount;
     }
 
+
     public int getNeutronAmount() {
         return neutronAmount;
     }
+
 
     public int getElectronAmount() {
         return electronAmount;
     }
 
+
     public int[] getValences() {
         return valences;
     }
 
+
     public int[] getOxidationStates() {
         return oxidationStates;
     }
+
 
     @Override
     public String toString() {
@@ -94,6 +108,7 @@ public class Element {
                 "Neutrons: " + neutronAmount + "\n" +
                 "Electrons: " + electronAmount;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -114,6 +129,7 @@ public class Element {
         if (!Arrays.equals(valences, element.valences)) return false;
         return Arrays.equals(oxidationStates, element.oxidationStates);
     }
+
 
     @Override
     public int hashCode() {

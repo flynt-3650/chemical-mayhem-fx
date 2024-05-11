@@ -23,10 +23,12 @@ public class PrimaryViewController {
     private Button[] buttons;
     public Text fullName;
 
+
     public void initialize() {
         addListeners();
         showButtons();
     }
+
 
     public void addListeners() {
         buttons = new Button[119];
@@ -50,6 +52,7 @@ public class PrimaryViewController {
             }
         }
     }
+
 
     public void showButtons() {
         int i = 0;
@@ -114,7 +117,9 @@ public class PrimaryViewController {
                 return Color.rgb(0, 0, 0); // черный
         }
     }
-    */
+*/
+
+
     @FXML
     private void switchToSecondView() throws IOException {
         GUIView.setRoot("secondary");

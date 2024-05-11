@@ -4,6 +4,7 @@
 
 
 package com.rgbteam.cmf.chemistry;
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,7 +57,7 @@ public class Compound {
                     subElements.clear();
                 }
             } else if (groupCountStr != null) {
-                int subCount = 1;
+                int subCount;
                 subCount = Integer.parseInt(groupCountStr);
                 for (int i = 0; i < subCount; i++) {
                     elements.addAll(subElements);

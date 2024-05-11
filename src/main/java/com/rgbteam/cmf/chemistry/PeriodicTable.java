@@ -135,6 +135,7 @@ public class PeriodicTable {
         return null;
     }
 
+
     public static Element getElementByShortName(String queryShortName) {
         for (Element item : TABLE)
             if (item.getShortName().equalsIgnoreCase(queryShortName))
@@ -143,6 +144,7 @@ public class PeriodicTable {
         return null;
     }
 
+
     public static Element getElementByFullName(String queryFullName) {
         for (Element item : TABLE)
             if (item.getFullName().equalsIgnoreCase(queryFullName))
@@ -150,6 +152,7 @@ public class PeriodicTable {
 
         return null;
     }
+
 
     public static String getElementGroup(int queryNumber) {
         if (queryNumber >= 1 && queryNumber <= TABLE.length) {

@@ -7,7 +7,6 @@ import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.Map;
@@ -29,10 +28,12 @@ public class SecondaryViewController {
     @FXML
     private Label compoundClass;
 
+
     @FXML
     private void switchToPrimary() throws IOException {
         GUIView.setRoot("primary");
     }
+
 
     private void showAtomicMass() throws InvalidCompoundException {
         double ans = controller.calculateCompoundsAtomicMass(compoundQuery.getText());
@@ -43,7 +44,8 @@ public class SecondaryViewController {
         }
         atomicMass.setText(String.format("%.4f", ans));
     }
-    
+
+
     private void showOxidStates() {
         Map<Element, int[]> elementsToOxidStates = controller.findCompoundsOxidationStates(compoundQuery.getText());
 
@@ -60,12 +62,14 @@ public class SecondaryViewController {
         }
         oxidationState.setText(stringBuilder.toString());
     }
-    
+
+
     private void showClass() {
         String classPair = controller.retrieveClassOfCompound(compoundQuery.getText());
         compoundClass.setText(classPair);
     }
-    
+
+
     @FXML
     public void showCompoundInformation() throws InvalidCompoundException {
         labelCompound.setText(compoundQuery.getText());
@@ -73,6 +77,8 @@ public class SecondaryViewController {
         showOxidStates();
         showClass();
     }
+
+
     @FXML
     public void changeTheme(){}
 }
