@@ -44,4 +44,8 @@ public class GeneralFlowController {
         Compound compound = new Compound(rawCompound);
         return compound.determineCompoundClass();
     }
+
+    public String retrieveElementGroup(int number) {
+        return PeriodicTable.getElementGroup(number);
+    }
 }
