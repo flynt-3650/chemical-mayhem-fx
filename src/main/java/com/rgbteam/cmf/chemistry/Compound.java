@@ -18,7 +18,7 @@ public class Compound {
         compound = elements.toArray(new Element[0]);
 
 //        if (!isValidCompound()) {
-//            StringBuilder compoundSymbols = new StringBuilder();
+//           StringBuilder compoundSymbols = new StringBuilder();
 //
 //            for (var e : compound) {
 //                compoundSymbols.append(e.getShortName());
