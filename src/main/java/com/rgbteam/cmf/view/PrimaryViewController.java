@@ -87,10 +87,10 @@ public class PrimaryViewController {
         String group = controller.retrieveElementGroup(i + 1);
         Color fxColor = getColorForGroupLight(group, button); // светлая тема
         button.setBackground(new Background(new BackgroundFill(fxColor, CornerRadii.EMPTY, Insets.EMPTY)));
-        button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: " + fxColor.darker().toString().substring(2, 10) + ";"));
-        button.setOnMousePressed(event -> button.setStyle("-fx-background-color: " + fxColor.darker().darker().toString().substring(2, 10) + ";"));
-        button.setOnMouseReleased(event -> button.setStyle("-fx-background-color: " + fxColor.darker().toString().substring(2, 10) + ";"));
+        button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%);"));
         button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " + fxColor.toString().substring(2, 10) + ";"));
+        button.setOnMousePressed(event -> button.setStyle("-fx-background-color: derive(-fx-base, -30%);"));
+        button.setOnMouseReleased(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%);"));
     }
 
 
