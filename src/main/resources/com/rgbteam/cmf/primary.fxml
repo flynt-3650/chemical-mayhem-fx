@@ -45,6 +45,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
                 <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
                 <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
