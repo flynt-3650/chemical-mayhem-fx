@@ -34,7 +34,6 @@ public class PrimaryViewController {
     @FXML
     private GridPane myGridPane;
     private Button[] buttons;
-    private Button[] buttonsGroup;
 
     public void initialize() {
         addListeners();
@@ -126,55 +125,53 @@ public class PrimaryViewController {
     private Color getColorForGroupLight(String group, Button button) {
         Color fxColor;
         switch (group) {
-            case "nonmetal":
+            case "nonmetal" -> {
                 fxColor = Color.web("#e6f0ff", 1.0);// цвет кнопки
                 button.setTextFill(Color.web("#0060f0", 1.0));//цвет текста
-                break;
-            case "noble gases":
+            }
+            case "noble gases" -> {
                 fxColor = Color.web("#ffebee", 1.0);
                 button.setTextFill(Color.web("#cd1d5e", 1.0));
-                break;
-            case "alkali metals":
+            }
+            case "alkali metals" -> {
                 fxColor = Color.web("#dbf8ff", 1.0);
                 button.setTextFill(Color.web("#00758c", 1.0));
-                break;
-            case "alkaline earth metals":
+            }
+            case "alkaline earth metals" -> {
                 fxColor = Color.web("#ffebeb", 1.0);
                 button.setTextFill(Color.web("#d60024", 1.0));
-                break;
-            case "metalloids":
+            }
+            case "metalloids" -> {
                 fxColor = Color.web("#fef9e6", 1.0);
                 button.setTextFill(Color.web("#945700", 1.0));
-                break;
-            case "halogen":
+            }
+            case "halogen" -> {
                 fxColor = Color.web("#e9e9ec", 1.0);
                 button.setTextFill(Color.web("#3f374f", 1.0));
-                break;
-            case "transition metals":
+            }
+            case "transition metals" -> {
                 fxColor = Color.web("#f5ecfd", 1.0);
                 button.setTextFill(Color.web("#6232ec", 1.0));
-                break;
-            case "post-transition metals":
+            }
+            case "post-transition metals" -> {
                 fxColor = Color.web("#dcfaeb", 1.0);
                 button.setTextFill(Color.web("#103b11", 1.0));
-                break;
-            case "lanthanoids":
+            }
+            case "lanthanoids" -> {
                 fxColor = Color.web("#e6f5ff", 1.0);
                 button.setTextFill(Color.web("#4c738d", 1.0));
-                break;
-            case "actinoids":
+            }
+            case "actinoids" -> {
                 fxColor = Color.web("#ffeadb", 1.0);
                 button.setTextFill(Color.web("#c73200", 1.0));
-                break;
-            default:
-                fxColor = Color.web("#ffffff", 1.0);
-                break;
+            }
+            default -> fxColor = Color.web("#ffffff", 1.0);
         }
         return fxColor;
     }
 
     public void GroupButtonsConst(){
-        buttonsGroup = new Button[10];
+        Button[] buttonsGroup = new Button[10];
         buttonsGroup[0] = buttonNM;
         buttonsGroup[1] = buttonNG;
         buttonsGroup[2] = buttonAM;
@@ -201,9 +198,9 @@ public class PrimaryViewController {
             }
         };
 
-        for(int i = 0; i < buttonsGroup.length; i++){
-            buttonsGroup[i].setOnMousePressed(groupButtonPressedListener);
-            buttonsGroup[i].setOnMouseReleased(groupButtonReleasedListener);
+        for (Button button : buttonsGroup) {
+            button.setOnMousePressed(groupButtonPressedListener);
+            button.setOnMouseReleased(groupButtonReleasedListener);
         }
     }
 
