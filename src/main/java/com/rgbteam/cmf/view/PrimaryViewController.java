@@ -31,31 +31,6 @@ public class PrimaryViewController {
     }
 
 
-    public void addListeners() {
-        buttons = new Button[119];
-
-        EventHandler<MouseEvent> elementButtonListener = mouseEvent -> {
-            Button source = (Button) mouseEvent.getSource();
-            String shortName = source.getText();
-            var e = controller.retrieveElementByShortName(shortName);
-            this.shortName.setText(e.getShortName() + " ");
-            elAtom.setText(e.getAtomicMass() + " ");
-            elementNumber.setText(e.getNumber() + " ");
-            fullName.setText(e.getFullName() + " ");
-        };
-        for (int i = 0; i < buttons.length; i++) {
-            Element e = controller.retrieveElementByNumber(i + 1);
-            if (e != null) {
-                buttons[i] = new Button(e.getShortName());
-                buttons[i].setMaxSize(1000, 1000);
-                setColor(buttons[i],i);
-                buttons[i].setOnMouseClicked(elementButtonListener);
-            }
-        }
-
-    }
-
-
     public void showButtons() {
         int i = 0;
         for (int row = 2; row <= 11; row++) {
@@ -83,10 +58,39 @@ public class PrimaryViewController {
         }
     }
 
+    public void addListeners() {
+        buttons = new Button[119];
+
+        EventHandler<MouseEvent> elementButtonListener = mouseEvent -> {
+            Button source = (Button) mouseEvent.getSource();
+            String shortName = source.getText();
+            var e = controller.retrieveElementByShortName(shortName);
+            this.shortName.setText(e.getShortName() + " ");
+            elAtom.setText(e.getAtomicMass() + " ");
+            elementNumber.setText(e.getNumber() + " ");
+            fullName.setText(e.getFullName() + " ");
+        };
+        for (int i = 0; i < buttons.length; i++) {
+            Element e = controller.retrieveElementByNumber(i + 1);
+            if (e != null) {
+                buttons[i] = new Button(e.getShortName());
+                buttons[i].setOnMouseClicked(elementButtonListener);
+                SetButtonsStyle(i);
+            }
+        }
+
+    }
+
+    public void SetButtonsStyle(int i){
+        buttons[i].setMaxSize(1000, 1000);
+        setColor(buttons[i],i);
+        buttons[i].getStyleClass().add("round-button");
+    }
+
     public void setColor(Button button, int i) {
         String group = controller.retrieveElementGroup(i + 1);
         Color fxColor = getColorForGroupLight(group, button); // светлая тема
-        button.setBackground(new Background(new BackgroundFill(fxColor, CornerRadii.EMPTY, Insets.EMPTY)));
+        button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(0), Insets.EMPTY)));
         button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%);"));
         button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " + fxColor.toString().substring(2, 10) + ";"));
         button.setOnMousePressed(event -> button.setStyle("-fx-background-color: derive(-fx-base, -30%);"));
