@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.scene.paint.Color;
@@ -93,6 +94,7 @@ public class PrimaryViewController {
     }
 
     public void SetButtonsStyle(int i){
+        buttons[i].setFont(Font.font("Arial", 16));
         buttons[i].setMaxSize(1000, 1000);
         setColor(buttons[i],i);
     }
@@ -182,26 +184,42 @@ public class PrimaryViewController {
         buttonsGroup[7] = buttonTM;
         buttonsGroup[8] = buttonL;
         buttonsGroup[9] = buttonA;
-        setActionButtonsGroup(buttonsGroup);
+        SetColourGroup(buttonsGroup);
     }
 
-    public void setActionButtonsGroup(Button[] buttonsGroup){
-        EventHandler<MouseEvent> groupButtonPressedListener = mouseEvent -> {
-            Button source = (Button) mouseEvent.getSource();
-            String groupName = source.getText();
-            SetColourForGroup(groupName);
-        };
-
-        EventHandler<MouseEvent> groupButtonReleasedListener = mouseEvent -> {
-            for (int i = 0; i < buttons.length; i ++) {
-                setColor(buttons[i], i);
-            }
-        };
-
+    public void SetColourGroup(Button[] buttonsGroup){
         for (Button button : buttonsGroup) {
-            button.setOnMousePressed(groupButtonPressedListener);
-            button.setOnMouseReleased(groupButtonReleasedListener);
+            String groupColour = button.getText();
+            Color fxColor = getColorForGroupLight(groupColour, button);
+            button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(0), Insets.EMPTY)));
+            setActionButtonsGroup(button , fxColor);
         }
+    }
+
+
+    public void setActionButtonsGroup(Button button , Color fxColor){
+            button.setOnMousePressed(event -> {
+                button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 0;");
+                button.getStyleClass().add("round-button");
+                Button source = (Button) event.getSource();
+                String groupName = source.getText();
+                SetColourForGroup(groupName);
+            });
+            button.setOnMouseEntered(event -> {
+                button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
+                button.getStyleClass().add("round-button");
+            });
+            button.setOnMouseExited(event -> {
+                button.setStyle("-fx-background-color: " + fxColor.toString().substring(2, 10) + "; -fx-background-radius: 0;");
+                button.getStyleClass().add("round-button");
+            });
+            button.setOnMouseReleased(event -> {
+                button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
+                button.getStyleClass().add("round-button");
+                for (int i = 0; i < buttons.length; i ++) {
+                    setColor(buttons[i], i);
+                }
+            });
     }
 
     public void SetColourForGroup(String groupName) {
