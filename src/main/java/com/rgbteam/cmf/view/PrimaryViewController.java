@@ -21,13 +21,25 @@ public class PrimaryViewController {
     public Text shortName;
     public Text elementNumber;
     public Text fullName;
+    public Button buttonNM;
+    public Button buttonNG;
+    public Button buttonAM;
+    public Button buttonAE;
+    public Button buttonM;
+    public Button buttonH;
+    public Button buttonPT;
+    public Button buttonTM;
+    public Button buttonL;
+    public Button buttonA;
     @FXML
     private GridPane myGridPane;
     private Button[] buttons;
+    private Button[] buttonsGroup;
 
     public void initialize() {
         addListeners();
         showButtons();
+        GroupButtonsConst();
     }
 
 
@@ -84,17 +96,28 @@ public class PrimaryViewController {
     public void SetButtonsStyle(int i){
         buttons[i].setMaxSize(1000, 1000);
         setColor(buttons[i],i);
-        buttons[i].getStyleClass().add("round-button");
     }
 
     public void setColor(Button button, int i) {
         String group = controller.retrieveElementGroup(i + 1);
         Color fxColor = getColorForGroupLight(group, button); // светлая тема
         button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(0), Insets.EMPTY)));
-        button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%);"));
-        button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " + fxColor.toString().substring(2, 10) + ";"));
-        button.setOnMousePressed(event -> button.setStyle("-fx-background-color: derive(-fx-base, -30%);"));
-        button.setOnMouseReleased(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%);"));
+        button.setOnMouseEntered(event -> {
+            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
+            button.getStyleClass().add("round-button");
+        });
+        button.setOnMouseExited(event -> {
+            button.setStyle("-fx-background-color: " + fxColor.toString().substring(2, 10) + "; -fx-background-radius: 0;");
+            button.getStyleClass().add("round-button");
+        });
+        button.setOnMousePressed(event -> {
+            button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 0;");
+            button.getStyleClass().add("round-button");
+        });
+        button.setOnMouseReleased(event -> {
+            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
+            button.getStyleClass().add("round-button");
+        });
     }
 
 
@@ -149,6 +172,60 @@ public class PrimaryViewController {
         }
         return fxColor;
     }
+
+    public void GroupButtonsConst(){
+        buttonsGroup = new Button[10];
+        buttonsGroup[0] = buttonNM;
+        buttonsGroup[1] = buttonNG;
+        buttonsGroup[2] = buttonAM;
+        buttonsGroup[3] = buttonAE;
+        buttonsGroup[4] = buttonM;
+        buttonsGroup[5] = buttonH;
+        buttonsGroup[6] = buttonPT;
+        buttonsGroup[7] = buttonTM;
+        buttonsGroup[8] = buttonL;
+        buttonsGroup[9] = buttonA;
+        setActionButtonsGroup(buttonsGroup);
+    }
+
+    public void setActionButtonsGroup(Button[] buttonsGroup){
+        EventHandler<MouseEvent> groupButtonPressedListener = mouseEvent -> {
+            Button source = (Button) mouseEvent.getSource();
+            String groupName = source.getText();
+            SetColourForGroup(groupName);
+        };
+
+        EventHandler<MouseEvent> groupButtonReleasedListener = mouseEvent -> {
+            for (int i = 0; i < buttons.length; i ++) {
+                setColor(buttons[i], i);
+            }
+        };
+
+        for(int i = 0; i < buttonsGroup.length; i++){
+            buttonsGroup[i].setOnMousePressed(groupButtonPressedListener);
+            buttonsGroup[i].setOnMouseReleased(groupButtonReleasedListener);
+        }
+    }
+
+    public void SetColourForGroup(String groupName) {
+        for (int i = 0; i < buttons.length; i++) {
+            Button button = buttons[i];
+            if (button == null) {
+                continue;
+            }
+            String elementGroup = controller.retrieveElementGroup(i + 1);
+            if (groupName.equals(elementGroup)) {
+                Color fxColor = getColorForGroupLight(elementGroup, button);
+                button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(0), Insets.EMPTY)));
+            } else {
+                button.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(0), Insets.EMPTY)));
+            }
+        }
+    }
+
+
+
+
 /* //темная
     private Color getColorForGroupDark(String group, Button button){
         Color fxColor;

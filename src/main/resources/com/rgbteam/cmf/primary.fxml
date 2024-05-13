@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
@@ -100,17 +101,47 @@
                 <Label text="Actinoids" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
                 <Label text="57 - 71" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
                 <Label text="89 - 103" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Nonmetals" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Noble gases" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Alkali metals" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Alkaline earth metals" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Metalloids" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Halogen" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Post-transition metals" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Transition metals" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Lanthanoids" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="Actinoids" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
-                <TextFlow fx:id="textFlow" prefHeight="57.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                <Button fx:id="buttonNM" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="nonmetal" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonNG" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="noble gases" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonAM" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="alkali metals" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonAE" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="alkaline earth metals" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonM" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="metalloids" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonH" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="halogen" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonPT" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="post-transition metals" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonTM" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="transition metals" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonL" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="lanthanoids" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <Button fx:id="buttonA" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="actinoids" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+                <TextFlow fx:id="textFlow" prefHeight="57.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2">
                     <Text fx:id="shortName" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
                     <Text fx:id="fullName" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                     <Text fx:id="elementNumber" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2" />
