@@ -100,6 +100,9 @@ public class PrimaryViewController {
     }
 
     public void setColor(Button button, int i) {
+        if (button == null) {
+            return;
+        }
         String group = controller.retrieveElementGroup(i + 1);
         Color fxColor = getColorForGroupLight(group, button); // светлая тема
         button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(0), Insets.EMPTY)));
@@ -237,7 +240,6 @@ public class PrimaryViewController {
             }
         }
     }
-
 
 
 
