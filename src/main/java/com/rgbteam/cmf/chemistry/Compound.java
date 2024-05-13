@@ -5,6 +5,7 @@
 
 package com.rgbteam.cmf.chemistry;
 
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,15 +18,15 @@ public class Compound {
         List<Element> elements = parseCompound(rawCompound);
         compound = elements.toArray(new Element[0]);
 
-//        if (!isValidCompound()) {
-//           StringBuilder compoundSymbols = new StringBuilder();
-//
-//            for (var e : compound) {
-//                compoundSymbols.append(e.getShortName());
-//            }
-//
-//            throw new InvalidCompoundException("INVALID COMPOUND: " + compoundSymbols);
-//        }
+        if (!isValidCompound()) {
+           StringBuilder compoundSymbols = new StringBuilder();
+
+            for (var e : compound) {
+                compoundSymbols.append(e.getShortName());
+            }
+
+            throw new InvalidCompoundException("INVALID COMPOUND: " + compoundSymbols);
+        }
     }
 
 
@@ -73,6 +74,10 @@ public class Compound {
 
     // checks if compound can exist by verifying that sum of elements' oxid. states can be equal 0
     private boolean isValidCompound() {
+        if (compound.length == 1) {
+            return true;
+        }
+
         List<Integer> allOxidStates = new ArrayList<>();
 
         for (Element element : compound) { // in this 'for' loop I add all oxid states that elements may possess
@@ -105,28 +110,6 @@ public class Compound {
     }
 
 
-//    //here we form a Cartesian set of lists
-//    public List<List<Integer>> cartesianProduct(List<List<Integer>> lists) {
-//        List<List<Integer>> result = new ArrayList<>();
-//        if (lists.size() == 0) {
-//            result.add(new ArrayList<>());
-//            return result;
-//        }
-//        List<Integer> firstList = lists.get(0); //bring first list
-//        List<List<Integer>> remainingLists = cartesianProduct(lists.subList(1, lists.size())); //call recursively for the remaining lists
-//        for (int i : firstList) {
-//            for (List<Integer> list : remainingLists) {
-//                ArrayList<Integer> newList = new ArrayList<>();
-//                //form Cartesian set
-//                newList.add(i);
-//                newList.addAll(list);
-//                result.add(newList);
-//            }
-//        }
-//        return result;
-//    }
-
-
     public Map<Element, int[]> getElementsOxidStates() {
 
         Map<Element, int[]> compoundOxidStates = new HashMap<>();
@@ -138,6 +121,10 @@ public class Compound {
 
 
     public String determineCompoundClass() {
+        if (compound.length == 1) {
+            return compound[0].getElementGroup();
+        }
+
         boolean hasO = false;
         boolean hasH = false;
         boolean hasMetal = false;
