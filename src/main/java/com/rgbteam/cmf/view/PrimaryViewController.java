@@ -87,13 +87,13 @@ public class PrimaryViewController {
             if (e != null) {
                 buttons[i] = new Button(e.getShortName());
                 buttons[i].setOnMouseClicked(elementButtonListener);
-                SetButtonsStyle(i);
+                setButtonsStyle(i);
             }
         }
 
     }
 
-    public void SetButtonsStyle(int i){
+    public void setButtonsStyle(int i){
         buttons[i].setFont(Font.font("Arial", 16));
         buttons[i].setMaxSize(1000, 1000);
         setColor(buttons[i],i);
@@ -187,10 +187,10 @@ public class PrimaryViewController {
         buttonsGroup[7] = buttonTM;
         buttonsGroup[8] = buttonL;
         buttonsGroup[9] = buttonA;
-        SetColourGroup(buttonsGroup);
+        setColorGroup(buttonsGroup);
     }
 
-    public void SetColourGroup(Button[] buttonsGroup){
+    public void setColorGroup(Button[] buttonsGroup){
         for (Button button : buttonsGroup) {
             String groupColour = button.getText();
             Color fxColor = getColorForGroupLight(groupColour, button);
@@ -206,7 +206,7 @@ public class PrimaryViewController {
                 button.getStyleClass().add("round-button");
                 Button source = (Button) event.getSource();
                 String groupName = source.getText();
-                SetColourForGroup(groupName);
+                setColorForGroup(groupName);
             });
             button.setOnMouseEntered(event -> {
                 button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
@@ -225,7 +225,7 @@ public class PrimaryViewController {
             });
     }
 
-    public void SetColourForGroup(String groupName) {
+    public void setColorForGroup(String groupName) {
         for (int i = 0; i < buttons.length; i++) {
             Button button = buttons[i];
             if (button == null) {
