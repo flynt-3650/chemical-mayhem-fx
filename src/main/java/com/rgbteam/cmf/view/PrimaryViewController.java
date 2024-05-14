@@ -232,11 +232,9 @@ public class PrimaryViewController {
                 continue;
             }
             String elementGroup = controller.retrieveElementGroup(i + 1);
-            if (groupName.equals(elementGroup)) {
-                Color fxColor = getColorForGroupLight(elementGroup, button);
-                button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(0), Insets.EMPTY)));
-            } else {
+            if (!groupName.equals(elementGroup)) {
                 button.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(0), Insets.EMPTY)));
+                button.setTextFill(Color.web("#ffffff", 1.0));
             }
         }
     }
