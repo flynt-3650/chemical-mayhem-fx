@@ -17,29 +17,48 @@ import java.io.IOException;
 
 public class PrimaryViewController {
     private final GeneralFlowController controller = new GeneralFlowController();
-    public Text shortName;
-    public Text elementNumber;
-    public Text fullName;
-    public Button buttonNM;
-    public Button buttonNG;
-    public Button buttonAM;
-    public Button buttonAE;
-    public Button buttonM;
-    public Button buttonH;
-    public Button buttonPT;
-    public Button buttonTM;
-    public Button buttonL;
-    public Button buttonA;
-    public Text atomicMass;
-    public Text molarMass;
-    public Text groupElement;
-    public Text protonAmount;
-    public Text neutronAmount;
-    public Text electronAmount;
-    public Label lableElement;
-    public Label lableInfo;
-    public GridPane InfoPane;
-    public GridPane ElPane;
+    @FXML
+    private Text shortName;
+    @FXML
+    private Text elementNumber;
+    @FXML
+    private Text fullName;
+    @FXML
+    private Button buttonNM;
+    @FXML
+    private Button buttonNG;
+    @FXML
+    private Button buttonAM;
+    @FXML
+    private Button buttonAE;
+    @FXML
+    private Button buttonM;
+    @FXML
+    private Button buttonH;
+    @FXML
+    private Button buttonPT;
+    @FXML
+    private Button buttonTM;
+    @FXML
+    private Button buttonL;
+    @FXML
+    private Button buttonA;
+    @FXML
+    private Text atomicMass;
+    @FXML
+    private Text molarMass;
+    @FXML
+    private Text groupElement;
+    @FXML
+    private Text protonAmount;
+    @FXML
+    private Text neutronAmount;
+    @FXML
+    private Text electronAmount;
+    @FXML
+    private Label lableElement;
+    @FXML
+    private Label lableInfo;
     @FXML
     private GridPane myGridPane;
     private Button[] buttons;
