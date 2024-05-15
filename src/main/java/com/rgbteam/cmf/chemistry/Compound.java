@@ -122,7 +122,8 @@ public class Compound {
 
     public String determineCompoundClass() {
         if (compound.length == 1) {
-            return compound[0].getElementGroup();
+            String elementGroup = compound[0].getElementGroup();
+            return elementGroup.substring(0, 1).toUpperCase() + elementGroup.substring(1);
         }
 
         boolean hasO = false;
