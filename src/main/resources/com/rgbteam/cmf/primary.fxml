@@ -11,9 +11,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.rgbteam.cmf.view.PrimaryViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rgbteam.cmf.view.PrimaryViewController">
     <top>
         <MenuBar prefHeight="26.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <menus>
@@ -55,7 +54,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints prefHeight="30.0" vgrow="SOMETIMES" />
@@ -103,51 +102,100 @@
                 <Label text="57 - 71" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
                 <Label text="89 - 103" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
                 <Button fx:id="buttonNM" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="nonmetal" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonNG" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="noble gases" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonAM" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="alkali metals" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonAE" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="alkaline earth metals" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonM" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="metalloids" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonH" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="halogen" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonPT" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="post-transition metals" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonTM" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="transition metals" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonL" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="lanthanoids" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
                 <Button fx:id="buttonA" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" text="actinoids" textAlignment="CENTER" GridPane.columnIndex="20" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font></Button>
-                <TextFlow fx:id="textFlow" prefHeight="57.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2">
-                    <Text fx:id="shortName" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
-                    <Text fx:id="fullName" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                    <Text fx:id="elementNumber" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2" />
-                    <Text fx:id="elAtom" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" />
-                </TextFlow>
+                    <font>
+                        <Font size="10.0" />
+                    </font></Button>
+                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                    </rowConstraints>
+                    <children>
+                        <Label fx:id="lableElement" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnSpan="5" GridPane.rowSpan="4" />
+                        <Text fx:id="shortName" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="elementNumber" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="4">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Text>
+                        <Text fx:id="fullName" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </GridPane>
+            <GridPane GridPane.columnIndex="7" GridPane.columnSpan="5" GridPane.rowIndex="2" GridPane.rowSpan="2">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lableInfo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowSpan="3"/>
+                  <Text fx:id="atomicMass" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" />
+                  <Text fx:id="molarMass" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text fx:id="groupElement" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Text fx:id="protonAmount" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" />
+                  <Text fx:id="electronAmount" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Text fx:id="neutronAmount" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
 
             </children>
         </GridPane>

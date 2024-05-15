@@ -6,19 +6,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
 public class PrimaryViewController {
     private final GeneralFlowController controller = new GeneralFlowController();
-    public TextFlow textFlow;
-    public Text elAtom;
     public Text shortName;
     public Text elementNumber;
     public Text fullName;
@@ -32,6 +30,14 @@ public class PrimaryViewController {
     public Button buttonTM;
     public Button buttonL;
     public Button buttonA;
+    public Text atomicMass;
+    public Text molarMass;
+    public Text groupElement;
+    public Text protonAmount;
+    public Text neutronAmount;
+    public Text electronAmount;
+    public Label lableElement;
+    public Label lableInfo;
     @FXML
     private GridPane myGridPane;
     private Button[] buttons;
@@ -72,15 +78,9 @@ public class PrimaryViewController {
 
     public void addListeners() {
         buttons = new Button[119];
-
         EventHandler<MouseEvent> elementButtonListener = mouseEvent -> {
             Button source = (Button) mouseEvent.getSource();
-            String shortName = source.getText();
-            var e = controller.retrieveElementByShortName(shortName);
-            this.shortName.setText(e.getShortName() + " ");
-            elAtom.setText(e.getAtomicMass() + " ");
-            elementNumber.setText(e.getNumber() + " ");
-            fullName.setText(e.getFullName() + " ");
+            InfoWindow(source);
         };
         for (int i = 0; i < buttons.length; i++) {
             Element e = controller.retrieveElementByNumber(i + 1);
@@ -238,6 +238,27 @@ public class PrimaryViewController {
             }
         }
     }
+
+    public void InfoWindow(Button source){
+        lableInfo.setText("");
+        lableElement.setText("");
+        String shortName = source.getText();
+        var e = controller.retrieveElementByShortName(shortName);
+        this.shortName.setText(e.getShortName());
+        elementNumber.setText(String.valueOf(e.getNumber()));
+        fullName.setText(e.getFullName());
+        atomicMass.setText("Atomic Mass: " + e.getAtomicMass());
+        molarMass.setText("Molar Mass: " + String.format("%.4f", e.getMolarMass()));
+        groupElement.setText("Group: " + e.getElementGroup());
+        protonAmount.setText("Protons: " + e.getProtonAmount());
+        neutronAmount.setText("Neutrons: " + e.getNeutronAmount());
+        electronAmount.setText( "Electrons: " + e.getElectronAmount());
+        lableInfo.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
+                buttons[e.getNumber() - 1]), new CornerRadii(0), Insets.EMPTY)));
+        lableElement.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
+                buttons[e.getNumber() - 1]), new CornerRadii(0), Insets.EMPTY)));
+    }
+
 
 
 
