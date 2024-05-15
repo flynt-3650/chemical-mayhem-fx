@@ -38,6 +38,8 @@ public class PrimaryViewController {
     public Text electronAmount;
     public Label lableElement;
     public Label lableInfo;
+    public GridPane InfoPane;
+    public GridPane ElPane;
     @FXML
     private GridPane myGridPane;
     private Button[] buttons;
@@ -80,7 +82,7 @@ public class PrimaryViewController {
         buttons = new Button[119];
         EventHandler<MouseEvent> elementButtonListener = mouseEvent -> {
             Button source = (Button) mouseEvent.getSource();
-            InfoWindow(source);
+            InfoWindows(source);
         };
         for (int i = 0; i < buttons.length; i++) {
             Element e = controller.retrieveElementByNumber(i + 1);
@@ -105,22 +107,19 @@ public class PrimaryViewController {
         }
         String group = controller.retrieveElementGroup(i + 1);
         Color fxColor = getColorForGroupLight(group, button); // светлая тема
-        button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(0), Insets.EMPTY)));
+        button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(10), Insets.EMPTY)));
         button.setOnMouseEntered(event -> {
-            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
-            button.getStyleClass().add("round-button");
+            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
         });
         button.setOnMouseExited(event -> {
-            button.setStyle("-fx-background-color: " + fxColor.toString().substring(2, 10) + "; -fx-background-radius: 0;");
-            button.getStyleClass().add("round-button");
+            button.setStyle("-fx-background-color: " +
+                    fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;");
         });
         button.setOnMousePressed(event -> {
-            button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 0;");
-            button.getStyleClass().add("round-button");
+            button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 10;");
         });
         button.setOnMouseReleased(event -> {
-            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
-            button.getStyleClass().add("round-button");
+            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
         });
     }
 
@@ -133,62 +132,62 @@ public class PrimaryViewController {
             case "nonmetal" -> {
                 fxColor = Color.web("#e6f0ff", 1.0);// цвет кнопки
                 button.setTextFill(Color.web("#0060f0", 1.0));//цвет текста
-                /*button.setBorder(new Border(new BorderStroke(Color.web("#0060f0"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#0060f0"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "noble gases" -> {
                 fxColor = Color.web("#ffebee", 1.0);
                 button.setTextFill(Color.web("#cd1d5e", 1.0));
-                /*button.setBorder(new Border(new BorderStroke(Color.web("#cd1d5e"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#cd1d5e"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "alkali metals" -> {
                 fxColor = Color.web("#dbf8ff", 1.0);
                 button.setTextFill(Color.web("#00758c", 1.0));
-                /*button.setBorder(new Border(new BorderStroke(Color.web("#00758c"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#00758c"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "alkaline earth metals" -> {
                 fxColor = Color.web("#ffebeb", 1.0);
                 button.setTextFill(Color.web("#d60024", 1.0));
-                /*button.setBorder(new Border(new BorderStroke(Color.web("#d60024"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#d60024"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "metalloids" -> {
                 fxColor = Color.web("#fef9e6", 1.0);
                 button.setTextFill(Color.web("#945700", 1.0));
-                /*button.setBorder(new Border(new BorderStroke(Color.web("#945700"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#945700"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "halogen" -> {
                 fxColor = Color.web("#e9e9ec", 1.0);
                 button.setTextFill(Color.web("#3f374f", 1.0));
-                /*button.setBorder(new Border(new BorderStroke(Color.web("#3f374f"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#3f374f"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "transition metals" -> {
                 fxColor = Color.web("#f5ecfd", 1.0);
-                button.setTextFill(Color.web("#6232ec", 1.0));/*
+                button.setTextFill(Color.web("#6232ec", 1.0));
                 button.setBorder(new Border(new BorderStroke(Color.web("#6232ec"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "post-transition metals" -> {
                 fxColor = Color.web("#dcfaeb", 1.0);
                 button.setTextFill(Color.web("#103b11", 1.0));
-               /* button.setBorder(new Border(new BorderStroke(Color.web("#103b11"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#103b11"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "lanthanoids" -> {
                 fxColor = Color.web("#e6f5ff", 1.0);
                 button.setTextFill(Color.web("#4c738d", 1.0));
-                /*button.setBorder(new Border(new BorderStroke(Color.web("#4c738d"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#4c738d"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             case "actinoids" -> {
                 fxColor = Color.web("#ffeadb", 1.0);
                 button.setTextFill(Color.web("#c73200", 1.0));
-               /* button.setBorder(new Border(new BorderStroke(Color.web("#c73200"), BorderStrokeStyle.SOLID,
-                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
+                button.setBorder(new Border(new BorderStroke(Color.web("#c73200"), BorderStrokeStyle.SOLID,
+                        new CornerRadii(10), BorderWidths.DEFAULT)));
             }
             default -> fxColor = Color.web("#ffffff", 1.0);
         }
@@ -214,7 +213,7 @@ public class PrimaryViewController {
         for (Button button : buttonsGroup) {
             String groupColour = button.getText();
             Color fxColor = getColorForGroupLight(groupColour, button);
-            button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(0), Insets.EMPTY)));
+            button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(10), Insets.EMPTY)));
             setActionButtonsGroup(button , fxColor);
         }
     }
@@ -222,23 +221,20 @@ public class PrimaryViewController {
 
     public void setActionButtonsGroup(Button button , Color fxColor){
             button.setOnMousePressed(event -> {
-                button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 0;");
-                button.getStyleClass().add("round-button");
+                button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 10;");
                 Button source = (Button) event.getSource();
                 String groupName = source.getText();
                 setColorForGroup(groupName);
             });
             button.setOnMouseEntered(event -> {
-                button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
-                button.getStyleClass().add("round-button");
+                button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
             });
             button.setOnMouseExited(event -> {
-                button.setStyle("-fx-background-color: " + fxColor.toString().substring(2, 10) + "; -fx-background-radius: 0;");
-                button.getStyleClass().add("round-button");
+                button.setStyle("-fx-background-color: " +
+                        fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;");
             });
             button.setOnMouseReleased(event -> {
-                button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 0;");
-                button.getStyleClass().add("round-button");
+                button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
                 for (int i = 0; i < buttons.length; i ++) {
                     setColor(buttons[i], i);
                 }
@@ -253,37 +249,44 @@ public class PrimaryViewController {
             }
             String elementGroup = controller.retrieveElementGroup(i + 1);
             if (!groupName.equals(elementGroup)) {
-                button.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"), new CornerRadii(0), Insets.EMPTY)));
+                button.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"),
+                        new CornerRadii(10), Insets.EMPTY)));
                 button.setTextFill(Color.web("#ffffff", 1.0));
             }
         }
     }
 
-    public void InfoWindow(Button source){
+    public void InfoWindows(Button source){
         lableInfo.setText("");
         lableElement.setText("");
         String shortName = source.getText();
         var e = controller.retrieveElementByShortName(shortName);
         this.shortName.setText(e.getShortName());
+        this.shortName.setFill(buttons[e.getNumber()-1].getTextFill());
         elementNumber.setText(String.valueOf(e.getNumber()));
+        elementNumber.setFill(buttons[e.getNumber()-1].getTextFill());
         fullName.setText(e.getFullName());
+        fullName.setFill(buttons[e.getNumber()-1].getTextFill());
         atomicMass.setText("  Atomic Mass: " + e.getAtomicMass());
+        atomicMass.setFill(buttons[e.getNumber()-1].getTextFill());
         molarMass.setText("  Molar Mass: " + String.format("%.4f", e.getMolarMass()));
+        molarMass.setFill(buttons[e.getNumber()-1].getTextFill());
         groupElement.setText("  Group: " + e.getElementGroup());
+        groupElement.setFill(buttons[e.getNumber()-1].getTextFill());
         protonAmount.setText("  Protons: " + e.getProtonAmount());
+        protonAmount.setFill(buttons[e.getNumber()-1].getTextFill());
         neutronAmount.setText("  Neutrons: " + e.getNeutronAmount());
+        neutronAmount.setFill(buttons[e.getNumber()-1].getTextFill());
         electronAmount.setText("  Electrons: " + e.getElectronAmount());
+        electronAmount.setFill(buttons[e.getNumber()-1].getTextFill());
         lableInfo.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
-                buttons[e.getNumber() - 1]), new CornerRadii(0), Insets.EMPTY)));
-        lableInfo.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
-                BorderWidths.DEFAULT)));
+                buttons[e.getNumber() - 1]), new CornerRadii(10), Insets.EMPTY)));
+        lableInfo.setBorder(buttons[e.getNumber()-1].getBorder());
 
         lableElement.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
-                buttons[e.getNumber() - 1]), new CornerRadii(0), Insets.EMPTY)));
-        lableElement.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
-                BorderWidths.DEFAULT)));
+                buttons[e.getNumber() - 1]), new CornerRadii(10), Insets.EMPTY)));
+        lableElement.setBorder(buttons[e.getNumber()-1].getBorder());
     }
-
 
 
 
