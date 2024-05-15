@@ -133,42 +133,62 @@ public class PrimaryViewController {
             case "nonmetal" -> {
                 fxColor = Color.web("#e6f0ff", 1.0);// цвет кнопки
                 button.setTextFill(Color.web("#0060f0", 1.0));//цвет текста
+                /*button.setBorder(new Border(new BorderStroke(Color.web("#0060f0"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "noble gases" -> {
                 fxColor = Color.web("#ffebee", 1.0);
                 button.setTextFill(Color.web("#cd1d5e", 1.0));
+                /*button.setBorder(new Border(new BorderStroke(Color.web("#cd1d5e"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "alkali metals" -> {
                 fxColor = Color.web("#dbf8ff", 1.0);
                 button.setTextFill(Color.web("#00758c", 1.0));
+                /*button.setBorder(new Border(new BorderStroke(Color.web("#00758c"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "alkaline earth metals" -> {
                 fxColor = Color.web("#ffebeb", 1.0);
                 button.setTextFill(Color.web("#d60024", 1.0));
+                /*button.setBorder(new Border(new BorderStroke(Color.web("#d60024"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "metalloids" -> {
                 fxColor = Color.web("#fef9e6", 1.0);
                 button.setTextFill(Color.web("#945700", 1.0));
+                /*button.setBorder(new Border(new BorderStroke(Color.web("#945700"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "halogen" -> {
                 fxColor = Color.web("#e9e9ec", 1.0);
                 button.setTextFill(Color.web("#3f374f", 1.0));
+                /*button.setBorder(new Border(new BorderStroke(Color.web("#3f374f"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "transition metals" -> {
                 fxColor = Color.web("#f5ecfd", 1.0);
-                button.setTextFill(Color.web("#6232ec", 1.0));
+                button.setTextFill(Color.web("#6232ec", 1.0));/*
+                button.setBorder(new Border(new BorderStroke(Color.web("#6232ec"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "post-transition metals" -> {
                 fxColor = Color.web("#dcfaeb", 1.0);
                 button.setTextFill(Color.web("#103b11", 1.0));
+               /* button.setBorder(new Border(new BorderStroke(Color.web("#103b11"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "lanthanoids" -> {
                 fxColor = Color.web("#e6f5ff", 1.0);
                 button.setTextFill(Color.web("#4c738d", 1.0));
+                /*button.setBorder(new Border(new BorderStroke(Color.web("#4c738d"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             case "actinoids" -> {
                 fxColor = Color.web("#ffeadb", 1.0);
                 button.setTextFill(Color.web("#c73200", 1.0));
+               /* button.setBorder(new Border(new BorderStroke(Color.web("#c73200"), BorderStrokeStyle.SOLID,
+                        CornerRadii.EMPTY, BorderWidths.DEFAULT)));*/
             }
             default -> fxColor = Color.web("#ffffff", 1.0);
         }
@@ -247,16 +267,21 @@ public class PrimaryViewController {
         this.shortName.setText(e.getShortName());
         elementNumber.setText(String.valueOf(e.getNumber()));
         fullName.setText(e.getFullName());
-        atomicMass.setText("Atomic Mass: " + e.getAtomicMass());
-        molarMass.setText("Molar Mass: " + String.format("%.4f", e.getMolarMass()));
-        groupElement.setText("Group: " + e.getElementGroup());
-        protonAmount.setText("Protons: " + e.getProtonAmount());
-        neutronAmount.setText("Neutrons: " + e.getNeutronAmount());
-        electronAmount.setText( "Electrons: " + e.getElectronAmount());
+        atomicMass.setText("  Atomic Mass: " + e.getAtomicMass());
+        molarMass.setText("  Molar Mass: " + String.format("%.4f", e.getMolarMass()));
+        groupElement.setText("  Group: " + e.getElementGroup());
+        protonAmount.setText("  Protons: " + e.getProtonAmount());
+        neutronAmount.setText("  Neutrons: " + e.getNeutronAmount());
+        electronAmount.setText("  Electrons: " + e.getElectronAmount());
         lableInfo.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
                 buttons[e.getNumber() - 1]), new CornerRadii(0), Insets.EMPTY)));
+        lableInfo.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
+                BorderWidths.DEFAULT)));
+
         lableElement.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
                 buttons[e.getNumber() - 1]), new CornerRadii(0), Insets.EMPTY)));
+        lableElement.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
+                BorderWidths.DEFAULT)));
     }
 
 
