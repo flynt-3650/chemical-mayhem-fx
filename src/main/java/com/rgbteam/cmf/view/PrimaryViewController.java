@@ -66,7 +66,7 @@ public class PrimaryViewController {
     public void initialize() {
         addListeners();
         showButtons();
-        GroupButtonsConst();
+        groupButtonsConst();
     }
 
 
@@ -101,7 +101,7 @@ public class PrimaryViewController {
         buttons = new Button[119];
         EventHandler<MouseEvent> elementButtonListener = mouseEvent -> {
             Button source = (Button) mouseEvent.getSource();
-            InfoWindows(source);
+            infoWindows(source);
         };
         for (int i = 0; i < buttons.length; i++) {
             Element e = controller.retrieveElementByNumber(i + 1);
@@ -213,7 +213,7 @@ public class PrimaryViewController {
         return fxColor;
     }
 
-    public void GroupButtonsConst(){
+    public void groupButtonsConst(){
         Button[] buttonsGroup = new Button[10];
         buttonsGroup[0] = buttonNM;
         buttonsGroup[1] = buttonNG;
@@ -275,37 +275,37 @@ public class PrimaryViewController {
         }
     }
 
-    public void InfoWindows(Button source){
-        lableInfo.setText("");
-        lableElement.setText("");
+    public void infoWindows(Button source){
         String shortName = source.getText();
         var e = controller.retrieveElementByShortName(shortName);
         this.shortName.setText(e.getShortName());
-        this.shortName.setFill(buttons[e.getNumber()-1].getTextFill());
+        int number = e.getNumber();
+        this.shortName.setFill(buttons[number-1].getTextFill());
         elementNumber.setText(String.valueOf(e.getNumber()));
-        elementNumber.setFill(buttons[e.getNumber()-1].getTextFill());
+        elementNumber.setFill(buttons[number-1].getTextFill());
         fullName.setText(e.getFullName());
-        fullName.setFill(buttons[e.getNumber()-1].getTextFill());
+        fullName.setFill(buttons[number-1].getTextFill());
         atomicMass.setText("  Atomic Mass: " + e.getAtomicMass());
-        atomicMass.setFill(buttons[e.getNumber()-1].getTextFill());
+        atomicMass.setFill(buttons[number-1].getTextFill());
         molarMass.setText("  Molar Mass: " + String.format("%.4f", e.getMolarMass()));
-        molarMass.setFill(buttons[e.getNumber()-1].getTextFill());
-        groupElement.setText("  Group: " + e.getElementGroup());
-        groupElement.setFill(buttons[e.getNumber()-1].getTextFill());
-        protonAmount.setText("  Protons: " + e.getProtonAmount());
-        protonAmount.setFill(buttons[e.getNumber()-1].getTextFill());
-        neutronAmount.setText("  Neutrons: " + e.getNeutronAmount());
-        neutronAmount.setFill(buttons[e.getNumber()-1].getTextFill());
-        electronAmount.setText("  Electrons: " + e.getElectronAmount());
-        electronAmount.setFill(buttons[e.getNumber()-1].getTextFill());
+        molarMass.setFill(buttons[number-1].getTextFill());
+        groupElement.setText(" Group: " + e.getElementGroup());
+        groupElement.setFill(buttons[number-1].getTextFill());
+        protonAmount.setText(" Protons: " + e.getProtonAmount());
+        protonAmount.setFill(buttons[number-1].getTextFill());
+        neutronAmount.setText(" Neutrons: " + e.getNeutronAmount());
+        neutronAmount.setFill(buttons[number-1].getTextFill());
+        electronAmount.setText(" Electrons: " + e.getElectronAmount());
+        electronAmount.setFill(buttons[number-1].getTextFill());
         lableInfo.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
-                buttons[e.getNumber() - 1]), new CornerRadii(10), Insets.EMPTY)));
-        lableInfo.setBorder(buttons[e.getNumber()-1].getBorder());
+                buttons[number - 1]), new CornerRadii(10), Insets.EMPTY)));
+        lableInfo.setBorder(buttons[number-1].getBorder());
 
         lableElement.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
-                buttons[e.getNumber() - 1]), new CornerRadii(10), Insets.EMPTY)));
-        lableElement.setBorder(buttons[e.getNumber()-1].getBorder());
+                buttons[number - 1]), new CornerRadii(10), Insets.EMPTY)));
+        lableElement.setBorder(buttons[number-1].getBorder());
     }
+
 
 
 
