@@ -5,13 +5,16 @@ import com.rgbteam.cmf.chemistry.Element;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 import java.io.IOException;
 
@@ -357,6 +360,27 @@ public class PrimaryViewController {
         return fxColor;
     }
 */
+
+@FXML
+public void showInfoAboutPeriodicTable() {
+    Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+    infoAlert.setTitle("Information about periodic table");
+    infoAlert.setHeaderText("How to use");
+
+    Text infoText = new Text("In this periodic table you can get acquainted with basic information about the element, as well as see groups of elements\n" +
+            "Authors: Repilov. I.I., Bondarenko E.A., Oleg");
+    infoText.setWrappingWidth(300);
+    infoText.setFill(Paint.valueOf("BLACK"));
+
+    ScrollPane scrollPane = new ScrollPane(infoText);
+    scrollPane.setPrefViewportWidth(300);
+    scrollPane.setPrefViewportHeight(50);
+
+    infoAlert.getDialogPane().setContent(scrollPane);
+
+    infoAlert.showAndWait();
+}
+
 
     @FXML
     private void switchToSecondView() throws IOException {

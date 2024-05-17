@@ -4,8 +4,12 @@ import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
 import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.Map;
@@ -88,5 +92,25 @@ public class SecondaryViewController {
 
     @FXML
     public void changeTheme() {
+    }
+    @FXML
+    public void showInfoAboutCalculations() {
+        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+        infoAlert.setTitle("Information about calculations");
+        infoAlert.setHeaderText("How to use:");
+        Text infoText = new Text("Enter a compound or element, click on the calculate button and get information about your element or connection\n" +
+        "Authors: Repilov. I.I., Bondarenko E.A., Oleg");
+    
+
+        infoText.setWrappingWidth(300);
+        infoText.setFill(Paint.valueOf("BLACK"));
+
+    ScrollPane scrollPane = new ScrollPane(infoText);
+    scrollPane.setPrefViewportWidth(300);
+    scrollPane.setPrefViewportHeight(50);
+
+    infoAlert.getDialogPane().setContent(scrollPane);
+
+    infoAlert.showAndWait();
     }
 }
