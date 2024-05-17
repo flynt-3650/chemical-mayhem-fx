@@ -121,30 +121,62 @@ public class Compound {
 
 
     public String determineCompoundClass() {
-        if (compound.length == 1) {
-            String elementGroup = compound[0].getElementGroup();
-            return elementGroup.substring(0, 1).toUpperCase() + elementGroup.substring(1);
-        }
-
         boolean hasO = false;
         boolean hasH = false;
+        boolean hasC = false;
         boolean hasMetal = false;
         boolean hasNonmetal = false;
+        boolean hasOH = false;
+        boolean hasCOOH = false;
+        boolean hasSO3H = false;
+        int countC = 0;
 
-        for (Element el : compound) {
-            if (el.getShortName().equals("O")) {
+
+        for (int i = 0; i < compound.length; i++) {
+            Element currentElement = compound[i];
+            if (currentElement.getShortName().equals("O")) {
                 hasO = true;
             }
-            if (el.getShortName().equals("H")) {
+            if (currentElement.getShortName().equals("H")) {
                 hasH = true;
             }
-            if (el.getElementGroup().contains("metals") || el.getElementGroup().contains("metalloids")) {
+            if (currentElement.getElementGroup().contains("metals") || currentElement.getElementGroup().contains("metalloids")) {
                 hasMetal = true;
             }
-            if (el.getElementGroup().equals("nonmetal") || el.getElementGroup().equals("halogen")) {
+            if (currentElement.getElementGroup().equals("nonmetal") || currentElement.getElementGroup().equals("halogen")) {
                 hasNonmetal = true;
             }
+            if (currentElement.getShortName().equals("C")) {
+                hasC = true;
+                countC++;
+            }
+            if (i > 0 && currentElement.getShortName().equals("H") && compound[i - 1].getShortName().equals("O")) {
+                hasOH = true;
+            }
+            if (i < compound.length - 3) {
+                Element el1 = compound[i];
+                Element el2 = compound[i + 1];
+                Element el3 = compound[i + 2];
+                Element el4 = compound[i + 3];
+                if (el1.getShortName().equals("C") && el2.getShortName().equals("O") &&
+                    el3.getShortName().equals("O") && el4.getShortName().equals("H")) {
+                    hasCOOH = true;
+                }
+            }
+            if (i < compound.length - 4) {
+                Element el1 = compound[i];
+                Element el2 = compound[i + 1];
+                Element el3 = compound[i + 2];
+                Element el4 = compound[i + 3];
+                Element el5 = compound[i + 4];
+                if (el1.getShortName().equals("S") && el2.getShortName().equals("O") &&
+                    el3.getShortName().equals("O") && el4.getShortName().equals("O") && el5.getShortName().equals("H")) {
+                    hasSO3H = true;
+                }
+            }
         }
+
+        
 
         if (new HashSet<>(Arrays.asList(compound)).size() == 2 && hasO) {
             return "Oxide";
@@ -154,10 +186,27 @@ public class Compound {
             return "Acid";
         } else if (hasMetal && hasNonmetal) {
             return "Salt";
+        } 
+        if (hasC && hasH) {
+            if (countC == 6){
+                return "Arenas";
+            }
+            if (hasOH) {
+                return "Alcohol";
+            }
+            if (hasCOOH) {
+                return "Carboxylic acid";
+            }
+            if(hasSO3H) {
+                return "Sulfonic acid";
+            }
+            return "Organic compound";
         } else {
             return "Unknown";
         }
+         
     }
+
 
 
     @Override
