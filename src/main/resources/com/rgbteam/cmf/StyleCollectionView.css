@@ -25,8 +25,8 @@
 .root {
   font-family: "Montserrat";
   -fx-font-family: "Montserrat";
-  background-color: linear-gradient(to bottom, #f3f3f3,  #9dc0e0);
-  -fx-background-color: linear-gradient(to bottom, #f3f3f3,  #9dc0e0);
+  background-color: #236ea8;
+  -fx-background-color:#236ea8;
 }
 
 #lableInformation {
@@ -54,10 +54,10 @@
 }
 
 #labelCompound {
-  -fx-text-fill: #236ea8;
-  color: #236ea8;
-  font-size: 40;
-  -fx-font-size: 40;
+  -fx-text-fill: #ffff;
+  color: #ffff;
+  font-size: 50;
+  -fx-font-size: 50;
   font-weight: bold;
   -fx-font-weight: bold;
 }

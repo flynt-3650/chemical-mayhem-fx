@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.Map;
 
+import org.checkerframework.checker.units.qual.s;
+
 public class SecondaryViewController {
     private final GeneralFlowController controller = new GeneralFlowController();
 
@@ -56,9 +58,15 @@ public class SecondaryViewController {
 
             stringBuilder.append(element.getShortName()).append(": ");
             for (int oxidationState : oxidationStates) {
-                stringBuilder.append(oxidationState).append(", ");
+                if (oxidationState != oxidationStates[oxidationStates.length - 1]) {
+                    stringBuilder.append(oxidationState).append(", ");
+                } else {
+                    stringBuilder.append(oxidationState + " ");
+                }
+                
             }
         }
+        
         oxidationState.setText(stringBuilder.toString());
     }
 
