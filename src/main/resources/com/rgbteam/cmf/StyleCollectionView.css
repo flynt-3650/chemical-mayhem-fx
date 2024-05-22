@@ -25,8 +25,8 @@
 .root {
   font-family: "Montserrat";
   -fx-font-family: "Montserrat";
-  background-color: #236ea8;
-  -fx-background-color:#236ea8;
+  background-color: #F5F5F5;
+  -fx-background-color:#F5F5F5;
 }
 
 #lableInformation {
@@ -35,8 +35,8 @@
 }
 
 #mainButton {
-  background-color: linear-gradient(to bottom, #cce6ea,  #6999c6);
-  -fx-background-color: linear-gradient(to bottom, #cce6ea,  #6999c6);
+  background-color:#00BCD4;
+  -fx-background-color:#00BCD4;
   font-size: 26;
   -fx-font-size: 26;
   font-weight: bold;
@@ -49,17 +49,27 @@
 }
 
 #mainButton:pressed {
-  background-color: linear-gradient(to bottom, #6999c6 , #cce6ea);
-  -fx-background-color: linear-gradient(to bottom, #6999c6 , #cce6ea);
+  background-color: #757575;
+  -fx-background-color:#757575;
 }
 
 #labelCompound {
-  -fx-text-fill: #ffff;
-  color: #ffff;
+  -fx-text-fill: #00BCD4;
+  color: #00BCD4;
   font-size: 50;
   -fx-font-size: 50;
   font-weight: bold;
   -fx-font-weight: bold;
+}
+
+#atomicMassBackground,
+#degreeOfOxodationBackground,
+#classBackground {
+    -fx-border-color: #BDBDBD;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-border-radius: 28;
+    
 }
 
 #firstCard,
@@ -74,8 +84,8 @@
 #oxidationState,
 #compoundClass,
 #atomicMass {
-  -fx-text-fill: #236ea8;
-  color: #236ea8;
+  -fx-text-fill: #00BCD4;
+  color: #00BCD4;
 }
 
 #atomitMass {
@@ -86,6 +96,6 @@
 }
 
 #compoundQuery {
-  -fx-text-fill: #236ea8;
-  color: #236ea8;
+  -fx-text-fill: #00BCD4;
+  color: #00BCD4;
 }
