@@ -14,7 +14,6 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.Map;
 
-import org.checkerframework.checker.units.qual.s;
 
 public class SecondaryViewController {
     private final GeneralFlowController controller = new GeneralFlowController();
