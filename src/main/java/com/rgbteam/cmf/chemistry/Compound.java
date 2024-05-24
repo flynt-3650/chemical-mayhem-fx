@@ -2,119 +2,221 @@
  * Copyright (c) 2024. RGBTeam
  */
 
- 
+
 package com.rgbteam.cmf.chemistry;
 
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.StringTokenizer;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Compound {
-    private final String[] parsedCompound;
+    private final Element[] compound;
+
 
     public Compound(String rawCompound) {
-        StringTokenizer tokenizer = new StringTokenizer(rawCompound, "-_ ");
+        List<Element> elements = parseCompound(rawCompound);
+        compound = elements.toArray(new Element[0]);
 
-        int tokenCount = tokenizer.countTokens();
-        this.parsedCompound = new String[tokenCount];
+        if (!isValidCompound()) {
+           StringBuilder compoundSymbols = new StringBuilder();
 
-        for (int i = 0; i < tokenCount; i++) {
-            this.parsedCompound[i] = tokenizer.nextToken();
+            for (var e : compound) {
+                compoundSymbols.append(e.getShortName());
+            }
+
+            throw new InvalidCompoundException("INVALID COMPOUND: " + compoundSymbols);
         }
     }
 
-    private void validateCompound() {
 
+    private List<Element> parseCompound(String rawCompound) {
+        List<Element> elements = new ArrayList<>();
+        Pattern pattern = Pattern.compile("([A-Z][a-z]*)(\\d*)|(\\()|(\\))|(\\d+)");
+        Matcher matcher = pattern.matcher(rawCompound);
+
+        List<Element> subElements = new ArrayList<>();
+        int count = 1;
+
+        while (matcher.find()) {
+            String elementSymbol = matcher.group(1);
+            String elementCountStr = matcher.group(2);
+            String group = matcher.group();
+            String groupCountStr = matcher.group(5);
+
+            if (elementSymbol != null) {
+                Element element = PeriodicTable.getElementByShortName(elementSymbol);
+                int elementCount = (elementCountStr.isEmpty()) ? 1 : Integer.parseInt(elementCountStr);
+
+                for (int i = 0; i < count * elementCount; i++) {
+                    subElements.add(element);
+                }
+
+            } else if (group.equals("(")) {
+                if (!subElements.isEmpty()) {
+                    elements.addAll(subElements);
+                    subElements.clear();
+                }
+            } else if (groupCountStr != null) {
+                int subCount;
+                subCount = Integer.parseInt(groupCountStr);
+                for (int i = 0; i < subCount; i++) {
+                    elements.addAll(subElements);
+                }
+                subElements.clear();
+            }
+        }
+
+        elements.addAll(subElements);
+        return elements;
     }
+
+
+    // checks if compound can exist by verifying that sum of elements' oxid. states can be equal 0
+    private boolean isValidCompound() {
+        if (compound.length == 1) {
+            return true;
+        }
+
+        List<Integer> allOxidStates = new ArrayList<>();
+
+        for (Element element : compound) { // in this 'for' loop I add all oxid states that elements may possess
+            int[] currentElementOxidStates = element.getOxidationStates();
+            for (Integer i : currentElementOxidStates) {
+                allOxidStates.add(i);
+            }
+        }
+
+        for (int i = 0; i < allOxidStates.size(); i++) { // if any of sums = 0 we count such compound as valid
+            for (int j = i + 1; j < allOxidStates.size(); j++) {
+                int sum = allOxidStates.get(i) + allOxidStates.get(j);
+                if (sum == 0) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     public double calculateAtomicMass() {
-        // Create a stack to keep track of atomic masses and counts
-        Stack<Double> stack = new Stack<>();
-
-        // Iterate through each token in the parsedCompound array
-        for (String token : parsedCompound) {
-            // Check if the token is an element
-
-            Element element = PeriodicTable.getElementByShortName(token);
-
-            if (element != null) {
-                // Retrieve the atomic mass of the element from the PeriodicTable
-                stack.push(element.getAtomicMass());
-            }
-            // Check for an opening parenthesis "("
-            else if (token.equals("(")) {
-                // Push a placeholder 0.0 onto the stack to mark the start of a subexpression
-                stack.push(0.0);
-            }
-            // Check for a closing parenthesis ")"
-            else if (token.equals(")")) {
-                double sum = 0.0;
-                // Calculate the sum of atomic masses within the parentheses
-                while (!stack.isEmpty() && stack.peek() != 0.0) {
-                    sum += stack.pop();
-                }
-                // Pop the open parenthesis (0.0) from the stack
-                if (!stack.isEmpty() && stack.peek() == 0.0) {
-                    stack.pop();
-                }
-                int count = 1;
-                // Check if there's a numeric coefficient preceding the closing parenthesis
-                if (!stack.isEmpty() && isInteger(String.valueOf(stack.peek()))) {
-                    count = stack.pop().intValue();
-                }
-                // Push the result of (sum * count) onto the stack
-                stack.push(sum * count);
-            }
-            // Check if the token is a numeric coefficient
-            else if (isInteger(token)) {
-                int count = Integer.parseInt(token);
-                // Multiply the top element on the stack (atomic mass) by the coefficient
-                if (!stack.isEmpty() && stack.peek() != 0.0) {
-                    double mass = stack.pop();
-                    stack.push(mass * count);
-                }
-            } else {
-                return 0.0;
-            }
-        }
-
         double totalMass = 0.0;
-        // Sum up the remaining values in the stack to obtain the total atomic mass
-        while (!stack.isEmpty()) {
-            totalMass += stack.pop();
-        }
 
-        // Format the total mass as a string with three decimal places
+        for (Element element : compound) {
+            totalMass += element.getAtomicMass();
+        }
         return totalMass;
     }
 
-    // public double 
 
-    private static boolean isElement(String token) {
-        return PeriodicTable.getElementByShortName(token) != null;
-    }
+    public Map<Element, int[]> getElementsOxidStates() {
 
-    private static boolean isInteger(String token) {
-        try {
-            Integer.parseInt(token);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+        Map<Element, int[]> compoundOxidStates = new HashMap<>();
+        for (Element el : compound) {
+            compoundOxidStates.put(el, el.getOxidationStates());
         }
+        return compoundOxidStates;
     }
 
-    @Override
-    public String toString() {
-        return Arrays.toString(parsedCompound);
+
+    public String determineCompoundClass() {
+        boolean hasO = false;
+        boolean hasH = false;
+        boolean hasC = false;
+        boolean hasMetal = false;
+        boolean hasNonmetal = false;
+        boolean hasOH = false;
+        boolean hasCOOH = false;
+        boolean hasSO3H = false;
+        int countC = 0;
+
+
+        for (int i = 0; i < compound.length; i++) {
+            Element currentElement = compound[i];
+            if (currentElement.getShortName().equals("O")) {
+                hasO = true;
+            }
+            if (currentElement.getShortName().equals("H")) {
+                hasH = true;
+            }
+            if (currentElement.getElementGroup().contains("metals") || currentElement.getElementGroup().contains("metalloids")) {
+                hasMetal = true;
+            }
+            if (currentElement.getElementGroup().equals("nonmetal") || currentElement.getElementGroup().equals("halogen")) {
+                hasNonmetal = true;
+            }
+            if (currentElement.getShortName().equals("C")) {
+                hasC = true;
+                countC++;
+            }
+            if (i > 0 && currentElement.getShortName().equals("H") && compound[i - 1].getShortName().equals("O")) {
+                hasOH = true;
+            }
+            if (i < compound.length - 3) {
+                Element el1 = compound[i];
+                Element el2 = compound[i + 1];
+                Element el3 = compound[i + 2];
+                Element el4 = compound[i + 3];
+                if (el1.getShortName().equals("C") && el2.getShortName().equals("O") &&
+                    el3.getShortName().equals("O") && el4.getShortName().equals("H")) {
+                    hasCOOH = true;
+                }
+            }
+            if (i < compound.length - 4) {
+                Element el1 = compound[i];
+                Element el2 = compound[i + 1];
+                Element el3 = compound[i + 2];
+                Element el4 = compound[i + 3];
+                Element el5 = compound[i + 4];
+                if (el1.getShortName().equals("S") && el2.getShortName().equals("O") &&
+                    el3.getShortName().equals("O") && el4.getShortName().equals("O") && el5.getShortName().equals("H")) {
+                    hasSO3H = true;
+                }
+            }
+        }
+
+        
+
+        if (new HashSet<>(Arrays.asList(compound)).size() == 2 && hasO) {
+            return "Oxide";
+        } else if (hasMetal && hasO && hasH) {
+            return "Base";
+        } else if (hasH && hasNonmetal && !hasMetal) {
+            return "Acid";
+        } else if (hasMetal && hasNonmetal) {
+            return "Salt";
+        } 
+        if (hasC && hasH) {
+            if (countC == 6){
+                return "Arenas";
+            }
+            if (hasOH) {
+                return "Alcohol";
+            }
+            if (hasCOOH) {
+                return "Carboxylic acid";
+            }
+            if(hasSO3H) {
+                return "Sulfonic acid";
+            }
+            return "Organic compound";
+        } else {
+            return "Unknown";
+        }
+         
     }
+
+
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + Arrays.hashCode(parsedCompound);
+        result = prime * result + Arrays.hashCode(compound);
         return result;
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -125,6 +227,14 @@ public class Compound {
         if (getClass() != obj.getClass())
             return false;
         Compound other = (Compound) obj;
-        return Arrays.equals(parsedCompound, other.parsedCompound);
+        return Arrays.equals(compound, other.compound);
+    }
+
+
+    @Override
+    public String toString() {
+        return "Compound [parsedCompound=" + Arrays.toString(compound) + "]";
     }
 }
+
+ 

@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: "Montserrat";
+  font-family: "Montserrat-Bold";
   src: url("/com/rgbteam/cmf/fonts/static/Montserrat-Bold.ttf");
   font-weight: bold;
   font-style: normal;
@@ -23,37 +23,79 @@
 }
 
 .root {
+  font-family: "Montserrat";
   -fx-font-family: "Montserrat";
-  /* -fx-background-color: linear-gradient(to bottom, #a6b09c, #f6f6e7); */
+  background-color: #F5F5F5;
+  -fx-background-color:#F5F5F5;
 }
 
 #lableInformation {
-  -fx-font-weight: 500;
+  font-family: "Montserrat Medium";
+  -fx-font-family: "Montserrat Medium";
 }
 
 #mainButton {
-  -fx-background-color: #989bd5;
+  background-color:#00BCD4;
+  -fx-background-color:#00BCD4;
+  font-size: 26;
   -fx-font-size: 26;
+  font-weight: bold;
   -fx-font-weight: bold;
 }
 
-/* #myButton:hover {
-    -fx-background-color: linear-gradient(to bottom, #eacbe9, #989bd5);
-} */
+#mainButton:hover {
+  -fx-scale-x: 1.1;
+  -fx-scale-y: 1.1;
+}
+
+#mainButton:pressed {
+  background-color: #757575;
+  -fx-background-color:#757575;
+}
 
 #labelCompound {
+  -fx-text-fill: #00BCD4;
+  color: #00BCD4;
+  font-size: 50;
   -fx-font-size: 50;
+  font-weight: bold;
   -fx-font-weight: bold;
+}
+
+#atomicMassBackground,
+#degreeOfOxodationBackground,
+#classBackground {
+    -fx-border-color: #BDBDBD;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-border-radius: 28;
+    
 }
 
 #firstCard,
 #secondCard,
 #thirdCard {
-  -fx-font-size: 26;
+  font-size: 20;
+  -fx-font-size: 20;
+  font-family: "Montserrat Medium";
   -fx-font-family: "Montserrat Medium";
 }
 
+#oxidationState,
+#compoundClass,
+#atomicMass {
+  -fx-text-fill: #00BCD4;
+  color: #00BCD4;
+}
+
 #atomitMass {
+  font-size: 30;
   -fx-font-size: 30;
+  font-weight: bold;
   -fx-font-weight: bold;
+}
+
+#compoundQuery {
+  -fx-text-fill: #00BCD4;
+  color: #00BCD4;
 }
