@@ -130,19 +130,11 @@ public class PrimaryViewController {
         String group = controller.retrieveElementGroup(i + 1);
         Color fxColor = getColorForGroupLight(group, button); // светлая тема
         button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(10), Insets.EMPTY)));
-        button.setOnMouseEntered(event -> {
-            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
-        });
-        button.setOnMouseExited(event -> {
-            button.setStyle("-fx-background-color: " +
-                    fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;");
-        });
-        button.setOnMousePressed(event -> {
-            button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 10;");
-        });
-        button.setOnMouseReleased(event -> {
-            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
-        });
+        button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
+        button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " +
+                fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;"));
+        button.setOnMousePressed(event -> button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 10;"));
+        button.setOnMouseReleased(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
     }
 
 
@@ -248,13 +240,9 @@ public class PrimaryViewController {
                 String groupName = source.getText();
                 setColorForGroup(groupName);
             });
-            button.setOnMouseEntered(event -> {
-                button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
-            });
-            button.setOnMouseExited(event -> {
-                button.setStyle("-fx-background-color: " +
-                        fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;");
-            });
+            button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
+            button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " +
+                    fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;"));
             button.setOnMouseReleased(event -> {
                 button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
                 for (int i = 0; i < buttons.length; i ++) {

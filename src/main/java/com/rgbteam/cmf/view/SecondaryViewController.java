@@ -64,7 +64,7 @@ public class SecondaryViewController {
                 if (oxidationState != oxidationStates[oxidationStates.length - 1]) {
                     stringBuilder.append(oxidationState).append(", ");
                 } else {
-                    stringBuilder.append(oxidationState + " ");
+                    stringBuilder.append(oxidationState).append(" ");
                 }
                 
             }
@@ -89,9 +89,6 @@ public class SecondaryViewController {
     }
 
 
-    @FXML
-    public void changeTheme() {
-    }
     @FXML
     public void showInfoAboutCalculations() {
         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
