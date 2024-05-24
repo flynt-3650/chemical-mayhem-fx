@@ -18,9 +18,7 @@ Chemical Mayhem FX - это инновационное приложение, о�
 
 ```bash
 ./mvnw clean install
-cd target
-java -jar cmf-1.0-SNAPSHOT-shaded.jar
-cd .. # чтобы выйти из директории target после завершиения работы
+java -jar target/cmf-1.0-SNAPSHOT-shaded.jar
 ```
 
 Запуск без сборки:
