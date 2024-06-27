@@ -176,7 +176,6 @@ public class Compound {
             }
         }
 
-        
 
         if (new HashSet<>(Arrays.asList(compound)).size() == 2 && hasO) {
             return "Oxide";
@@ -236,5 +235,3 @@ public class Compound {
         return "Compound [parsedCompound=" + Arrays.toString(compound) + "]";
     }
 }
-
- 
