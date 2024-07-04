@@ -51,32 +51,42 @@ public class SecondaryViewController {
 
 
     private void showOxidStates() {
-        Map<Element, int[]> elementsToOxidStates = controller.findCompoundsOxidationStates(compoundQuery.getText());
+        Map<Element, int[]> elementsToOxidStates;
+        try {
+            elementsToOxidStates = controller.findCompoundsOxidationStates(compoundQuery.getText());
+            StringBuilder stringBuilder = new StringBuilder();
 
-        StringBuilder stringBuilder = new StringBuilder();
+            for (Map.Entry<Element, int[]> entry : elementsToOxidStates.entrySet()) {
+                Element element = entry.getKey();
+                int[] oxidationStates = entry.getValue();
 
-        for (Map.Entry<Element, int[]> entry : elementsToOxidStates.entrySet()) {
-            Element element = entry.getKey();
-            int[] oxidationStates = entry.getValue();
+                stringBuilder.append(element.getShortName()).append(": ");
+                for (int oxidationState : oxidationStates) {
+                    if (oxidationState != oxidationStates[oxidationStates.length - 1]) {
+                        stringBuilder.append(oxidationState).append(", ");
+                    } else {
+                        stringBuilder.append(oxidationState).append(" ");
+                    }
 
-            stringBuilder.append(element.getShortName()).append(": ");
-            for (int oxidationState : oxidationStates) {
-                if (oxidationState != oxidationStates[oxidationStates.length - 1]) {
-                    stringBuilder.append(oxidationState).append(", ");
-                } else {
-                    stringBuilder.append(oxidationState).append(" ");
                 }
-                
             }
+            oxidationState.setText(stringBuilder.toString());
+        } catch (InvalidCompoundException e) {
+            e.getMessage();
         }
-        
-        oxidationState.setText(stringBuilder.toString());
+
     }
 
 
     private void showClass() {
-        String classPair = controller.retrieveClassOfCompound(compoundQuery.getText());
-        compoundClass.setText(classPair);
+        String classPair;
+        try {
+            classPair = controller.retrieveClassOfCompound(compoundQuery.getText());
+            compoundClass.setText(classPair);
+        } catch (InvalidCompoundException e) {
+    
+            e.printStackTrace();
+        }
     }
 
 

@@ -2,6 +2,8 @@ package com.rgbteam.cmf.view;
 
 import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
+import com.rgbteam.cmf.chemistry.ElementDoesNotExistException;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -72,7 +74,6 @@ public class PrimaryViewController {
         groupButtonsConst();
     }
 
-
     public void showButtons() {
         int i = 0;
         for (int row = 2; row <= 11; row++) {
@@ -95,7 +96,8 @@ public class PrimaryViewController {
                     myGridPane.add(buttons[i], column, row);
                     i++;
                 }
-                if (i == buttons.length) break;
+                if (i == buttons.length)
+                    break;
             }
         }
     }
@@ -106,38 +108,51 @@ public class PrimaryViewController {
             Button source = (Button) mouseEvent.getSource();
             infoWindows(source);
         };
+
         for (int i = 0; i < buttons.length; i++) {
-            Element e = controller.retrieveElementByNumber(i + 1);
-            if (e != null) {
-                buttons[i] = new Button(e.getShortName());
-                buttons[i].setOnMouseClicked(elementButtonListener);
-                setButtonsStyle(i);
+            if (i != 118) {
+                Element el;
+                try {
+                    el = controller.retrieveElementByNumber(i + 1);
+                    if (el != null) {
+                        buttons[i] = new Button(el.getShortName());
+                        buttons[i].setOnMouseClicked(elementButtonListener);
+                        setButtonsStyle(i);
+                    }
+                } catch (ElementDoesNotExistException e) {
+                    e.getMessage();
+                }
             }
         }
-
     }
 
-    public void setButtonsStyle(int i){
+    public void setButtonsStyle(int i) {
         buttons[i].setFont(Font.font("Arial", 16));
         buttons[i].setMaxSize(1000, 1000);
-        setColor(buttons[i],i);
+        setColor(buttons[i], i);
     }
 
     public void setColor(Button button, int i) {
         if (button == null) {
             return;
         }
-        String group = controller.retrieveElementGroup(i + 1);
-        Color fxColor = getColorForGroupLight(group, button); // светлая тема
-        button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(10), Insets.EMPTY)));
-        button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
-        button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " +
-                fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;"));
-        button.setOnMousePressed(event -> button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 10;"));
-        button.setOnMouseReleased(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
+        String group;
+        try {
+            group = controller.retrieveElementGroup(i + 1);
+            Color fxColor = getColorForGroupLight(group, button); // светлая тема
+            button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(10), Insets.EMPTY)));
+            button.setOnMouseEntered(event -> button
+                    .setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
+            button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " +
+                    fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;"));
+            button.setOnMousePressed(event -> button
+                    .setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 10;"));
+            button.setOnMouseReleased(event -> button
+                    .setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
+        } catch (ElementDoesNotExistException e) {
+            e.printStackTrace();
+        }
     }
-
-
 
     // светлая тема (окраска кнопки и цвет текста)
     private Color getColorForGroupLight(String group, Button button) {
@@ -145,7 +160,7 @@ public class PrimaryViewController {
         switch (group) {
             case "nonmetal" -> {
                 fxColor = Color.web("#e6f0ff", 1.0);// цвет кнопки
-                button.setTextFill(Color.web("#0060f0", 1.0));//цвет текста
+                button.setTextFill(Color.web("#0060f0", 1.0));// цвет текста
                 button.setBorder(new Border(new BorderStroke(Color.web("#0060f0"), BorderStrokeStyle.SOLID,
                         new CornerRadii(10), BorderWidths.DEFAULT)));
             }
@@ -208,7 +223,7 @@ public class PrimaryViewController {
         return fxColor;
     }
 
-    public void groupButtonsConst(){
+    public void groupButtonsConst() {
         Button[] buttonsGroup = new Button[10];
         buttonsGroup[0] = buttonNM;
         buttonsGroup[1] = buttonNG;
@@ -223,32 +238,32 @@ public class PrimaryViewController {
         setColorGroup(buttonsGroup);
     }
 
-    public void setColorGroup(Button[] buttonsGroup){
+    public void setColorGroup(Button[] buttonsGroup) {
         for (Button button : buttonsGroup) {
             String groupColour = button.getText();
             Color fxColor = getColorForGroupLight(groupColour, button);
             button.setBackground(new Background(new BackgroundFill(fxColor, new CornerRadii(10), Insets.EMPTY)));
-            setActionButtonsGroup(button , fxColor);
+            setActionButtonsGroup(button, fxColor);
         }
     }
 
-
-    public void setActionButtonsGroup(Button button , Color fxColor){
-            button.setOnMousePressed(event -> {
-                button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 10;");
-                Button source = (Button) event.getSource();
-                String groupName = source.getText();
-                setColorForGroup(groupName);
-            });
-            button.setOnMouseEntered(event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
-            button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " +
-                    fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;"));
-            button.setOnMouseReleased(event -> {
-                button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
-                for (int i = 0; i < buttons.length; i ++) {
-                    setColor(buttons[i], i);
-                }
-            });
+    public void setActionButtonsGroup(Button button, Color fxColor) {
+        button.setOnMousePressed(event -> {
+            button.setStyle("-fx-background-color: derive(-fx-base, -30%); -fx-background-radius: 10;");
+            Button source = (Button) event.getSource();
+            String groupName = source.getText();
+            setColorForGroup(groupName);
+        });
+        button.setOnMouseEntered(
+                event -> button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;"));
+        button.setOnMouseExited(event -> button.setStyle("-fx-background-color: " +
+                fxColor.toString().substring(2, 10) + "; -fx-background-radius: 10;"));
+        button.setOnMouseReleased(event -> {
+            button.setStyle("-fx-background-color: derive(-fx-base, -20%); -fx-background-radius: 10;");
+            for (int i = 0; i < buttons.length; i++) {
+                setColor(buttons[i], i);
+            }
+        });
     }
 
     public void setColorForGroup(String groupName) {
@@ -257,118 +272,127 @@ public class PrimaryViewController {
             if (button == null) {
                 continue;
             }
-            String elementGroup = controller.retrieveElementGroup(i + 1);
-            if (!groupName.equals(elementGroup)) {
-                button.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"),
-                        new CornerRadii(10), Insets.EMPTY)));
-                button.setTextFill(Color.web("#ffffff", 1.0));
+            String elementGroup;
+            try {
+                elementGroup = controller.retrieveElementGroup(i + 1);
+                if (!groupName.equals(elementGroup)) {
+                    button.setBackground(new Background(new BackgroundFill(Color.web("#ffffff"),
+                            new CornerRadii(10), Insets.EMPTY)));
+                    button.setTextFill(Color.web("#ffffff", 1.0));
+                }
+            } catch (ElementDoesNotExistException e) {
+                e.getMessage();
             }
         }
     }
 
-    public void infoWindows(Button source){
+    public void infoWindows(Button source) {
         String shortName = source.getText();
-        var e = controller.retrieveElementByShortName(shortName);
-        this.shortName.setText(e.getShortName());
-        int number = e.getNumber();
-        this.shortName.setFill(buttons[number-1].getTextFill());
-        elementNumber.setText(String.valueOf(e.getNumber()));
-        elementNumber.setFill(buttons[number-1].getTextFill());
-        fullName.setText(e.getFullName());
-        fullName.setFill(buttons[number-1].getTextFill());
-        atomicMass.setText("  Atomic Mass: " + e.getAtomicMass());
-        atomicMass.setFill(buttons[number-1].getTextFill());
-        molarMass.setText("  Molar Mass: " + String.format("%.4f", e.getMolarMass()));
-        molarMass.setFill(buttons[number-1].getTextFill());
-        groupElement.setText(" Group: " + e.getElementGroup());
-        groupElement.setFill(buttons[number-1].getTextFill());
-        protonAmount.setText(" Protons: " + e.getProtonAmount());
-        protonAmount.setFill(buttons[number-1].getTextFill());
-        neutronAmount.setText(" Neutrons: " + e.getNeutronAmount());
-        neutronAmount.setFill(buttons[number-1].getTextFill());
-        electronAmount.setText(" Electrons: " + e.getElectronAmount());
-        electronAmount.setFill(buttons[number-1].getTextFill());
-        lableInfo.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
-                buttons[number - 1]), new CornerRadii(10), Insets.EMPTY)));
-        lableInfo.setBorder(buttons[number-1].getBorder());
+        Element el;
+        try {
+            el = controller.retrieveElementByShortName(shortName);
+            this.shortName.setText(el.getShortName());
+            int number = el.getNumber();
+            this.shortName.setFill(buttons[number - 1].getTextFill());
+            elementNumber.setText(String.valueOf(el.getNumber()));
+            elementNumber.setFill(buttons[number - 1].getTextFill());
+            fullName.setText(el.getFullName());
+            fullName.setFill(buttons[number - 1].getTextFill());
+            atomicMass.setText("  Atomic Mass: " + el.getAtomicMass());
+            atomicMass.setFill(buttons[number - 1].getTextFill());
+            molarMass.setText("  Molar Mass: " + String.format("%.4f", el.getMolarMass()));
+            molarMass.setFill(buttons[number - 1].getTextFill());
+            groupElement.setText(" Group: " + el.getElementGroup());
+            groupElement.setFill(buttons[number - 1].getTextFill());
+            protonAmount.setText(" Protons: " + el.getProtonAmount());
+            protonAmount.setFill(buttons[number - 1].getTextFill());
+            neutronAmount.setText(" Neutrons: " + el.getNeutronAmount());
+            neutronAmount.setFill(buttons[number - 1].getTextFill());
+            electronAmount.setText(" Electrons: " + el.getElectronAmount());
+            electronAmount.setFill(buttons[number - 1].getTextFill());
+            lableInfo.setBackground(new Background(new BackgroundFill(getColorForGroupLight(el.getElementGroup(),
+                    buttons[number - 1]), new CornerRadii(10), Insets.EMPTY)));
+            lableInfo.setBorder(buttons[number - 1].getBorder());
 
-        lableElement.setBackground(new Background(new BackgroundFill(getColorForGroupLight(e.getElementGroup(),
-                buttons[number - 1]), new CornerRadii(10), Insets.EMPTY)));
-        lableElement.setBorder(buttons[number-1].getBorder());
-    }
-
-
-
-
-/* //темная
-    private Color getColorForGroupDark(String group, Button button){
-        Color fxColor;
-        switch (group) {
-            case "nonmetal":
-                fxColor = Color.web("#ff4444", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            case "alkali metals":
-                fxColor = Color.web("#6c3b01", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            case "alkaline earth metals":
-                fxColor = Color.web("#6c3b01", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            case "transition metals":
-                fxColor = Color.web("#711019", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            case "lanthanoids":
-                fxColor = Color.web("#402c17", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            case "actinoids":
-                fxColor = Color.web("#732e4c", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            case "post-transition metals":
-                fxColor = Color.web("#003666", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            case "metalloids":
-                fxColor = Color.web("#015146", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            case "noble gases":
-                fxColor = Color.web("#3a2151", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
-            default:
-                fxColor = Color.web("#e9e9ec", 1.0);
-                button.setTextFill(Color.WHITE);
-                break;
+            lableElement.setBackground(new Background(new BackgroundFill(getColorForGroupLight(el.getElementGroup(),
+                    buttons[number - 1]), new CornerRadii(10), Insets.EMPTY)));
+            lableElement.setBorder(buttons[number - 1].getBorder());
+        } catch (ElementDoesNotExistException e) {
+            e.getMessage();
         }
-        return fxColor;
     }
-*/
 
-@FXML
-public void showInfoAboutPeriodicTable() {
-    Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-    infoAlert.setTitle("Information about periodic table");
-    infoAlert.setHeaderText("How to use");
+    /*
+     * //темная
+     * private Color getColorForGroupDark(String group, Button button){
+     * Color fxColor;
+     * switch (group) {
+     * case "nonmetal":
+     * fxColor = Color.web("#ff4444", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * case "alkali metals":
+     * fxColor = Color.web("#6c3b01", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * case "alkaline earth metals":
+     * fxColor = Color.web("#6c3b01", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * case "transition metals":
+     * fxColor = Color.web("#711019", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * case "lanthanoids":
+     * fxColor = Color.web("#402c17", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * case "actinoids":
+     * fxColor = Color.web("#732e4c", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * case "post-transition metals":
+     * fxColor = Color.web("#003666", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * case "metalloids":
+     * fxColor = Color.web("#015146", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * case "noble gases":
+     * fxColor = Color.web("#3a2151", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * default:
+     * fxColor = Color.web("#e9e9ec", 1.0);
+     * button.setTextFill(Color.WHITE);
+     * break;
+     * }
+     * return fxColor;
+     * }
+     */
 
-    Text infoText = new Text("In this periodic table you can get acquainted with basic information about the element, as well as see groups of elements\n" +
-            "Authors: Repilov. I.I., Bondarenko E.A., Oleg");
-    infoText.setWrappingWidth(300);
-    infoText.setFill(Paint.valueOf("BLACK"));
+    @FXML
+    public void showInfoAboutPeriodicTable() {
+        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+        infoAlert.setTitle("Information about periodic table");
+        infoAlert.setHeaderText("How to use");
 
-    ScrollPane scrollPane = new ScrollPane(infoText);
-    scrollPane.setPrefViewportWidth(300);
-    scrollPane.setPrefViewportHeight(50);
+        Text infoText = new Text(
+                "In this periodic table you can get acquainted with basic information about the element, as well as see groups of elements\n"
+                        +
+                        "Authors: Repilov. I.I., Bondarenko E.A., Oleg");
+        infoText.setWrappingWidth(300);
+        infoText.setFill(Paint.valueOf("BLACK"));
 
-    infoAlert.getDialogPane().setContent(scrollPane);
+        ScrollPane scrollPane = new ScrollPane(infoText);
+        scrollPane.setPrefViewportWidth(300);
+        scrollPane.setPrefViewportHeight(50);
 
-    infoAlert.showAndWait();
-}
+        infoAlert.getDialogPane().setContent(scrollPane);
 
+        infoAlert.showAndWait();
+    }
 
     @FXML
     private void switchToSecondView() throws IOException {

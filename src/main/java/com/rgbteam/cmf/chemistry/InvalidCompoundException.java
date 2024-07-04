@@ -1,6 +1,6 @@
 package com.rgbteam.cmf.chemistry;
 
-public class InvalidCompoundException extends RuntimeException {
+public class InvalidCompoundException extends Exception {
     public InvalidCompoundException() {
     }
 

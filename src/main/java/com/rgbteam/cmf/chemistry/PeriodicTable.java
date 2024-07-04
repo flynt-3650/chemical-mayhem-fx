@@ -128,37 +128,33 @@ public class PeriodicTable {
     };
 
 
-    public static Element getElementByNumber(int queryNumber) {
+    public static Element getElementByNumber(int queryNumber) throws ElementDoesNotExistException {
         if (queryNumber >= 1 && queryNumber <= TABLE.length)
             return TABLE[queryNumber - 1];
 
-        return null;
+        throw new ElementDoesNotExistException("Element with number " + queryNumber + " doesn't exist.");
     }
 
 
-    public static Element getElementByShortName(String queryShortName) {
+    public static Element getElementByShortName(String queryShortName) throws ElementDoesNotExistException {
         for (Element item : TABLE)
             if (item.getShortName().equalsIgnoreCase(queryShortName))
                 return item;
 
-        return null;
+        throw new ElementDoesNotExistException("Element with short name " + queryShortName + " doesn't exist.");
     }
 
 
-    public static Element getElementByFullName(String queryFullName) {
+    public static Element getElementByFullName(String queryFullName) throws ElementDoesNotExistException {
         for (Element item : TABLE)
             if (item.getFullName().equalsIgnoreCase(queryFullName))
                 return item;
 
-        return null;
+        throw new ElementDoesNotExistException("Element with full name " + queryFullName + " doesn't exist.");
     }
 
 
-    public static String getElementGroup(int queryNumber) {
-        if (queryNumber >= 1 && queryNumber <= TABLE.length) {
-            Element e = TABLE[queryNumber - 1];
-            return e.getElementGroup();
-        }
-        return null;
+    public static String getElementGroup(int queryNumber) throws ElementDoesNotExistException {
+        return getElementByNumber(queryNumber).getElementGroup();
     }
 }

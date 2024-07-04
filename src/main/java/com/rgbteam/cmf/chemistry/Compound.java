@@ -14,17 +14,15 @@ public class Compound {
     private final Element[] compound;
 
 
-    public Compound(String rawCompound) {
+    public Compound(String rawCompound) throws InvalidCompoundException {
         List<Element> elements = parseCompound(rawCompound);
-        compound = elements.toArray(new Element[0]);
+        this.compound = elements.toArray(new Element[0]);
 
         if (!isValidCompound()) {
            StringBuilder compoundSymbols = new StringBuilder();
-
             for (var e : compound) {
                 compoundSymbols.append(e.getShortName());
             }
-
             throw new InvalidCompoundException("INVALID COMPOUND: " + compoundSymbols);
         }
     }
@@ -45,13 +43,17 @@ public class Compound {
             String groupCountStr = matcher.group(5);
 
             if (elementSymbol != null) {
-                Element element = PeriodicTable.getElementByShortName(elementSymbol);
-                int elementCount = (elementCountStr.isEmpty()) ? 1 : Integer.parseInt(elementCountStr);
+                Element element;
+                try {
+                    element = PeriodicTable.getElementByShortName(elementSymbol);
+                    int elementCount = (elementCountStr.isEmpty()) ? 1 : Integer.parseInt(elementCountStr);
 
-                for (int i = 0; i < count * elementCount; i++) {
-                    subElements.add(element);
+                    for (int i = 0; i < count * elementCount; i++) {
+                        subElements.add(element);
+                    }
+                } catch (ElementDoesNotExistException e) {
+                    e.getMessage();
                 }
-
             } else if (group.equals("(")) {
                 if (!subElements.isEmpty()) {
                     elements.addAll(subElements);
@@ -205,7 +207,6 @@ public class Compound {
         }
          
     }
-
 
 
     @Override

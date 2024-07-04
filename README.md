@@ -15,7 +15,7 @@ For maximum convenience, users can choose how to display and interact with the a
 
 ```bash
 ./mvnw clean install
-java -jar target/ChemichalMayhemFX-1.0-shaded.jar
+java -jar target/ChemicalMayhemFX-1.0-shaded.jar
 ```
 
 **To run without building:**

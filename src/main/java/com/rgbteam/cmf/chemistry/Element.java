@@ -7,6 +7,8 @@ package com.rgbteam.cmf.chemistry;
 
 import java.util.Arrays;
 
+import java.util.Objects;
+
 public class Element {
     private final String fullName;
     private final String shortName;
@@ -33,7 +35,7 @@ public class Element {
         this.molarMass = atomicMass / 10;
         this.valences = valences;
         this.oxidationStates = oxidationStates;
-        this.neutronAmount = (int) atomicMass - number;
+        this.neutronAmount = (int) Math.round(atomicMass) - number;
     }
 
 
@@ -133,18 +135,6 @@ public class Element {
 
     @Override
     public int hashCode() {
-        int result;
-        result = fullName.hashCode();
-        result = 31 * result + shortName.hashCode();
-        result = 31 * result + atomicNumber;
-        result = 31 * result + groupElement.hashCode();
-        result = 31 * result + Double.hashCode(atomicMass);
-        result = 31 * result + Double.hashCode(molarMass);
-        result = 31 * result + protonAmount;
-        result = 31 * result + neutronAmount;
-        result = 31 * result + electronAmount;
-        result = 31 * result + Arrays.hashCode(valences);
-        result = 31 * result + Arrays.hashCode(oxidationStates);
-        return result;
+        return Objects.hash(fullName, shortName, atomicNumber, groupElement, atomicMass, molarMass, protonAmount, neutronAmount, electronAmount, valences, oxidationStates);
     }
 }

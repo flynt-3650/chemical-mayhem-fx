@@ -6,6 +6,8 @@ package com.rgbteam.cmf.view;
 
 import com.rgbteam.cmf.GeneralFlowController;
 import com.rgbteam.cmf.chemistry.Element;
+import com.rgbteam.cmf.chemistry.ElementDoesNotExistException;
+import com.rgbteam.cmf.chemistry.InvalidCompoundException;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -42,34 +44,33 @@ public class CLIView {
                     try {
                         int elementNumber = Integer.parseInt(inputNumber);
                         Element element = controller.retrieveElementByNumber(elementNumber);
-                        if (element != null)
-                            System.out.println(element);
-                        else
-                            System.out.println("Element not found.");
-
-                    } catch (NumberFormatException e) {
-                        System.err.println("Invalid input.");
+                        System.out.println(element);
+                    } catch (NumberFormatException | ElementDoesNotExistException e) {
+                        System.err.println(e.getMessage());
                     }
                     break;
                 }
                 case "2": {
-                    System.out.print("Enter short designation: ");
-                    String inputDesignation = scanner.nextLine();
-                    Element element = controller.retrieveElementByShortName(inputDesignation);
-                    if (element != null)
+                    System.out.print("Enter short name: ");
+                    String shortName = scanner.nextLine();
+
+                    try {
+                        Element element = controller.retrieveElementByShortName(shortName);
                         System.out.println(element);
-                    else
-                        System.err.println("Element not found.");
+                    } catch (ElementDoesNotExistException e) {
+                        System.err.println(e.getMessage());
+                    }
                     break;
                 }
                 case "3": {
                     System.out.print("Enter full name: ");
                     String inputFullName = scanner.nextLine();
-                    Element element = controller.retrieveElementByFullName(inputFullName);
-                    if (element != null)
+                    try {
+                        Element element = controller.retrieveElementByShortName(inputFullName);
                         System.out.println(element);
-                    else
-                        System.err.println("Element not found.");
+                    } catch (ElementDoesNotExistException e) {
+                        System.err.println(e.getMessage());
+                    }
 
                     break;
                 }
@@ -80,7 +81,7 @@ public class CLIView {
                     try {
                         double mass = controller.calculateCompoundsAtomicMass(unparsed);
                         System.out.println("The mass of the [" + unparsed + "] is: " + String.format("%.4f", mass));
-                    } catch (Exception e) {
+                    } catch (InvalidCompoundException e) {
                         System.err.println("Invalid input or element not found: " + e.getCause());
                     }
                     break;
@@ -96,7 +97,7 @@ public class CLIView {
                                     .append(Arrays.toString(entry.getValue())).append("\n");
                         }
                         System.out.println(stringBuilder);
-                    } catch (Exception e) {
+                    } catch (InvalidCompoundException e) {
                         System.err.println("Invalid input or element not found: " + e.getCause());
                     }
                     break;
@@ -107,7 +108,7 @@ public class CLIView {
                     try {
                         String compoundClass = controller.retrieveClassOfCompound(unparsed2);
                         System.out.println("Class: " + compoundClass);
-                    } catch (Exception e) {
+                    } catch (InvalidCompoundException e) {
                         System.err.println("Invalid input or element not found: " + e.getCause());
                     }
                     break;
