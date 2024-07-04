@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Montserrat";
-  src: url("/com/rgbteam/cmf/fonts/static/Montserrat-Regular.ttf");
+  src: url("fonts/static/Montserrat-Regular.ttf");
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -8,39 +8,39 @@
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/com/rgbteam/cmf/fonts/static/Montserrat-Medium.ttf");
+  src: url("fonts/static/Montserrat-Medium.ttf");
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
 }
-
+/* 
 @font-face {
   font-family: "Montserrat-Bold";
   src: url("/com/rgbteam/cmf/fonts/static/Montserrat-Bold.ttf");
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
-}
+} */
 
 .root {
-  font-family: "Montserrat";
   -fx-font-family: "Montserrat";
+  font-family: "Montserrat";
+  -fx-background-color: #F5F5F5;
   background-color: #F5F5F5;
-  -fx-background-color:#F5F5F5;
 }
 
 #lableInformation {
-  font-family: "Montserrat Medium";
   -fx-font-family: "Montserrat Medium";
+  font-family: "Montserrat Medium";
 }
 
 #mainButton {
+  -fx-background-color: #00BCD4;
   background-color:#00BCD4;
-  -fx-background-color:#00BCD4;
-  font-size: 26;
   -fx-font-size: 26;
-  font-weight: bold;
+  font-size: 26;
   -fx-font-weight: bold;
+  font-weight: bold;
 }
 
 #mainButton:hover {
@@ -49,17 +49,17 @@
 }
 
 #mainButton:pressed {
+  -fx-background-color: #757575;
   background-color: #757575;
-  -fx-background-color:#757575;
 }
 
 #labelCompound {
   -fx-text-fill: #00BCD4;
   color: #00BCD4;
-  font-size: 50;
   -fx-font-size: 50;
-  font-weight: bold;
+  font-size: 50;
   -fx-font-weight: bold;
+  font-weight: bold;
 }
 
 #atomicMassBackground,
@@ -75,10 +75,12 @@
 #firstCard,
 #secondCard,
 #thirdCard {
-  font-size: 20;
   -fx-font-size: 20;
-  font-family: "Montserrat Medium";
+  font-size: 20;
+  
   -fx-font-family: "Montserrat Medium";
+  font-family: "Montserrat Medium";
+  
 }
 
 #oxidationState,
@@ -89,10 +91,12 @@
 }
 
 #atomitMass {
-  font-size: 30;
   -fx-font-size: 30;
-  font-weight: bold;
+  font-size: 30;
+  
   -fx-font-weight: bold;
+  font-weight: bold;
+  
 }
 
 #compoundQuery {
