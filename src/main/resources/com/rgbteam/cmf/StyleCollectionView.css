@@ -65,11 +65,17 @@
 #atomicMassBackground,
 #degreeOfOxodationBackground,
 #classBackground {
-    -fx-border-color: #BDBDBD;
-    -fx-border-width: 5px;
-    -fx-border-style: solid;
-    -fx-border-radius: 28;
-    
+  -fx-border-color: #BDBDBD;
+  border-color: #BDBDBD;
+
+  -fx-border-width: 5px;
+  border-width: 5px;
+
+  -fx-border-style: solid;
+  border-style: solid;
+
+  -fx-border-radius: 28;
+  border-radius: 28;
 }
 
 #firstCard,
